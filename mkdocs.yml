@@ -1,0 +1,71 @@
+site_name: Andrims Homelab
+site_description: Documentation for Aadil's homelab
+repo_name: homelab-docs
+
+# MkDocs hides docs/templates/ by default; keep the service template visible
+exclude_docs: |
+  !templates/
+# repo_url: https://git.andrims.net/<user>/homelab-docs   # TODO: set once Forgejo is up
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Home: index.md
+  - Hardware:
+      - hardware/index.md
+      - Dell OptiPlex 7050 (Proxmox): hardware/optiplex-7050.md
+      - MSI GF65 (Windows Docker host): hardware/msi-gf65.md
+      - Monitoring Pi: hardware/monitoring-pi.md
+      - M1 MacBook Air: hardware/macbook-air.md
+      - MSI Raider GE68 HX (workstation): hardware/msi-raider-ge68hx.md
+  - Network:
+      - network/index.md
+      - UniFi: network/unifi.md
+      - DNS (AdGuard Home): network/dns-adguard.md
+      - Reverse proxy (NPM): network/reverse-proxy.md
+      - Cloudflare & andrims.net: network/cloudflare.md
+      - Tailscale: network/tailscale.md
+  - Proxmox:
+      - Host: proxmox/host.md
+      - IP / CTID table: proxmox/ip-ctid-table.md
+  - Services:
+      - services/index.md
+      - Vaultwarden: services/vaultwarden.md
+      - Immich: services/immich.md
+      - TrueNAS: services/truenas.md
+      - Paperless-ngx: services/paperless-ngx.md
+      - Jellyfin: services/jellyfin.md
+      - Servarr stack: services/servarr.md
+      - Glance: services/glance.md
+      - Dozzle (planned): services/dozzle.md
+      - Uptime Kuma (planned): services/uptime-kuma.md
+      - Forgejo (planned): services/forgejo.md
+      - Docs site (planned): services/docs-site.md
+  - Runbooks: runbooks/index.md
+  - Roadmap & rules: roadmap.md
+  - Open questions: open-questions.md
+  - Changelog: changelog.md
+  - Templates:
+      - Service template: templates/service.md

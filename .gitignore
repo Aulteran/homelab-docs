@@ -1,0 +1,19 @@
+# Built site output
+site/
+
+# Python / tooling
+.venv/
+__pycache__/
+.cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Never commit these
+*.env
+.env*
+*.key
+*.pem
