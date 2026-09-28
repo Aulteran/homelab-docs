@@ -21,7 +21,8 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] Version, node name, storage pools
 - [ ] Backup schedule and destination
 - [ ] Every CTID/VMID with name, IP, resources
-- [ ] Confirm the *(inferred)* IPs in the [IP / CTID table](proxmox/ip-ctid-table.md): CT 101, 102, 105, 109, 110 (CT 105 is short-lived — being folded into the new "docker" CT — so lower priority)
+- [ ] Confirm the *(inferred)* IPs in the [IP / CTID table](proxmox/ip-ctid-table.md): CT 102, 105, 109 (CT 105 is short-lived — being folded into the new "docker" CT — so lower priority)
+- [ ] Confirm whether `immich.andrims.net` and `vault.andrims.net` share one `cloudflared` tunnel (CT 102) or run as two separate tunnels
 - [ ] New "docker" CT: pick an ID/IP when it's created, migrate Paperless-ngx off CT 105, then delete CT 100, 103, 105, 108
 
 ## Services
@@ -29,7 +30,7 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] Are the rewrites individual entries or one `*.andrims.net` wildcard? Which proxy hosts are public vs internal?
 - [ ] Is Uptime Kuma already running (it has a domain, [uptime.andrims.net](https://uptime.andrims.net))? (Dozzle confirmed running.)
 - [ ] **LAN URL for every service** — see [Services → Quick links](services/index.md#quick-links)
-- [ ] Vaultwarden: compose, URL, exposure, data path, **backup**
+- [ ] Vaultwarden: compose, data path, **backup** (URL and exposure now confirmed — see its page)
 - [ ] Immich: how TrueNAS is mounted, DB backup, deployment method inside VM 107
 - [ ] TrueNAS (VM 104): SCALE/CORE version, pool/dataset layout on the single 4 TB disk, snapshot schedule, **off-box copy (no redundancy — priority)**
 - [ ] Paperless-ngx (CT 105): deployment method, paths, export backup

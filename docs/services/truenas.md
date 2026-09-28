@@ -37,7 +37,7 @@
 | | |
 |---|---|
 | **Domain URL** | [truenas.andrims.net](https://truenas.andrims.net) |
-| **LAN URL** | ❓ `http://10.10.0.22` |
+| **LAN URL** | [http://10.10.0.22](http://10.10.0.22) (login at `/ui/signin`) |
 | **Login** | (Vaultwarden → "TrueNAS") ❓ |
 
 ## Backups

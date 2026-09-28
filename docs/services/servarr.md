@@ -19,7 +19,7 @@
 | Sonarr | TV | ❓ (8989) | [servarr.andrims.net/sonarr](https://servarr.andrims.net/sonarr) | [http://10.10.0.140:8989](http://10.10.0.140:8989) |
 | Prowlarr | Indexer manager | ❓ (9696) | [servarr.andrims.net/prowlarr](https://servarr.andrims.net/prowlarr) | [http://10.10.0.140:9696](http://10.10.0.140:9696) |
 | Bazarr | Subtitles | ❓ (6767) | [servarr.andrims.net/bazarr](https://servarr.andrims.net/bazarr) | [http://10.10.0.140:6767](http://10.10.0.140:6767) |
-| qBittorrent | Download client | ❓ (8080) | [servarr.andrims.net](https://servarr.andrims.net) (root) | ❓ `http://10.10.0.140:8080` |
+| qBittorrent | Download client | 8081 | [servarr.andrims.net](https://servarr.andrims.net) (root) | [http://10.10.0.140:8081](http://10.10.0.140:8081) |
 | ❓ others (Jellyseerr…) | | | | |
 
 ## How it was deployed

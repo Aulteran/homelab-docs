@@ -20,7 +20,7 @@ Expected footprint: ~100–200 MB RAM idle, near-zero CPU. The LXC limit is a ce
 | | |
 |---|---|
 | **Domain URL** | [git.andrims.net](https://git.andrims.net) |
-| **LAN URL** | ❓ `http://10.10.0.106:3000` (confirm port) |
+| **LAN URL** | [http://10.10.0.106:3000](http://10.10.0.106:3000) |
 | **Exposure** | **Internal only.** AdGuard rewrite → NPM → Forgejo. No Cloudflare record. Remote via Tailscale. |
 | **SSH clone** | Forgejo built-in SSH, or map port 2222 — ❓ which |
 

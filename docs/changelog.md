@@ -2,6 +2,12 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-28 (5)
+
+LAN URLs confirmed by Aadil — Forgejo, ActualBudget (note: **HTTPS**, port 5006), Glance, NPM, AdGuard, TrueNAS and Immich all now have real, working LAN links instead of placeholders. Corrected qBittorrent's port from an assumed 8080 to the real **8081**.
+
+**Vaultwarden is actually public**, exposed via Cloudflare Tunnel (`vault.andrims.net`) alongside Immich — a fact worth explaining, not just recording: its web vault uses WebCrypto, which refuses to run outside a secure context, so the plain LAN URL (`http://10.10.0.140:8000`) loads but doesn't really work. The tunnel is the workaround. Updated everywhere this matters: the home page (now three public services, not two), the NPM/AdGuard tables (removed — it was never actually an NPM host), Cloudflare's public-DNS and tunnel sections, the network map, and the roadmap's standing rules and known risks. Also noted on its page, as a documentation option rather than a plan: an internal NPM certificate would give it working HTTPS without the public exposure, the same way Paperless-ngx works.
+
 ## 2026-09-28 (4)
 
 Hardware corrections from Aadil:

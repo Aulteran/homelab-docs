@@ -1,6 +1,6 @@
 # Aadil's Homelab
 
-A Proxmox-based homelab with a Windows Docker host, a dedicated monitoring Pi, and a UniFi network. Public DNS is on Cloudflare (`andrims.net`); two services are public (Jellyfin and Immich); everything else is internal, with remote access over Tailscale.
+A Proxmox-based homelab with a Windows Docker host, a dedicated monitoring Pi, and a UniFi network. Public DNS is on Cloudflare (`andrims.net`); three services are public (Jellyfin, Immich and Vaultwarden); everything else is internal, with remote access over Tailscale.
 
 **Status legend:** ✅ running · 🟡 planned / in progress · ❓ unknown or unconfirmed
 
@@ -20,7 +20,7 @@ Domain and direct LAN links for every service are on [Services → Quick links](
 
 | Service | Status | Host | Exposure |
 |---|---|---|---|
-| [Vaultwarden](services/vaultwarden.md) | ✅ | Server-GF65 (Docker Desktop) | Internal — [vault.andrims.net](https://vault.andrims.net) |
+| [Vaultwarden](services/vaultwarden.md) | ✅ | Server-GF65 (Docker Desktop) | **Public** — [vault.andrims.net](https://vault.andrims.net) (Cloudflare Tunnel) |
 | [Immich](services/immich.md) | ✅ | VM 107 on PVE-7050 | **Public** — [immich.andrims.net](https://immich.andrims.net) (Cloudflare Tunnel) |
 | [TrueNAS](services/truenas.md) | ✅ | VM 104 on PVE-7050 | Internal — [truenas.andrims.net](https://truenas.andrims.net) |
 | [Paperless-ngx](services/paperless-ngx.md) | ✅ | CT 105 on PVE-7050 | Internal — [paperless.andrims.net](https://paperless.andrims.net) |
@@ -45,6 +45,7 @@ flowchart TB
 
     internet -->|"stream.andrims.net<br/>DNS-only → home IP"| cf
     internet -->|"immich.andrims.net<br/>proxied"| cf
+    internet -->|"vault.andrims.net<br/>proxied"| cf
     cf --> unifi["UniFi gateway"]
     ts -.-> unifi
 
@@ -81,6 +82,7 @@ flowchart TB
     unifi -.->|LAN DNS| adguard
     cf ==>|"Cloudflare Tunnel"| cfd
     cfd ==>|immich.andrims.net| immich
+    cfd ==>|vault.andrims.net| vw
     ddns -.->|"keeps stream.andrims.net<br/>pointed at home IP"| cf
     npm -->|stream.andrims.net| jellyfin
     npm -.->|"git.andrims.net (internal)"| forgejo

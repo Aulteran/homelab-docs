@@ -10,9 +10,9 @@
 |---|---|
 | **Host** | [Monitoring Pi](../hardware/monitoring-pi.md) |
 | **Type** | ❓ Docker container / binary |
-| **LAN IP / port** | ❓ |
+| **LAN IP / port** | `10.10.0.6` : 8080 |
 | **Domain URL** | [dash.andrims.net](https://dash.andrims.net) |
-| **LAN URL** | ❓ |
+| **LAN URL** | [http://10.10.0.6:8080](http://10.10.0.6:8080) |
 
 ## Config
 

@@ -10,7 +10,7 @@
 |---|---|
 | **Host** | `PVE-7050` ([Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md)) → **VM 107** |
 | **Type + ID** | VM — VMID 107, Debian |
-| **LAN IP / port** | `10.10.0.107` : 2283 (default — confirm) |
+| **LAN IP / port** | `10.10.0.107` : 2283 |
 | **RAM allocated** | 7 GB |
 
 ## How it was deployed
