@@ -1,6 +1,6 @@
 # homelab-docs
 
-Documentation for the Andrims homelab, written in Markdown and rendered as a site.
+Documentation for my homelab, written in Markdown and rendered as a site.
 
 - **Source of truth:** this repo on Forgejo (`git.andrims.net`, internal only)
 - **Backup:** private GitHub repo, via Forgejo push mirror

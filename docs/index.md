@@ -1,4 +1,4 @@
-# Andrims Homelab
+# Aadil's Homelab
 
 A Proxmox-based homelab with a Windows Docker host, a dedicated monitoring Pi, and a UniFi network. Public DNS is on Cloudflare (`andrims.net`); remote access is over Tailscale.
 
