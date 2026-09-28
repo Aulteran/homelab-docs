@@ -22,9 +22,9 @@ Every service gets two links: the **domain** (the normal way in) and the **LAN U
 | [Nginx Proxy Manager](../network/reverse-proxy.md) (admin) | ✅ | PVE-7050 → CT 101 | [nginx.andrims.net](https://nginx.andrims.net) | ❓ `http://<IP>:81` | No | **Yes** |
 | [AdGuard Home](../network/dns-adguard.md) (admin) | ✅ | PVE-7050 → CT 153 | [dns.andrims.net](https://dns.andrims.net) | ❓ `http://<IP>` | No | **Yes** |
 | [Proxmox VE](../proxmox/host.md) (admin) | ✅ | PVE-7050 (bare metal) | [pve-7050.andrims.net](https://pve-7050.andrims.net) | [https://10.10.0.15:8006](https://10.10.0.15:8006) | No | **Yes** |
-| [Dozzle](dozzle.md) | 🟡 | Monitoring Pi + agents | [dozzle.andrims.net](https://dozzle.andrims.net) | — | No | No |
+| [Dozzle](dozzle.md) | ✅ | Monitoring Pi + agents | [dozzle.andrims.net](https://dozzle.andrims.net) | — | No | No |
 | [Uptime Kuma](uptime-kuma.md) | 🟡 | Monitoring Pi | [uptime.andrims.net](https://uptime.andrims.net) | — | No | No |
-| [Forgejo](forgejo.md) | 🟡 | PVE-7050 → CT 106 | [git.andrims.net](https://git.andrims.net) | ❓ `http://10.10.0.106:3000` | No | No |
+| [Forgejo](forgejo.md) | ✅ | PVE-7050 → CT 106 | [git.andrims.net](https://git.andrims.net) | ❓ `http://10.10.0.106:3000` | No | No |
 | [ActualBudget](actualbudget.md) | ✅ | PVE-7050 → CT 110 | ❓ | ❓ `http://10.10.0.110:5006` | No | **Yes** |
 | [Docs site](docs-site.md) | 🟡 | PVE-7050 → CT (TBD) | [docs.andrims.net](https://docs.andrims.net) | — | No | No |
 

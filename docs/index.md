@@ -8,9 +8,9 @@ A Proxmox-based homelab with a Windows Docker host, a dedicated monitoring Pi, a
 
 | Machine | Hostname | LAN IP | Role | Runs |
 |---|---|---|---|---|
-| [Dell OptiPlex 7050 SFF](hardware/optiplex-7050.md) | `PVE-7050` | `10.10.0.15` | Proxmox VE host | TrueNAS (VM 104), Immich (VM 107), NPM (CT 101), cloudflared (CT 102), Paperless-ngx (CT 105), Forgejo (CT 106), ddns-updater (CT 109), ActualBudget (CT 110), AdGuard (CT 153), CT 108 (unidentified) |
+| [Dell OptiPlex 7050 SFF](hardware/optiplex-7050.md) | `PVE-7050` | `10.10.0.15` | Proxmox VE host | TrueNAS (VM 104), Immich (VM 107), NPM (CT 101), cloudflared (CT 102), Paperless-ngx (CT 105), Forgejo (CT 106), ddns-updater (CT 109), ActualBudget (CT 110), AdGuard (CT 153); CT 100, 103 and 108 are old/retiring, being consolidated — see [Roadmap](roadmap.md#planned) |
 | [MSI GF65](hardware/msi-gf65.md) | `Server-GF65` | `10.10.0.140` | Windows 10 Pro + Docker Desktop | Jellyfin, Servarr stack (Radarr, Sonarr, Prowlarr, Bazarr, qBittorrent), Vaultwarden |
-| [Monitoring Pi](hardware/monitoring-pi.md) | ❓ | ❓ | Raspberry Pi, monitoring only | Glance dashboard |
+| [Monitoring Pi](hardware/monitoring-pi.md) | ❓ | `10.10.0.6` | Raspberry Pi, monitoring only | Glance dashboard, Dozzle |
 | [MSI Raider GE68 HX](hardware/msi-raider-ge68hx.md) | ❓ | DHCP | Main personal workstation (Windows 11) | Nothing — client |
 | [M1 MacBook Air](hardware/macbook-air.md) | ❓ | DHCP | Secondary personal computer | Nothing — client |
 
@@ -29,7 +29,7 @@ Domain and direct LAN links for every service are on [Services → Quick links](
 | [Nginx Proxy Manager](network/reverse-proxy.md) | ✅ | CT 101 on PVE-7050 | Receives external HTTPS — admin at [nginx.andrims.net](https://nginx.andrims.net) |
 | [AdGuard Home](network/dns-adguard.md) | ✅ | CT 153 on PVE-7050 | Internal DNS — admin at [dns.andrims.net](https://dns.andrims.net) |
 | [Glance](services/glance.md) | ✅ | Monitoring Pi | Internal — [dash.andrims.net](https://dash.andrims.net) |
-| [Dozzle](services/dozzle.md) | 🟡 | Monitoring Pi + agents | Internal — [dozzle.andrims.net](https://dozzle.andrims.net) |
+| [Dozzle](services/dozzle.md) | ✅ | Monitoring Pi + agents | Internal — [dozzle.andrims.net](https://dozzle.andrims.net) |
 | [Uptime Kuma](services/uptime-kuma.md) | 🟡 | Monitoring Pi | Internal — [uptime.andrims.net](https://uptime.andrims.net) |
 | [Forgejo](services/forgejo.md) | 🟡 | CT 106 on PVE-7050 | Internal — [git.andrims.net](https://git.andrims.net) |
 | [ActualBudget](services/actualbudget.md) | ✅ | CT 110 on PVE-7050 | Internal — ❓ |
@@ -49,17 +49,20 @@ flowchart TB
     ts -.-> unifi
 
     subgraph pve["PVE-7050 (10.10.0.15) — Dell OptiPlex 7050 SFF, Proxmox VE"]
+        ct100["CT 100: ❓"]
         npm["CT 101: NPM"]
         cfd["CT 102: cloudflared"]
+        ct103["CT 103: 🗑️ retired"]
         truenas["VM 104: TrueNAS<br/>900 GB photo/media library"]
         paperless["CT 105: Paperless-ngx"]
-        forgejo["CT 106: Forgejo 🟡"]
+        forgejo["CT 106: Forgejo"]
         immich["VM 107: Immich"]
-        ct108["CT 108: ❓ unidentified"]
+        ct108["CT 108: 🗑️ retired"]
         ddns["CT 109: ddns-updater"]
         budget["CT 110: ActualBudget"]
         adguard["CT 153: AdGuard Home"]
-        docs["LXC: docs (nginx) 🟡, CT TBD"]
+        newdocker["CT TBD: docker 🟡<br/>(planned consolidation)"]
+        docs["CT TBD: docs (nginx) 🟡"]
     end
 
     subgraph gf65["Server-GF65 (10.10.0.140) — MSI GF65, Win 10 Pro + Docker Desktop"]
@@ -68,9 +71,9 @@ flowchart TB
         vw["Vaultwarden"]
     end
 
-    subgraph pi["Monitoring Pi"]
+    subgraph pi["Monitoring Pi (10.10.0.6)"]
         glance["Glance"]
-        dozzle["Dozzle 🟡"]
+        dozzle["Dozzle"]
         kuma["Uptime Kuma 🟡"]
     end
 
@@ -82,6 +85,8 @@ flowchart TB
     npm -->|stream.andrims.net| jellyfin
     npm -.->|"git.andrims.net (internal)"| forgejo
     npm -.->|"docs.andrims.net (internal)"| docs
+    paperless -.->|"planned migration"| newdocker
+    docs -.->|"planned: lives here instead"| newdocker
     immich --> truenas
     dozzle -.->|agent| gf65
     dozzle -.->|agents| pve

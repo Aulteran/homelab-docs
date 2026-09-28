@@ -7,7 +7,7 @@ A Raspberry Pi dedicated **only** to monitoring the rest of the homelab. Nothing
 | **Model / RAM** | ❓ |
 | **OS** | ❓ |
 | **Storage** | microSD card |
-| **LAN IP** | ❓ |
+| **LAN IP** | `10.10.0.6` |
 | **Hostname** | ❓ |
 | **Docker?** | ❓ |
 
@@ -16,7 +16,7 @@ A Raspberry Pi dedicated **only** to monitoring the rest of the homelab. Nothing
 | Service | Status |
 |---|---|
 | [Glance](../services/glance.md) | ✅ |
-| [Dozzle](../services/dozzle.md) (main instance) | 🟡 planned |
+| [Dozzle](../services/dozzle.md) (main instance) | ✅ running |
 | [Uptime Kuma](../services/uptime-kuma.md) | 🟡 planned |
 | Prometheus + Grafana | 🟡 planned — **blocked, see rule below** |
 

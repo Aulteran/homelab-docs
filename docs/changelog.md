@@ -2,6 +2,15 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-28 (3)
+
+More corrections from Aadil:
+
+- **Monitoring Pi** LAN IP is `10.10.0.6`.
+- **Dozzle** and **Forgejo** are confirmed **✅ running** (both were marked planned/in-progress before). Updated status everywhere (home page, Services quick links, hardware pages, NPM/AdGuard tables, roadmap).
+- **CT 103 and CT 108 are retired**, no longer in service — the earlier "CT 108 unidentified, might be a Docker host" question is now moot; not worth digging into either one further.
+- **Planned:** consolidate lightweight Docker Compose services (Paperless-ngx, and the future docs-site nginx container) onto **one new "docker" CT**, instead of giving each its own. Once that's live, **CT 100, 103, 105 and 108 all get deleted**. Reflected in the [IP / CTID table](proxmox/ip-ctid-table.md), [Roadmap](roadmap.md#planned), and the network map.
+
 ## 2026-09-28 (2)
 
 Confirmed CT/VM assignments on PVE-7050 (from Aadil directly):

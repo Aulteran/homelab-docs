@@ -25,9 +25,9 @@ NPM receives incoming HTTPS and routes it to internal services. It's also the fr
 | [nginx.andrims.net](https://nginx.andrims.net) | NPM admin — `10.10.0.101` *(inferred)* :81 | No ❓ | ❓ | ✅ |
 | [dns.andrims.net](https://dns.andrims.net) | AdGuard Home admin — `10.10.0.53` | No ❓ | ❓ | ✅ |
 | [pve-7050.andrims.net](https://pve-7050.andrims.net) | Proxmox — `10.10.0.15:8006` (HTTPS backend) | No ❓ | ❓ | ✅ |
-| [dozzle.andrims.net](https://dozzle.andrims.net) | Dozzle on Monitoring Pi — ❓ IP:8080 | No ❓ | ❓ | ❓ |
+| [dozzle.andrims.net](https://dozzle.andrims.net) | Dozzle on Monitoring Pi — `10.10.0.6:8080` ❓ port | No ❓ | ❓ | ✅ |
 | [uptime.andrims.net](https://uptime.andrims.net) | Uptime Kuma on Monitoring Pi — ❓ IP:3001 | No ❓ | ❓ | ❓ |
-| `git.andrims.net` | Forgejo — `10.10.0.106`:3000 ❓ | No | ❓ | 🟡 |
+| `git.andrims.net` | Forgejo — `10.10.0.106`:3000 ❓ | No | ❓ | ✅ |
 | `docs.andrims.net` | docs LXC — ❓ IP:80 | No | ❓ | 🟡 |
 
 ## Gotchas

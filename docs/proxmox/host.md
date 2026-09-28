@@ -25,8 +25,8 @@ When running a helper script:
 
 ## Docker on Proxmox
 
-Docker containers are spread across multiple LXCs and VMs on the Windows side ([Server-GF65](../hardware/msi-gf65.md)). On Proxmox itself, most services run as native LXCs from community helper scripts rather than Docker-in-LXC — **CT 108 is the one guest whose contents are still unidentified**; it may be a Docker host. See the [IP / CTID table](ip-ctid-table.md).
+Docker containers are spread across multiple LXCs and VMs on the Windows side ([Server-GF65](../hardware/msi-gf65.md)). On Proxmox itself, most services run as native LXCs from community helper scripts rather than Docker-in-LXC. **CT 100, 103, 105 and 108 are being consolidated**: 103 and 108 are old Docker-in-LXC hosts already retired, and 100 and 105 (Paperless-ngx) are planned to move onto one new **"docker" CT** for lightweight Compose services — after which all four old CTs get deleted. See the [IP / CTID table](ip-ctid-table.md) and [Roadmap](../roadmap.md#planned).
 
 ## Resource picture
 
-RAM runs around 87% used, including ~3 GiB of ZFS ARC; swap is barely touched. The heavy consumers are the TrueNAS VM (104) and the Immich VM (107); the LXCs (NPM, AdGuard, Forgejo, Paperless, cloudflared, ddns-updater, ActualBudget, and unidentified CT 108) are individually much lighter. See [hardware page](../hardware/optiplex-7050.md#load-notes).
+RAM runs around 87% used, including ~3 GiB of ZFS ARC; swap is barely touched. The heavy consumers are the TrueNAS VM (104) and the Immich VM (107); the LXCs (NPM, AdGuard, Forgejo, Paperless, cloudflared, ddns-updater, ActualBudget) are individually much lighter. CT 100, 103 and 108 are old/retiring. See [hardware page](../hardware/optiplex-7050.md#load-notes).

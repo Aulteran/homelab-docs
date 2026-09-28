@@ -2,7 +2,7 @@
 
 > **What / why:** Self-hosted git server. Source of truth for this docs repo, mirrored to a private GitHub repo as a backup.
 
-**Status:** 🟡 in progress — LXC deployed (CT 106), rest of the setup checklist still open
+**Status:** ✅ running — confirmed up. The checklist below tracks the surrounding setup (mirror, SSH, docs migration); tick off what's actually done.
 
 ## Where
 

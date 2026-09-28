@@ -3,7 +3,7 @@
 Everything marked ❓ in the docs, collected in one place. Tick them off as you verify.
 
 ## Hardware
-- [ ] Monitoring Pi LAN IP and hostname; Raider and MacBook hostnames
+- [ ] Monitoring Pi hostname; Raider and MacBook hostnames
 - [ ] OptiPlex: RAM total, disks, ZFS pool layout, NICs
 - [ ] GF65: specs, where media is stored, auto-login set?, Jellyfin transcoding method (GPU or software)
 - [ ] Monitoring Pi: model, OS, Docker?
@@ -22,13 +22,13 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] Version, node name, storage pools
 - [ ] Backup schedule and destination
 - [ ] Every CTID/VMID with name, IP, resources
-- [ ] What runs in **CT 108** (only unidentified guest left)
-- [ ] Confirm the *(inferred)* IPs in the [IP / CTID table](proxmox/ip-ctid-table.md): CT 101, 102, 105, 109, 110
+- [ ] Confirm the *(inferred)* IPs in the [IP / CTID table](proxmox/ip-ctid-table.md): CT 101, 102, 105, 109, 110 (CT 105 is short-lived — being folded into the new "docker" CT — so lower priority)
+- [ ] New "docker" CT: pick an ID/IP when it's created, migrate Paperless-ngx off CT 105, then delete CT 100, 103, 105, 108
 
 ## Services
 - [ ] Confirm `pct list` / `qm list` output against the [IP / CTID table](proxmox/ip-ctid-table.md) (deployment method, resources, and the *(inferred)* IPs)
 - [ ] Are the rewrites individual entries or one `*.andrims.net` wildcard? Which proxy hosts are public vs internal?
-- [ ] Are Dozzle and Uptime Kuma already running (they have domains)?
+- [ ] Is Uptime Kuma already running (it has a domain, [uptime.andrims.net](https://uptime.andrims.net))? (Dozzle confirmed running.)
 - [ ] **LAN URL for every service** — see [Services → Quick links](services/index.md#quick-links)
 - [ ] Vaultwarden: compose, URL, exposure, data path, **backup**
 - [ ] Immich: how TrueNAS is mounted, DB backup, deployment method inside VM 107

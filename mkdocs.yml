@@ -5,7 +5,7 @@ repo_name: homelab-docs
 # MkDocs hides docs/templates/ by default; keep the service template visible
 exclude_docs: |
   !templates/
-# repo_url: https://git.andrims.net/<user>/homelab-docs   # TODO: set once Forgejo is up
+# repo_url: https://git.andrims.net/<user>/homelab-docs   # TODO: Forgejo (CT 106) is up — set this once this repo is actually pushed there
 
 theme:
   name: material
