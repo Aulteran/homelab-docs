@@ -10,7 +10,7 @@
 ## Architecture
 
 - **Main Dozzle** on the [Monitoring Pi](../hardware/monitoring-pi.md).
-- **A Dozzle agent** on every Docker host: the MSI GF65 (Docker Desktop), and the planned consolidated **"docker" CT** on Proxmox once it exists (see [Roadmap](../roadmap.md#planned)). CT 103 and CT 108, the old Docker LXCs this consolidates, are being retired.
+- **A Dozzle agent** on every Docker host: the MSI GF65 (Docker Desktop), and **CT 105 (`docker`)**, the shared Docker host on Proxmox (`10.10.0.105`). The old Docker LXCs (CT 103, 108) have been deleted.
 - Use **Tailscale IPs** for the agents where possible, instead of opening 7007 on the LAN.
 
 ## Compose — agent (each Docker host, incl. GF65)

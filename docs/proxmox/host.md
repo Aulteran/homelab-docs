@@ -25,8 +25,17 @@ When running a helper script:
 
 ## Docker on Proxmox
 
-Docker containers are spread across multiple LXCs and VMs on the Windows side ([Server-GF65](../hardware/msi-gf65.md)). On Proxmox itself, most services run as native LXCs from community helper scripts rather than Docker-in-LXC. **CT 100, 103, 105 and 108 are being consolidated**: 103 and 108 are old Docker-in-LXC hosts already retired, and 100 and 105 (Paperless-ngx) are planned to move onto one new **"docker" CT** for lightweight Compose services — after which all four old CTs get deleted. See the [IP / CTID table](ip-ctid-table.md) and [Roadmap](../roadmap.md#planned).
+Outside Proxmox, Docker runs on the Windows side ([Server-GF65](../hardware/msi-gf65.md), Docker Desktop). On Proxmox itself, most services run as native LXCs from community helper scripts. Lightweight Docker Compose stacks go on **one** shared Docker host, **CT 105 (`docker`)**, instead of each getting its own CT — currently the [docs site](../services/docs-site.md) nginx container, and ❓ [Paperless-ngx](../services/paperless-ngx.md). The old one-off and Docker-in-LXC containers (CT 100, 103, 108) have been deleted. See the [IP / CTID table](ip-ctid-table.md).
 
 ## Resource picture
 
-RAM runs around 87% used (~20.3 of 24 GiB); swap is barely touched. The host has no ZFS, so most of that is VM allocation: TrueNAS (VM 104, 10 GB) and Immich (VM 107, 7 GB) account for 17 GB between them; the rest covers Proxmox itself and the LXCs (NPM, AdGuard, Forgejo, Paperless, cloudflared, ddns-updater, ActualBudget), which are individually much lighter. CT 100, 103 and 108 are old/retiring. See [hardware page](../hardware/optiplex-7050.md#load-notes).
+RAM runs around 87% used (~20.3 of 24 GiB); swap is barely touched. The host has no ZFS, so most of that is VM allocation.
+
+| | Allocated RAM |
+|---|---|
+| Running VMs — TrueNAS (VM 104, 10 GB) + Immich (VM 107, 7 GB) | 17 GB |
+| All LXCs (101, 102, 105, 106, 109, 110, 153) | ~7.6 GB |
+| **Total allocated, running guests** | **~24.6 GB** — more than the 24 GB installed |
+| Home Assistant OS (VM 171) — currently **stopped** | +2 GB if started |
+
+The overcommit is fine for now because LXC memory limits are ceilings, not reservations, and the containers use far less than their limits. VM RAM is different: a VM tends to hold what it's given. **Starting HAOS (VM 171) would push VM allocation to 19 GB**, so trim something (e.g. Immich's 7 GB) or add RAM before making it a permanent guest. See [hardware page](../hardware/optiplex-7050.md#load-notes).

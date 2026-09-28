@@ -2,6 +2,17 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-28 (8)
+
+Proxmox inventory checked against `pct list`, `qm list` and `pct config` on PVE-7050:
+
+- **CT 100, 103 and 108 are deleted.** The old standalone `paperless` LXC is gone too: **CT 105 is now `docker`**, the shared Docker host (2 cores / 2 GB / 32 GB, `10.10.0.105`). The planned "new docker CT" is this one, so there's no separate TBD row any more.
+- **Docs site** now runs on CT 105: every `<docker-ct-ip>` placeholder is now `10.10.0.105` (docs-site, Forgejo webhook/allow-list, NPM). The site is served; the webhook auto-rebuild is still to do. The nginx port (`8088` vs `8080`) is marked ❓.
+- **Paperless-ngx** is marked ❓ until it's confirmed running as a container on CT 105.
+- **New:** VM 171 `haos` (Home Assistant OS), **stopped**, 2 GB RAM / 32 GB disk. Added to the table and roadmap, with a RAM warning: running guests are already allocated ~24.6 GB of the 24 GB installed.
+- **Confirmed:** CT 109 IP (`10.10.0.109`), and real hostnames — `nginxproxymanager` (101), `adguard-alpine` (153), `debian-immich` (VM 107). Resources (cores / RAM / disk) filled in for every guest. No more *(inferred)* IPs.
+- **Oddity:** CT 102 (cloudflared) and CT 153 (AdGuard) show no `net0` line in `pct config`. Their IPs are kept from earlier confirmation and flagged ⚠️.
+
 ## 2026-09-28 (7)
 
 Docs-site plan settled (docs only, no lab changes yet):

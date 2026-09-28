@@ -8,7 +8,7 @@
 
 | | |
 |---|---|
-| **Host** | `PVE-7050` ([Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md)) → **VM 107** |
+| **Host** | `PVE-7050` ([Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md)) → **VM 107** (`debian-immich`) — 7 GB RAM, 20 GB boot disk |
 | **Type + ID** | VM — VMID 107, Debian |
 | **LAN IP / port** | `10.10.0.107` : 2283 |
 | **RAM allocated** | 7 GB |
@@ -25,7 +25,7 @@ Debian VM (107). ❓ Docker compose inside it, or native install?
 | **LAN URL** | ❓ `http://10.10.0.107:2283` |
 | **Public?** | **Yes** |
 | **Path today** | Cloudflare Tunnel (`cloudflared`) → Immich. **Does not go through NPM.** |
-| **cloudflared runs on** | `PVE-7050` → **CT 102** (`cloudflared`), a separate LXC from the [community scripts](https://community-scripts.github.io/ProxmoxVE/) — `10.10.0.102` *(inferred — confirm)* |
+| **cloudflared runs on** | `PVE-7050` → **CT 102** (`cloudflared`), a separate LXC from the [community scripts](https://community-scripts.github.io/ProxmoxVE/) — `10.10.0.102` |
 | **NPM proxy host** | None yet — see planned move below |
 | **Login** | (Vaultwarden → "Immich") ❓ |
 | **DB password** | (Vaultwarden → "Immich DB") |

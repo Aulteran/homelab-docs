@@ -2,31 +2,46 @@
 
 All guests run on **`PVE-7050`** (`10.10.0.15`). **One row per guest.** Update this in the same commit as any change to the lab.
 
+Last checked against `pct list` / `qm list` / `pct config` on the host: **2026-09-28**.
+
 !!! note "IP convention"
-    Most guests get `10.10.0.<CTID last 3 digits>` (e.g. CT 106 → `.106`). **AdGuard (CT 153 → `.53`) and TrueNAS (VM 104 → `.22`) are exceptions** — don't assume the pattern for those two. Rows marked *(inferred)* follow the pattern but haven't been confirmed yet; everything else in this table is confirmed.
+    Most guests get `10.10.0.<CTID last 3 digits>` (e.g. CT 106 → `.106`). **AdGuard (CT 153 → `.53`) and TrueNAS (VM 104 → `.22`) are exceptions** — don't assume the pattern for those two.
 
-| CTID / VMID | Type | Name | IP | Deployed via | Runs | Resources (cores / RAM / disk) |
-|---|---|---|---|---|---|---|
-| 100 | LXC | ❓ | ❓ | ❓ | ❓ — being folded into the new **"docker"** CT below, then deleted | ❓ |
-| 101 | LXC | npm | `10.10.0.101` | ❓ Helper script? | [Nginx Proxy Manager](../network/reverse-proxy.md) | ❓ |
-| 102 | LXC | cloudflared | `10.10.0.102` | Helper script | Cloudflare Tunnel daemon for [Immich](../services/immich.md) and [Vaultwarden](../services/vaultwarden.md) — ❓ confirm both share this one instance | ❓ |
-| 103 | LXC | ❓ | ❓ | ❓ | 🗑️ **Retired, no longer in service.** Pending deletion. | ❓ |
-| 104 | VM | TrueNAS | `10.10.0.22` | ❓ | [TrueNAS](../services/truenas.md) | ❓ |
-| 105 | LXC | paperless | `10.10.0.105` | ❓ Helper script? | [Paperless-ngx](../services/paperless-ngx.md) — 🟡 planned to migrate onto the new **"docker"** CT below, then this CT gets deleted | ❓ |
-| 106 | LXC | forgejo | `10.10.0.106` | Helper script | [Forgejo](../services/forgejo.md) ✅ | 1 / 512 MB / 4–6 GB |
-| 107 | VM | immich | `10.10.0.107` | ❓ Debian VM — helper script or manual Docker compose inside? | [Immich](../services/immich.md) | ❓ |
-| 108 | LXC | ❓ | ❓ | ❓ | 🗑️ **Retired, no longer in service.** Pending deletion (this and CT 103 are the old Docker-in-LXC hosts the new "docker" CT replaces). | ❓ |
-| 109 | LXC | ddns-updater | `10.10.0.109` *(inferred)* | Helper script | Keeps `aultmain.andrims.net`'s A record pointed at the home IP (config: `/opt/ddns-updater/data/config.json`) — see [Cloudflare](../network/cloudflare.md) | ❓ |
-| 110 | LXC | actualbudget | `10.10.0.110` | Helper script | [ActualBudget](../services/actualbudget.md) — personal finance | ❓ |
-| 🟡 TBD | LXC | docker | 🟡 | Helper script / manual | 🟡 **Planned.** Consolidated host for lightweight Docker Compose services: [Paperless-ngx](../services/paperless-ngx.md) (migrating off CT 105) and the [docs site](../services/docs-site.md) (nginx container on `:8088`, plus the `webhook` build listener on `:9000`). Once live, delete CT 100, 103, 105 and 108. | ❓ |
-| 153 | LXC | adguard | `10.10.0.53` | ❓ | [AdGuard Home](../network/dns-adguard.md) | ❓ |
+## LXC containers
 
-!!! tip "Quick way to confirm this"
+| CTID | Hostname | IP | Deployed via | Runs | Cores / RAM / disk |
+|---|---|---|---|---|---|
+| 101 | `nginxproxymanager` | `10.10.0.101` | ❓ Helper script? | [Nginx Proxy Manager](../network/reverse-proxy.md) | 2 / 2 GB / 10 GB |
+| 102 | `cloudflared` | `10.10.0.102` ⚠️ | Helper script | Cloudflare Tunnel daemon for [Immich](../services/immich.md) and [Vaultwarden](../services/vaultwarden.md) — ❓ confirm both share this one instance | 1 / 512 MB / 2 GB |
+| 105 | `docker` | `10.10.0.105` | ❓ Helper script / manual | **Docker host** for lightweight Compose stacks: the [docs site](../services/docs-site.md) nginx container, and ❓ [Paperless-ngx](../services/paperless-ngx.md) (this CT used to be the standalone `paperless` LXC — confirm Paperless now runs here as a container) | 2 / 2 GB / 32 GB |
+| 106 | `forgejo` | `10.10.0.106` | Helper script | [Forgejo](../services/forgejo.md) | 1 / 512 MB / 6 GB |
+| 109 | `ddns-updater` | `10.10.0.109` | Helper script | Keeps `aultmain.andrims.net`'s A record pointed at the home IP (config: `/opt/ddns-updater/data/config.json`) — see [Cloudflare](../network/cloudflare.md) | 1 / 512 MB / 2 GB |
+| 110 | `actualbudget` | `10.10.0.110` | Helper script | [ActualBudget](../services/actualbudget.md) — personal finance | 2 / 2 GB / 4 GB |
+| 153 | `adguard-alpine` | `10.10.0.53` ⚠️ | ❓ Helper script (Alpine variant)? | [AdGuard Home](../network/dns-adguard.md) | 1 / 128 MB / 10 GB |
+
+⚠️ `pct config` showed **no `net0` line** for CT 102 and CT 153, so their IPs come from earlier confirmation, not from the config dump. Check which interface they use with `pct config 102 | grep ^net` (and the same for 153).
+
+## VMs
+
+| VMID | Name | IP | Status | Runs | RAM / boot disk |
+|---|---|---|---|---|---|
+| 104 | `truenas` | `10.10.0.22` | ✅ running | [TrueNAS](../services/truenas.md) — 4 TB SATA SSD passed through | 10 GB / 16 GB |
+| 107 | `debian-immich` | `10.10.0.107` | ✅ running | [Immich](../services/immich.md) on Debian | 7 GB / 20 GB |
+| 171 | `haos` | ❓ | ⏸️ **stopped** | Home Assistant OS — ❓ not in use yet; no service page | 2 GB / 32 GB |
+
+VM core counts aren't shown by `qm list` — get them with `qm config <vmid> | grep -E '^(cores|sockets|memory|net0)'`.
+
+## Removed
+
+CT 100, 103 and 108 (old one-off / Docker-in-LXC containers) have been **deleted**. The old standalone `paperless` LXC is gone; CT 105 is now the `docker` host.
+
+!!! tip "Re-checking this table"
     On the Proxmox host:
     ```bash
     pct list          # LXCs
     qm list           # VMs
-    for id in $(pct list | awk 'NR>1{print $1}'); do echo "== $id"; pct config $id | grep -E '^(hostname|net0|cores|memory|rootfs)'; done
+    for id in $(pct list | awk 'NR>1{print $1}'); do echo "== $id"; pct config $id | grep -E '^(hostname|net[0-9]|cores|memory|rootfs)'; done
+    for id in $(qm list | awk 'NR>1{print $1}'); do echo "== $id"; qm config $id | grep -E '^(name|net[0-9]|cores|sockets|memory)'; done
     ```
 
 ## Machines outside Proxmox

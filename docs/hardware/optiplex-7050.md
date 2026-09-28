@@ -17,8 +17,9 @@ The main server. Runs Proxmox VE; see [Proxmox host](../proxmox/host.md) for the
 
 ## Load notes
 
-- RAM sits around **87%** (~20.3 GiB of 24 GB). No ZFS on the host, so that isn't ARC — it's mostly VM allocations: [TrueNAS](../services/truenas.md) (VM 104) is given **10 GB** and [Immich](../services/immich.md) (VM 107) **7 GB**, which is 17 GB on its own. The rest covers Proxmox itself and the LXCs (NPM, AdGuard, Forgejo, Paperless-ngx, cloudflared, ddns-updater, ActualBudget), which are individually light. Swap use is minimal (~128 MiB), so nothing is actually starved.
-- **CT 100, 103 and 108** are old/unused and slated for deletion (see [Roadmap](../roadmap.md#planned)) — not worth chasing further for load analysis.
+- RAM sits around **87%** (~20.3 GiB of 24 GB). No ZFS on the host, so that isn't ARC — it's mostly VM allocations: [TrueNAS](../services/truenas.md) (VM 104) is given **10 GB** and [Immich](../services/immich.md) (VM 107) **7 GB**, which is 17 GB on its own. The rest covers Proxmox itself and the LXCs (NPM, cloudflared, docker, Forgejo, ddns-updater, ActualBudget, AdGuard), which are individually light. Swap use is minimal (~128 MiB), so nothing is actually starved.
+- On paper, running guests are allocated ~24.6 GB — slightly more than the 24 GB installed. That works because LXC limits are ceilings. The stopped **Home Assistant OS VM (VM 171, 2 GB)** would add to the VM share if started — see [Proxmox host → Resource picture](../proxmox/host.md#resource-picture).
+- CT 100, 103 and 108 have been deleted.
 - CPU idles at a few percent.
 
 ## Gotchas

@@ -1,8 +1,8 @@
-# Docs site (planned)
+# Docs site
 
 > **What / why:** Renders this repo as a browsable site at `docs.andrims.net`, rebuilt automatically every time a commit is pushed to Forgejo.
 
-**Status:** 🟡 planned — waits on the new **"docker" CT** (see [Roadmap](../roadmap.md#planned)).
+**Status:** ✅ site served from the nginx container on **CT 105 (`docker`)**. 🟡 The automatic rebuild-on-push (webhook + cron below) is still to do — until then, rebuild by hand after a push.
 
 ## How it works
 
@@ -11,13 +11,13 @@ Three pieces, each doing one job:
 | Piece | Job | Runs where |
 |---|---|---|
 | **Forgejo** | Stores the Markdown source. Doesn't render MkDocs/Zensical sites. | CT 106 |
-| **Zensical** | Builds the Markdown into static HTML in `site/`, then exits. It is **not** a service. (`zensical serve` is only for live preview on a laptop.) | "docker" CT, run on demand |
-| **nginx** | Serves the built static files. This is the actual "docs" service. | `nginx:alpine` container on the "docker" CT |
+| **Zensical** | Builds the Markdown into static HTML in `site/`, then exits. It is **not** a service. (`zensical serve` is only for live preview on a laptop.) | CT 105 (`docker`), run on demand |
+| **nginx** | Serves the built static files. This is the actual "docs" service. | `nginx:alpine` container on CT 105 (`docker`) |
 
 ```mermaid
 flowchart LR
     dev["Laptop<br/>git push"] --> fj["Forgejo<br/>CT 106"]
-    fj -->|"push webhook<br/>POST :9000/hooks/build-docs"| wh["webhook listener<br/>(docker CT, systemd)"]
+    fj -->|"push webhook<br/>POST :9000/hooks/build-docs"| wh["webhook listener<br/>(CT 105, systemd)"]
     wh --> build["build-docs.sh<br/>git pull → zensical build → rsync"]
     build --> files["/opt/docs-site"]
     files --> nginx["nginx:alpine container<br/>:8088"]
@@ -33,9 +33,9 @@ flowchart LR
 
 | | |
 |---|---|
-| **Host** | `PVE-7050` → **"docker" CT** (ID TBD) |
-| **IP** | ❓ the docker CT's IP |
-| **Ports** | `8088` nginx (site) · `9000` webhook listener (Forgejo → build trigger) |
+| **Host** | `PVE-7050` → **CT 105** (`docker`) |
+| **IP** | `10.10.0.105` |
+| **Ports** | `8088` nginx (site) — ❓ confirm the port actually used (first-time setup may have used `8080`) · `9000` webhook listener (Forgejo → build trigger) |
 | **Repo clone** | `/opt/homelab-docs` (read-only deploy key) |
 | **Built site** | `/opt/docs-site` (served by nginx) |
 | **Zensical** | venv at `/opt/zensical` |
@@ -45,14 +45,14 @@ flowchart LR
 | | |
 |---|---|
 | **URL** | `https://docs.andrims.net` |
-| **LAN URL** | ❓ `http://<docker-ct-ip>:8088` |
-| **Exposure** | **Internal only.** AdGuard rewrite → NPM (`10.10.0.101`) → docker CT `:8088`. No Cloudflare record. Remote via Tailscale. |
+| **LAN URL** | [http://10.10.0.105:8088](http://10.10.0.105:8088) ❓ confirm port |
+| **Exposure** | **Internal only.** AdGuard rewrite → NPM (`10.10.0.101`) → CT 105 `:8088`. No Cloudflare record. Remote via Tailscale. |
 | **Webhook secret** | (Vaultwarden → "docs-site webhook secret") |
-| **Deploy key** | Private key lives only on the docker CT at `/root/.ssh/forgejo_docs`. Public key is in Forgejo → repo → Settings → Deploy keys (read-only). |
+| **Deploy key** | Private key lives only on CT 105 at `/root/.ssh/forgejo_docs`. Public key is in Forgejo → repo → Settings → Deploy keys (read-only). |
 
 ## Deployment
 
-### 1. Tools on the docker CT
+### 1. Tools on CT 105 (`docker`)
 
 ```bash
 apt update && apt install -y git python3-venv rsync webhook
@@ -137,9 +137,9 @@ systemctl enable --now webhook && systemctl restart webhook
 
 ### 6. Forgejo side
 
-1. **Allow webhooks to the LAN.** Forgejo only sends webhooks to public addresses by default. Add the docker CT's IP to `[webhook] ALLOWED_HOST_LIST` in `app.ini` on CT 106 and restart Forgejo. See [Forgejo → Webhooks](forgejo.md#webhooks).
+1. **Allow webhooks to the LAN.** Forgejo only sends webhooks to public addresses by default. Add CT 105's IP (`10.10.0.105`) to `[webhook] ALLOWED_HOST_LIST` in `app.ini` on CT 106 and restart Forgejo. See [Forgejo → Webhooks](forgejo.md#webhooks).
 2. **Add the webhook:** repo → **Settings → Webhooks → Add webhook → Forgejo**
-    - Target URL: `http://<docker-ct-ip>:9000/hooks/build-docs`
+    - Target URL: `http://10.10.0.105:9000/hooks/build-docs`
     - POST, `application/json`
     - Secret: (Vaultwarden → "docs-site webhook secret")
     - Trigger: push events, branch filter `main`
@@ -156,7 +156,7 @@ echo '0 * * * * root /usr/local/bin/build-docs.sh >> /var/log/build-docs.log 2>&
 ### 8. DNS + proxy
 
 - AdGuard rewrite: `docs.andrims.net` → `10.10.0.101` (NPM)
-- NPM proxy host: `docs.andrims.net` → `<docker-ct-ip>:8088`
+- NPM proxy host: `docs.andrims.net` → `10.10.0.105:8088`
 - **Certificate:** the name isn't public, so Let's Encrypt's HTTP challenge can't reach it. Use NPM's **DNS challenge → Cloudflare**, with a Cloudflare API token limited to editing DNS for `andrims.net` (stored in Vaultwarden). A wildcard `*.andrims.net` cert covers every internal host. ❓ Check whether NPM already has one before creating another. See [Reverse proxy](../network/reverse-proxy.md).
 
 ## Data
@@ -179,21 +179,22 @@ zensical serve     # or: mkdocs serve
 
 - Glance: add a link/monitor for `docs.andrims.net`.
 - Uptime Kuma (once running): HTTP check on `docs.andrims.net`.
-- Dozzle: covers the nginx container once the docker CT has an agent.
+- Dozzle: covers the nginx container once CT 105 has an agent.
 
 ## Troubleshooting
 
 | Symptom | Check |
 |---|---|
 | Push doesn't update the site | Forgejo → repo → Settings → Webhooks → **Recent deliveries**. A connection error usually means `ALLOWED_HOST_LIST` or the IP/port is wrong. A 200 with no build usually means a signature/secret mismatch or a push to a branch other than `main`. |
-| Webhook fires but build fails | `journalctl -u webhook -f` on the docker CT, then run `/usr/local/bin/build-docs.sh` by hand to see the error. |
+| Webhook fires but build fails | `journalctl -u webhook -f` on CT 105, then run `/usr/local/bin/build-docs.sh` by hand to see the error. |
 | `git pull` fails | Deploy key missing or revoked in Forgejo, or Forgejo SSH isn't reachable from the CT. |
 | Site loads over LAN IP but not the domain | AdGuard rewrite, NPM proxy host, or certificate. See [Services → troubleshooting](index.md#troubleshooting-with-the-two-links). |
 
 ## Setup checklist
 
 - [x] Forgejo up (CT 106)
-- [ ] "docker" CT created, ID/IP recorded in the [IP / CTID table](../proxmox/ip-ctid-table.md)
+- [x] Docker host created — CT 105 (`docker`), `10.10.0.105`, recorded in the [IP / CTID table](../proxmox/ip-ctid-table.md)
+- [x] Site built with Zensical and served by an nginx container on CT 105
 - [ ] Tools installed (git, python3-venv, rsync, webhook, Zensical venv)
 - [ ] Deploy key added (read-only), repo cloned to `/opt/homelab-docs`
 - [ ] `build-docs.sh` in place, first build succeeds

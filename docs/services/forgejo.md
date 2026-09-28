@@ -36,18 +36,18 @@ Forgejo only sends webhooks to **public** addresses by default, so webhooks to L
 
 ```ini
 [webhook]
-ALLOWED_HOST_LIST = <docker-ct-ip>
+ALLOWED_HOST_LIST = 10.10.0.105
 ```
 
 Restart Forgejo afterwards (`systemctl restart forgejo`). Add more IPs comma-separated, or use `private` to allow the whole LAN.
 
 | Repo | Webhook target | Purpose |
 |---|---|---|
-| `homelab-docs` | `http://<docker-ct-ip>:9000/hooks/build-docs` (push, `main`) | Rebuilds [docs.andrims.net](docs-site.md) on every push |
+| `homelab-docs` | `http://10.10.0.105:9000/hooks/build-docs` (push, `main`) | Rebuilds [docs.andrims.net](docs-site.md) on every push |
 
 | Repo | Deploy key | Access |
 |---|---|---|
-| `homelab-docs` | `docker CT — docs-site` | Read-only |
+| `homelab-docs` | `CT 105 (docker) — docs-site` | Read-only |
 
 ## Setup checklist
 
@@ -58,6 +58,6 @@ Restart Forgejo afterwards (`systemctl restart forgejo`). Add more IPs comma-sep
 - [ ] Create `homelab-docs` repo, push this repo
 - [ ] Push mirror to private GitHub
 - [ ] Set `repo_url` in `mkdocs.yml`
-- [ ] `ALLOWED_HOST_LIST` set for the docker CT; docs-site deploy key + webhook added (see [Docs site](docs-site.md))
+- [ ] `ALLOWED_HOST_LIST` set for CT 105 (`10.10.0.105`); docs-site deploy key + webhook added (see [Docs site](docs-site.md))
 - [ ] Add to Glance; add Uptime Kuma check when that's up
 - [ ] Update IP/CTID table + changelog

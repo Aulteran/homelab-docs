@@ -4,7 +4,7 @@ NPM receives incoming HTTPS and routes it to internal services. It's also the fr
 
 | | |
 |---|---|
-| **Host** | `PVE-7050` → **CT 101** (`npm`) |
+| **Host** | `PVE-7050` → **CT 101** (`nginxproxymanager`) |
 | **LAN IP** | `10.10.0.101` |
 | **Domain URL** | [nginx.andrims.net](https://nginx.andrims.net) |
 | **Admin UI (LAN)** | [http://10.10.0.101:81](http://10.10.0.101:81) |
@@ -19,7 +19,7 @@ NPM receives incoming HTTPS and routes it to internal services. It's also the fr
 | [immich.andrims.net](https://immich.andrims.net) | Immich — `10.10.0.107:2283` | **Yes** | ❓ | 🟡 planned (currently served by Cloudflare Tunnel, not NPM) |
 | [vault.andrims.net](https://vault.andrims.net) | *(not an NPM proxy host — routed via Cloudflare Tunnel instead; see [Cloudflare](cloudflare.md))* | **Yes** | — | N/A |
 | [truenas.andrims.net](https://truenas.andrims.net) | TrueNAS — `10.10.0.22` | No ❓ | ❓ | ✅ |
-| [paperless.andrims.net](https://paperless.andrims.net) | Paperless-ngx — `10.10.0.105` *(inferred)* :8000 | No ❓ | ❓ | ✅ |
+| [paperless.andrims.net](https://paperless.andrims.net) | Paperless-ngx — `10.10.0.105:8000` ❓ (confirm it now runs as a container on CT 105 `docker`) | No ❓ | ❓ | ❓ |
 | [servarr.andrims.net](https://servarr.andrims.net) | qBittorrent on Server-GF65 — `10.10.0.140:8081` (root); custom locations `/radarr` → `:7878`, `/sonarr` → `:8989`, `/prowlarr` → `:9696`, `/bazarr` → `:6767` | No ❓ | ❓ | ✅ |
 | [dash.andrims.net](https://dash.andrims.net) | Glance on Monitoring Pi — `10.10.0.6:8080` | No ❓ | ❓ | ✅ |
 | [nginx.andrims.net](https://nginx.andrims.net) | NPM admin — `10.10.0.101:81` | No ❓ | ❓ | ✅ |
@@ -28,7 +28,7 @@ NPM receives incoming HTTPS and routes it to internal services. It's also the fr
 | [dozzle.andrims.net](https://dozzle.andrims.net) | Dozzle on Monitoring Pi — `10.10.0.6:8080` ❓ port | No ❓ | ❓ | ✅ |
 | [uptime.andrims.net](https://uptime.andrims.net) | Uptime Kuma on Monitoring Pi — ❓ IP:3001 | No ❓ | ❓ | ❓ |
 | `git.andrims.net` | Forgejo — `10.10.0.106:3000` | No | ❓ | ✅ |
-| `docs.andrims.net` | [Docs site](../services/docs-site.md) nginx container on the "docker" CT — ❓ IP:8088 | No | ❓ (needs DNS-challenge cert — internal-only name) | 🟡 |
+| `docs.andrims.net` | [Docs site](../services/docs-site.md) nginx container on CT 105 — `10.10.0.105:8088` ❓ confirm port | No | ❓ (needs DNS-challenge cert — internal-only name) | 🟡 |
 
 ## Gotchas
 

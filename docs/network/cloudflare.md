@@ -8,7 +8,7 @@ The domain **`andrims.net`** is managed on Cloudflare.
 | **Renewal date** | Nov 22, 2028 |
 | **Also registered** | `andrims.com`, also on Cloudflare, renews Nov 8, 2028 — ❓ purpose / whether it's used for anything yet |
 | **Account login** | (Vaultwarden → "Cloudflare") ❓ entry name |
-| **Dynamic DNS** | [DDNS updater](https://community-scripts.github.io/ProxmoxVE/) LXC — `PVE-7050` → **CT 109** (`ddns-updater`), `10.10.0.109` *(inferred — confirm)*. Confirmed: uses the **Cloudflare provider script**, keeping **`aultmain.andrims.net`** (not `stream.andrims.net` — see note below) pointed at the home public IP. Config lives at `/opt/ddns-updater/data/config.json` on the CT — **edit that file before changing DNS provider/target settings**, per the [community-scripts instructions](https://community-scripts.github.io/ProxmoxVE/). |
+| **Dynamic DNS** | [DDNS updater](https://community-scripts.github.io/ProxmoxVE/) LXC — `PVE-7050` → **CT 109** (`ddns-updater`), `10.10.0.109`. Confirmed: uses the **Cloudflare provider script**, keeping **`aultmain.andrims.net`** (not `stream.andrims.net` — see note below) pointed at the home public IP. Config lives at `/opt/ddns-updater/data/config.json` on the CT — **edit that file before changing DNS provider/target settings**, per the [community-scripts instructions](https://community-scripts.github.io/ProxmoxVE/). |
 
 !!! warning "Correction: it updates aultmain.andrims.net, not stream.andrims.net"
     Earlier docs assumed the DDNS updater kept `stream.andrims.net` current. Checking the actual config shows only one live entry, for **`aultmain.andrims.net`** — plus an unused leftover `namecheap` / `example.com` entry that looks like the script's default template, never actually configured. ❓ Whether `stream.andrims.net` is a separate manually-set A record, a CNAME onto `aultmain.andrims.net`, or something else entirely — still needs confirming.
@@ -31,7 +31,7 @@ The domain **`andrims.net`** is managed on Cloudflare.
 | | |
 |---|---|
 | **Tunnel name** | ❓ |
-| **`cloudflared` runs on** | `PVE-7050` → **CT 102** (`cloudflared`), a separate LXC from the [community scripts](https://community-scripts.github.io/ProxmoxVE/) — `10.10.0.102` *(inferred — confirm)* |
+| **`cloudflared` runs on** | `PVE-7050` → **CT 102** (`cloudflared`), a separate LXC from the [community scripts](https://community-scripts.github.io/ProxmoxVE/) — `10.10.0.102` |
 | **Public hostnames** | `immich.andrims.net` → Immich (`http://10.10.0.107:2283`)<br/>`vault.andrims.net` → Vaultwarden (`http://10.10.0.140:8000`) — ❓ confirm both hostnames run through this same tunnel/CT rather than two separate ones |
 
 The tunnel is an outbound connection from `cloudflared`, so neither Immich nor Vaultwarden needs a port forward, and neither goes through NPM. **Different reasons, though:** Immich is tunneled to avoid setting up a second public path (it's planned to move off, see below); Vaultwarden is tunneled because its web vault needs HTTPS to function at all — see [Vaultwarden → Gotchas](../services/vaultwarden.md#gotchas).

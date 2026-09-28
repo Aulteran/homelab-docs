@@ -8,7 +8,7 @@
 
 | | |
 |---|---|
-| **Host** | `PVE-7050` ([Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md)) → **VM 104** |
+| **Host** | `PVE-7050` ([Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md)) → **VM 104** (`truenas`) — 10 GB RAM, 16 GB boot disk |
 | **Type + ID** | VM — VMID 104 |
 | **Version** | ❓ TrueNAS SCALE / CORE, version |
 | **LAN IP** | `10.10.0.22` — note: **doesn't** follow the CTID-suffix convention |
