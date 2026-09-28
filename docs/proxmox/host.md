@@ -25,8 +25,8 @@ When running a helper script:
 
 ## Docker on Proxmox
 
-Docker containers are spread across multiple LXCs and VMs. Known Docker-in-LXC hosts: **CT 105** and **CT 108**. See the [IP / CTID table](ip-ctid-table.md).
+Docker containers are spread across multiple LXCs and VMs on the Windows side ([Server-GF65](../hardware/msi-gf65.md)). On Proxmox itself, most services run as native LXCs from community helper scripts rather than Docker-in-LXC — **CT 108 is the one guest whose contents are still unidentified**; it may be a Docker host. See the [IP / CTID table](ip-ctid-table.md).
 
 ## Resource picture
 
-RAM runs around 87% used, including ~3 GiB of ZFS ARC; swap is barely touched. The heavy consumers are the TrueNAS VM, the Immich VM, and CTs 105 and 108. See [hardware page](../hardware/optiplex-7050.md#load-notes).
+RAM runs around 87% used, including ~3 GiB of ZFS ARC; swap is barely touched. The heavy consumers are the TrueNAS VM (104) and the Immich VM (107); the LXCs (NPM, AdGuard, Forgejo, Paperless, cloudflared, ddns-updater, ActualBudget, and unidentified CT 108) are individually much lighter. See [hardware page](../hardware/optiplex-7050.md#load-notes).

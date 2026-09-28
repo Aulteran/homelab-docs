@@ -1,15 +1,15 @@
-# Forgejo (planned)
+# Forgejo
 
 > **What / why:** Self-hosted git server. Source of truth for this docs repo, mirrored to a private GitHub repo as a backup.
 
-**Status:** 🟡 planned
+**Status:** 🟡 in progress — LXC deployed (CT 106), rest of the setup checklist still open
 
 ## Where
 
 | | |
 |---|---|
-| **Host** | `PVE-7050` → **CT (TBD)**, LXC via the [community helper script](https://community-scripts.github.io/ProxmoxVE/scripts?id=forgejo) |
-| **CTID / IP** | ❓ (static IP — add to the [IP / CTID table](../proxmox/ip-ctid-table.md)) |
+| **Host** | `PVE-7050` → **CT 106** (`forgejo`), LXC via the [community helper script](https://community-scripts.github.io/ProxmoxVE/scripts?id=forgejo) |
+| **CTID / IP** | CT 106 — `10.10.0.106` |
 | **Resources** | **Advanced** install: 1 core, 512 MB RAM, 4–6 GB disk. Alpine profile optional. |
 | **Database** | SQLite (script default) — don't add Postgres/MariaDB |
 
@@ -20,7 +20,7 @@ Expected footprint: ~100–200 MB RAM idle, near-zero CPU. The LXC limit is a ce
 | | |
 |---|---|
 | **Domain URL** | [git.andrims.net](https://git.andrims.net) |
-| **LAN URL** | ❓ `http://<LAN IP>:3000` (once deployed) |
+| **LAN URL** | ❓ `http://10.10.0.106:3000` (confirm port) |
 | **Exposure** | **Internal only.** AdGuard rewrite → NPM → Forgejo. No Cloudflare record. Remote via Tailscale. |
 | **SSH clone** | Forgejo built-in SSH, or map port 2222 — ❓ which |
 
@@ -32,7 +32,7 @@ Expected footprint: ~100–200 MB RAM idle, near-zero CPU. The LXC limit is a ce
 
 ## Setup checklist
 
-- [ ] Deploy LXC, static IP
+- [x] Deploy LXC, static IP — CT 106, `10.10.0.106`
 - [ ] AdGuard rewrite `git.andrims.net` → NPM
 - [ ] NPM proxy host → Forgejo (port 3000)
 - [ ] SSH clone access working from the Raider and the MacBook

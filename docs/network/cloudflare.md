@@ -7,7 +7,7 @@ The domain **`andrims.net`** is managed on Cloudflare.
 | **Registrar** | ❓ |
 | **Renewal date** | ❓ |
 | **Account login** | (Vaultwarden → "Cloudflare") ❓ entry name |
-| **Dynamic DNS** | ❓ How is the home IP kept current on `stream.`? (DDNS container, UniFi, manual?) |
+| **Dynamic DNS** | [DDNS updater](https://community-scripts.github.io/ProxmoxVE/) LXC — `PVE-7050` → **CT 109** (`ddns-updater`), `10.10.0.109` *(inferred — confirm)*. ❓ Which provider script / config (needs a Cloudflare API token — check it's scoped to just the DNS zone). |
 
 ## Public DNS records
 
@@ -25,8 +25,8 @@ The domain **`andrims.net`** is managed on Cloudflare.
 | | |
 |---|---|
 | **Tunnel name** | ❓ |
-| **`cloudflared` runs on** | ❓ (inside the Immich VM? separate LXC? Docker?) |
-| **Public hostnames** | `immich.andrims.net` → Immich (❓ `http://<LAN IP>:2283`) |
+| **`cloudflared` runs on** | `PVE-7050` → **CT 102** (`cloudflared`), a separate LXC from the [community scripts](https://community-scripts.github.io/ProxmoxVE/) — `10.10.0.102` *(inferred — confirm)* |
+| **Public hostnames** | `immich.andrims.net` → Immich (`http://10.10.0.107:2283`) |
 
 The tunnel is an outbound connection from `cloudflared`, so Immich needs no port forward and doesn't go through NPM.
 

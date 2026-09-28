@@ -2,6 +2,17 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-28 (2)
+
+Confirmed CT/VM assignments on PVE-7050 (from Aadil directly):
+
+- AdGuard = CT 153, `10.10.0.53`; TrueNAS = VM 104, `10.10.0.22` — **both break the usual IP-from-CTID pattern**, called out in the [IP / CTID table](proxmox/ip-ctid-table.md).
+- Immich = VM 107 (Debian), `10.10.0.107`; Forgejo = CT 106, `10.10.0.106` — both match the pattern (CTID's last 3 digits = IP's last octet).
+- Paperless-ngx = CT 105 — this **replaces** the old guess that CT 105 was a generic Docker-in-LXC host. Only **CT 108** is still unidentified.
+- New: NPM (CT 101), Cloudflare Tunnel daemon `cloudflared` (CT 102, resolves where the Immich tunnel runs), a DDNS updater keeping `stream.andrims.net` current (CT 109), and **ActualBudget** (CT 110, personal finance — new service page added).
+- IPs for CT 101, 102, 105, 109, 110 are inferred from the CTID pattern, not yet confirmed — marked *(inferred)* throughout.
+- Forgejo status moved from "planned" to "in progress" — the LXC exists; the rest of its setup checklist (AdGuard rewrite, NPM host, SSH clone, first push) is still open.
+
 ## 2026-09-28
 
 Doc corrections (no lab changes):

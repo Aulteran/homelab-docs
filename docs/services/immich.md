@@ -8,23 +8,23 @@
 
 | | |
 |---|---|
-| **Host** | `PVE-7050` ([Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md)) → **VM ❓** |
-| **Type + ID** | VM — ❓ VMID / name |
-| **LAN IP / port** | ❓ (default 2283) |
+| **Host** | `PVE-7050` ([Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md)) → **VM 107** |
+| **Type + ID** | VM — VMID 107, Debian |
+| **LAN IP / port** | `10.10.0.107` : 2283 (default — confirm) |
 
 ## How it was deployed
 
-❓ Helper script, or Docker compose inside the VM?
+Debian VM (107). ❓ Docker compose inside it, or native install?
 
 ## Access
 
 | | |
 |---|---|
 | **Domain URL** | [immich.andrims.net](https://immich.andrims.net) |
-| **LAN URL** | ❓ `http://<LAN IP>:2283` |
+| **LAN URL** | ❓ `http://10.10.0.107:2283` |
 | **Public?** | **Yes** |
 | **Path today** | Cloudflare Tunnel (`cloudflared`) → Immich. **Does not go through NPM.** |
-| **cloudflared runs on** | ❓ (inside the Immich VM? a separate LXC?) |
+| **cloudflared runs on** | `PVE-7050` → **CT 102** (`cloudflared`), a separate LXC from the [community scripts](https://community-scripts.github.io/ProxmoxVE/) — `10.10.0.102` *(inferred — confirm)* |
 | **NPM proxy host** | None yet — see planned move below |
 | **Login** | (Vaultwarden → "Immich") ❓ |
 | **DB password** | (Vaultwarden → "Immich DB") |
@@ -41,10 +41,10 @@ Why:
 
 Checklist:
 
-- [ ] NPM proxy host `immich.andrims.net` → Immich LAN IP:2283, websockets on, Let's Encrypt cert. Set client max body size high (e.g. `client_max_body_size 50000M;` in the advanced tab).
+- [ ] NPM proxy host `immich.andrims.net` → `10.10.0.107:2283`, websockets on, Let's Encrypt cert. Set client max body size high (e.g. `client_max_body_size 50000M;` in the advanced tab).
 - [ ] In Cloudflare, remove the tunnel's public hostname for `immich.andrims.net` and replace it with a DNS-only A record to the home IP.
 - [ ] Test from outside the LAN (phone on mobile data), including a large video upload.
-- [ ] Stop and remove `cloudflared` if nothing else uses the tunnel.
+- [ ] Stop and remove the `cloudflared` LXC (CT 102) if nothing else ends up using the tunnel.
 - [ ] Update this page, [Cloudflare](../network/cloudflare.md), [Reverse proxy](../network/reverse-proxy.md), [Services](index.md), and the [changelog](../changelog.md).
 
 ## Data

@@ -8,7 +8,7 @@ A Proxmox-based homelab with a Windows Docker host, a dedicated monitoring Pi, a
 
 | Machine | Hostname | LAN IP | Role | Runs |
 |---|---|---|---|---|
-| [Dell OptiPlex 7050 SFF](hardware/optiplex-7050.md) | `PVE-7050` | `10.10.0.15` | Proxmox VE host | TrueNAS VM, Immich VM, Docker-in-LXC containers (CT 105, CT 108), more LXCs |
+| [Dell OptiPlex 7050 SFF](hardware/optiplex-7050.md) | `PVE-7050` | `10.10.0.15` | Proxmox VE host | TrueNAS (VM 104), Immich (VM 107), NPM (CT 101), cloudflared (CT 102), Paperless-ngx (CT 105), Forgejo (CT 106), ddns-updater (CT 109), ActualBudget (CT 110), AdGuard (CT 153), CT 108 (unidentified) |
 | [MSI GF65](hardware/msi-gf65.md) | `Server-GF65` | `10.10.0.140` | Windows 10 Pro + Docker Desktop | Jellyfin, Servarr stack (Radarr, Sonarr, Prowlarr, Bazarr, qBittorrent), Vaultwarden |
 | [Monitoring Pi](hardware/monitoring-pi.md) | ❓ | ❓ | Raspberry Pi, monitoring only | Glance dashboard |
 | [MSI Raider GE68 HX](hardware/msi-raider-ge68hx.md) | ❓ | DHCP | Main personal workstation (Windows 11) | Nothing — client |
@@ -21,17 +21,18 @@ Domain and direct LAN links for every service are on [Services → Quick links](
 | Service | Status | Host | Exposure |
 |---|---|---|---|
 | [Vaultwarden](services/vaultwarden.md) | ✅ | Server-GF65 (Docker Desktop) | Internal — [vault.andrims.net](https://vault.andrims.net) |
-| [Immich](services/immich.md) | ✅ | VM ❓ on PVE-7050 | **Public** — [immich.andrims.net](https://immich.andrims.net) (Cloudflare Tunnel) |
-| [TrueNAS](services/truenas.md) | ✅ | VM ❓ on PVE-7050 | Internal — [truenas.andrims.net](https://truenas.andrims.net) |
-| [Paperless-ngx](services/paperless-ngx.md) | ✅ | ❓ | Internal — [paperless.andrims.net](https://paperless.andrims.net) |
+| [Immich](services/immich.md) | ✅ | VM 107 on PVE-7050 | **Public** — [immich.andrims.net](https://immich.andrims.net) (Cloudflare Tunnel) |
+| [TrueNAS](services/truenas.md) | ✅ | VM 104 on PVE-7050 | Internal — [truenas.andrims.net](https://truenas.andrims.net) |
+| [Paperless-ngx](services/paperless-ngx.md) | ✅ | CT 105 on PVE-7050 | Internal — [paperless.andrims.net](https://paperless.andrims.net) |
 | [Jellyfin](services/jellyfin.md) | ✅ | Server-GF65 | **Public** — [stream.andrims.net](https://stream.andrims.net) |
 | [Servarr stack](services/servarr.md) | ✅ | Server-GF65 (Docker Desktop) | Internal — [servarr.andrims.net](https://servarr.andrims.net) (+ per-app paths) |
-| [Nginx Proxy Manager](network/reverse-proxy.md) | ✅ | ❓ | Receives external HTTPS — admin at [nginx.andrims.net](https://nginx.andrims.net) |
-| [AdGuard Home](network/dns-adguard.md) | ✅ | ❓ | Internal DNS — admin at [dns.andrims.net](https://dns.andrims.net) |
+| [Nginx Proxy Manager](network/reverse-proxy.md) | ✅ | CT 101 on PVE-7050 | Receives external HTTPS — admin at [nginx.andrims.net](https://nginx.andrims.net) |
+| [AdGuard Home](network/dns-adguard.md) | ✅ | CT 153 on PVE-7050 | Internal DNS — admin at [dns.andrims.net](https://dns.andrims.net) |
 | [Glance](services/glance.md) | ✅ | Monitoring Pi | Internal — [dash.andrims.net](https://dash.andrims.net) |
 | [Dozzle](services/dozzle.md) | 🟡 | Monitoring Pi + agents | Internal — [dozzle.andrims.net](https://dozzle.andrims.net) |
 | [Uptime Kuma](services/uptime-kuma.md) | 🟡 | Monitoring Pi | Internal — [uptime.andrims.net](https://uptime.andrims.net) |
-| [Forgejo](services/forgejo.md) | 🟡 | CT (TBD) on PVE-7050 | Internal — [git.andrims.net](https://git.andrims.net) |
+| [Forgejo](services/forgejo.md) | 🟡 | CT 106 on PVE-7050 | Internal — [git.andrims.net](https://git.andrims.net) |
+| [ActualBudget](services/actualbudget.md) | ✅ | CT 110 on PVE-7050 | Internal — ❓ |
 | [Docs site](services/docs-site.md) | 🟡 | CT (TBD) on PVE-7050 | Internal — [docs.andrims.net](https://docs.andrims.net) |
 
 ## Network map
@@ -45,19 +46,20 @@ flowchart TB
     internet -->|"stream.andrims.net<br/>DNS-only → home IP"| cf
     internet -->|"immich.andrims.net<br/>proxied"| cf
     cf --> unifi["UniFi gateway"]
-    cf ==>|"Cloudflare Tunnel"| cfd["cloudflared ❓host"]
     ts -.-> unifi
 
-    unifi --> npm["Nginx Proxy Manager ❓host"]
-    unifi --> adguard["AdGuard Home ❓host"]
-
     subgraph pve["PVE-7050 (10.10.0.15) — Dell OptiPlex 7050 SFF, Proxmox VE"]
-        truenas["VM: TrueNAS<br/>900 GB photo/media library"]
-        immich["VM: Immich"]
-        ct105["CT 105: Docker"]
-        ct108["CT 108: Docker"]
-        forgejo["LXC: Forgejo 🟡"]
-        docs["LXC: docs (nginx) 🟡"]
+        npm["CT 101: NPM"]
+        cfd["CT 102: cloudflared"]
+        truenas["VM 104: TrueNAS<br/>900 GB photo/media library"]
+        paperless["CT 105: Paperless-ngx"]
+        forgejo["CT 106: Forgejo 🟡"]
+        immich["VM 107: Immich"]
+        ct108["CT 108: ❓ unidentified"]
+        ddns["CT 109: ddns-updater"]
+        budget["CT 110: ActualBudget"]
+        adguard["CT 153: AdGuard Home"]
+        docs["LXC: docs (nginx) 🟡, CT TBD"]
     end
 
     subgraph gf65["Server-GF65 (10.10.0.140) — MSI GF65, Win 10 Pro + Docker Desktop"]
@@ -72,10 +74,14 @@ flowchart TB
         kuma["Uptime Kuma 🟡"]
     end
 
+    unifi --> npm
+    unifi -.->|LAN DNS| adguard
+    cf ==>|"Cloudflare Tunnel"| cfd
+    cfd ==>|immich.andrims.net| immich
+    ddns -.->|"keeps stream.andrims.net<br/>pointed at home IP"| cf
     npm -->|stream.andrims.net| jellyfin
     npm -.->|"git.andrims.net (internal)"| forgejo
     npm -.->|"docs.andrims.net (internal)"| docs
-    cfd ==>|immich.andrims.net| immich
     immich --> truenas
     dozzle -.->|agent| gf65
     dozzle -.->|agents| pve

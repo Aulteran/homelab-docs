@@ -61,7 +61,8 @@ nav:
       - Glance: services/glance.md
       - Dozzle (planned): services/dozzle.md
       - Uptime Kuma (planned): services/uptime-kuma.md
-      - Forgejo (planned): services/forgejo.md
+      - Forgejo: services/forgejo.md
+      - ActualBudget: services/actualbudget.md
       - Docs site (planned): services/docs-site.md
   - Runbooks: runbooks/index.md
   - Roadmap & rules: roadmap.md

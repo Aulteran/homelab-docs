@@ -13,26 +13,29 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] Port forwards (443/80 → NPM?)
 - [ ] AdGuard: host/CTID, IP, upstreams, secondary DNS
 - [ ] NPM: host/CTID, IP, cert method (HTTP vs. Cloudflare DNS challenge), full proxy host list
-- [ ] Cloudflare: registrar, renewal date, DDNS method, full record list
-- [ ] Cloudflare Tunnel: tunnel name, where `cloudflared` runs
+- [ ] Cloudflare: registrar, renewal date, full DNS record list
+- [ ] DDNS updater (CT 109): which provider/script, confirm IP `10.10.0.109`
+- [ ] Cloudflare Tunnel: tunnel name (runs on CT 102, `10.10.0.102` — confirm IP)
 - [ ] Tailscale: MagicDNS, DNS settings, subnet router/exit node, device list
 
 ## Proxmox
 - [ ] Version, node name, storage pools
 - [ ] Backup schedule and destination
 - [ ] Every CTID/VMID with name, IP, resources
-- [ ] What runs in CT 105 and CT 108
+- [ ] What runs in **CT 108** (only unidentified guest left)
+- [ ] Confirm the *(inferred)* IPs in the [IP / CTID table](proxmox/ip-ctid-table.md): CT 101, 102, 105, 109, 110
 
 ## Services
-- [ ] **VM/CT ID for every Proxmox-hosted service** (Immich, TrueNAS, Paperless, NPM, AdGuard) — paste `pct list` + `qm list`
+- [ ] Confirm `pct list` / `qm list` output against the [IP / CTID table](proxmox/ip-ctid-table.md) (deployment method, resources, and the *(inferred)* IPs)
 - [ ] Are the rewrites individual entries or one `*.andrims.net` wildcard? Which proxy hosts are public vs internal?
 - [ ] Are Dozzle and Uptime Kuma already running (they have domains)?
 - [ ] **LAN URL for every service** — see [Services → Quick links](services/index.md#quick-links)
 - [ ] Vaultwarden: compose, URL, exposure, data path, **backup**
-- [ ] Immich: VMID, LAN IP, deployment, how TrueNAS is mounted, DB backup
-- [ ] TrueNAS: VMID, SCALE/CORE, disk passthrough method, pools, shares, snapshots, off-box copy
-- [ ] Paperless-ngx: host, deployment, paths, export backup
+- [ ] Immich: how TrueNAS is mounted, DB backup, deployment method inside VM 107
+- [ ] TrueNAS (VM 104): SCALE/CORE version, disk passthrough method, pools, shares, snapshots, off-box copy
+- [ ] Paperless-ngx (CT 105): deployment method, paths, export backup
 - [ ] Jellyfin: Docker or native, paths, config backup
 - [ ] Servarr: compose, download client, other apps, backup location
 - [ ] Glance: config path, widgets
 - [ ] Uptime Kuma: notification channel
+- [ ] ActualBudget (CT 110): confirm IP, port, domain proxy host, backup

@@ -19,7 +19,7 @@ The main server. Runs Proxmox VE; see [Proxmox host](../proxmox/host.md) for the
 ## Load notes
 
 - RAM sits around **87%**, but ~3 GiB of that is ZFS ARC (cache that shrinks under pressure). Swap use is minimal (~128 MiB), so nothing is actually starved.
-- The biggest RAM consumers are almost certainly the **TrueNAS VM**, the **Immich VM**, and the Docker-in-LXC containers **CT 105** and **CT 108**.
+- The biggest RAM consumers are almost certainly the **TrueNAS VM (104)** and the **Immich VM (107)**. The LXCs (NPM, AdGuard, Forgejo, Paperless-ngx, cloudflared, ddns-updater, ActualBudget) are typically much lighter — except possibly **CT 108**, still unidentified and worth checking if it turns out to be a Docker host.
 - CPU idles at a few percent.
 
 ## Gotchas

@@ -8,10 +8,10 @@
 
 | | |
 |---|---|
-| **Host** | `PVE-7050` ([Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md)) → **VM ❓** |
-| **Type + ID** | VM — ❓ VMID / name |
+| **Host** | `PVE-7050` ([Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md)) → **VM 104** |
+| **Type + ID** | VM — VMID 104 |
 | **Version** | ❓ TrueNAS SCALE / CORE, version |
-| **LAN IP** | ❓ |
+| **LAN IP** | `10.10.0.22` — note: **doesn't** follow the CTID-suffix convention |
 
 ## Disks
 
@@ -33,7 +33,7 @@
 | | |
 |---|---|
 | **Domain URL** | [truenas.andrims.net](https://truenas.andrims.net) |
-| **LAN URL** | ❓ `http://<LAN IP>` |
+| **LAN URL** | ❓ `http://10.10.0.22` |
 | **Login** | (Vaultwarden → "TrueNAS") ❓ |
 
 ## Backups

@@ -8,9 +8,9 @@
 
 | | |
 |---|---|
-| **Host** | ❓ (`PVE-7050` → which CT/VM?) |
-| **Type + ID** | ❓ (LXC via helper script? Docker in CT 105/108?) |
-| **LAN IP / port** | ❓ (default 8000) |
+| **Host** | `PVE-7050` → **CT 105** (`paperless`) |
+| **Type + ID** | LXC — CT 105 |
+| **LAN IP / port** | `10.10.0.105` *(inferred from CTID — confirm)* : 8000 (default) |
 
 ## Access
 
