@@ -9,7 +9,7 @@ Proxmox VE runs on the [Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md).
 | **LAN IP** | `10.10.0.15` |
 | **Domain URL** | [pve-7050.andrims.net](https://pve-7050.andrims.net) |
 | **Web UI (LAN)** | [https://10.10.0.15:8006](https://10.10.0.15:8006) |
-| **Storage** | ZFS ❓ (pool names, what's on each) |
+| **Storage** | No ZFS — local storage is LVM (`local`) + LVM-thin (`local-lvm`) on the 512 GB boot SSD. See [hardware page](../hardware/optiplex-7050.md) for the 4 TB drive passed through to TrueNAS. |
 | **Backups** | ❓ vzdump schedule? Proxmox Backup Server? Where do backups land? |
 | **Updates** | ❓ no-subscription repo? how often? |
 
@@ -29,4 +29,4 @@ Docker containers are spread across multiple LXCs and VMs on the Windows side ([
 
 ## Resource picture
 
-RAM runs around 87% used, including ~3 GiB of ZFS ARC; swap is barely touched. The heavy consumers are the TrueNAS VM (104) and the Immich VM (107); the LXCs (NPM, AdGuard, Forgejo, Paperless, cloudflared, ddns-updater, ActualBudget) are individually much lighter. CT 100, 103 and 108 are old/retiring. See [hardware page](../hardware/optiplex-7050.md#load-notes).
+RAM runs around 87% used (~20.3 of 24 GiB); swap is barely touched. The host has no ZFS, so most of that is VM allocation: TrueNAS (VM 104, 10 GB) and Immich (VM 107, 7 GB) account for 17 GB between them; the rest covers Proxmox itself and the LXCs (NPM, AdGuard, Forgejo, Paperless, cloudflared, ddns-updater, ActualBudget), which are individually much lighter. CT 100, 103 and 108 are old/retiring. See [hardware page](../hardware/optiplex-7050.md#load-notes).

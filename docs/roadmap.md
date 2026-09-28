@@ -32,4 +32,5 @@
 | Monitoring Pi on microSD | Card wear / failure | USB SSD |
 | Proxmox RAM ~87% | Limited headroom | Watch the TrueNAS (VM 104) and Immich (VM 107) VMs; ZFS ARC can be capped if needed. Retiring CT 100, 103, 105, 108 (see planned consolidation above) should free some up. |
 | Immich public via Cloudflare Tunnel | 100 MB per-request upload cap; two different public paths to troubleshoot | Move to DNS-only + NPM (planned) |
+| TrueNAS pool has **no redundancy** (single 4 TB disk, SATA-controller-passthrough to VM 104) | A drive failure loses the whole ~900 GB Immich library | Get a working off-box backup in place (see [TrueNAS](services/truenas.md#disks)); a second disk for a mirror would help but doesn't replace backups |
 | Backups largely undocumented | Unknown recoverability | Fill in Backups sections, write restore runbooks |

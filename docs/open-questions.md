@@ -4,7 +4,6 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 
 ## Hardware
 - [ ] Monitoring Pi hostname; Raider and MacBook hostnames
-- [ ] OptiPlex: RAM total, disks, ZFS pool layout, NICs
 - [ ] GF65: specs, where media is stored, auto-login set?, Jellyfin transcoding method (GPU or software)
 - [ ] Monitoring Pi: model, OS, Docker?
 
@@ -32,7 +31,7 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] **LAN URL for every service** — see [Services → Quick links](services/index.md#quick-links)
 - [ ] Vaultwarden: compose, URL, exposure, data path, **backup**
 - [ ] Immich: how TrueNAS is mounted, DB backup, deployment method inside VM 107
-- [ ] TrueNAS (VM 104): SCALE/CORE version, disk passthrough method, pools, shares, snapshots, off-box copy
+- [ ] TrueNAS (VM 104): SCALE/CORE version, pool/dataset layout on the single 4 TB disk, snapshot schedule, **off-box copy (no redundancy — priority)**
 - [ ] Paperless-ngx (CT 105): deployment method, paths, export backup
 - [ ] Jellyfin: Docker or native, paths, config backup
 - [ ] Servarr: compose, download client, other apps, backup location

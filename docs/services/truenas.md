@@ -12,14 +12,18 @@
 | **Type + ID** | VM — VMID 104 |
 | **Version** | ❓ TrueNAS SCALE / CORE, version |
 | **LAN IP** | `10.10.0.22` — note: **doesn't** follow the CTID-suffix convention |
+| **RAM allocated** | 10 GB |
 
 ## Disks
 
-❓ How are the disks given to the VM — HBA/controller passthrough, individual disk passthrough, or virtual disks on Proxmox ZFS?
+**SATA controller passthrough.** The OptiPlex's onboard SATA controller is passed through whole to this VM, and TrueNAS manages the physical disk directly — not via Proxmox storage.
 
 | Pool | Layout | Disks | Usable size |
 |---|---|---|---|
-| ❓ | ❓ | ❓ | ❓ |
+| ❓ | ❓ — single disk, so no mirror/raidz possible | 1× 4 TB WD SATA SSD | ❓ |
+
+!!! danger "No redundancy"
+    There's only **one** physical disk here. Whatever pool TrueNAS creates on it (almost certainly ZFS, TrueNAS's default) has **no redundancy** — a drive failure means total loss of the ~900 GB Immich library unless there's a working off-box backup. See Backups below (still ❓).
 
 ## Shares
 
@@ -43,4 +47,5 @@
 
 ## Gotchas
 
-- One of the biggest RAM users on the Proxmox host (ZFS inside TrueNAS wants RAM too).
+- One of the biggest RAM users on the Proxmox host — **10 GB** allocated (ZFS inside TrueNAS wants RAM too).
+- **Single-disk pool, no redundancy** — see the warning above. This is the most important gap to close in [Backups](#backups).

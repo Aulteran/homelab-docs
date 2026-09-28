@@ -2,6 +2,14 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-28 (4)
+
+Hardware corrections from Aadil:
+
+- **PVE-7050:** 24 GB RAM (8 GB × 3), single onboard 1 GbE NIC (no extras), 512 GB boot SSD split into LVM + LVM-thin. **Corrected: no ZFS at the Proxmox host level** — the earlier "ZFS ARC" explanation for RAM usage was wrong. Removed the Location field (everything's at home).
+- **Storage:** a separate 4 TB WD SATA SSD is plugged into the motherboard's SATA ports; the whole SATA controller is passed through to **TrueNAS (VM 104)**, which manages the disk itself. This resolves the old "how are the disks given to the VM" question — and surfaces a real risk: it's a **single disk, no redundancy**, added to the roadmap's known risks.
+- **RAM allocations confirmed:** TrueNAS (VM 104) = 10 GB, Immich (VM 107) = 7 GB. Together with the LXCs, this fully explains the ~87% RAM usage without needing host-level ZFS ARC.
+
 ## 2026-09-28 (3)
 
 More corrections from Aadil:
