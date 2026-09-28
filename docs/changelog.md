@@ -2,6 +2,11 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-28 (10)
+
+- **Public vs internal settled:** only **Jellyfin, Seerr, Vaultwarden and Immich** are public. Every other service's "Public?" ❓ is now **No** (Services quick links and NPM proxy hosts).
+- **Added Seerr** (formerly Jellyseerr, media requests), which is public. Its host, domain and exposure path are still ❓. Updated the home page, roadmap rule 4 and the Servarr apps table.
+
 ## 2026-09-28 (9)
 
 - **Docs site is live** at [docs.andrims.net](https://docs.andrims.net) and [http://10.10.0.105:8088](http://10.10.0.105:8088) (nginx container on CT 105). Port `8088` confirmed; AdGuard rewrite and NPM proxy host marked ✅. The webhook auto-rebuild is the only piece left.

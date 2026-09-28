@@ -26,7 +26,8 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 
 ## Services
 - [ ] Docs site: webhook auto-rebuild still to set up (site itself is live on `:8088`)
-- [ ] Are the rewrites individual entries or one `*.andrims.net` wildcard? Which proxy hosts are public vs internal?
+- [ ] Are the rewrites individual entries or one `*.andrims.net` wildcard?
+- [ ] Seerr (public): which host it runs on, its domain, and how it's exposed (NPM + DNS-only record like Jellyfin, or Cloudflare Tunnel)
 - [ ] Is Uptime Kuma already running (it has a domain, [uptime.andrims.net](https://uptime.andrims.net))? (Dozzle confirmed running.)
 - [ ] **LAN URL for every service** — see [Services → Quick links](services/index.md#quick-links)
 - [ ] Vaultwarden: compose, data path, **backup** (URL and exposure now confirmed — see its page)

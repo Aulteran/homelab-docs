@@ -5,7 +5,7 @@
 1. **Proxmox deploys:** use an **LXC via a community helper script** whenever possible. VMs only when needed.
 2. **Monitoring Pi is for monitoring only.**
 3. **No Prometheus or Grafana on the Monitoring Pi while it boots from microSD.** Move storage to a USB SSD first (a USB stick at minimum). Consider Beszel as a lighter option.
-4. **Internal-only by default.** Only Jellyfin ([stream.andrims.net](https://stream.andrims.net)), Immich ([immich.andrims.net](https://immich.andrims.net)) and Vaultwarden ([vault.andrims.net](https://vault.andrims.net), tunneled because the web vault needs HTTPS to work at all) are public. Everything else is AdGuard rewrite + NPM + Tailscale for remote.
+4. **Internal-only by default.** Only Jellyfin ([stream.andrims.net](https://stream.andrims.net)), Seerr (media requests, ❓ domain), Immich ([immich.andrims.net](https://immich.andrims.net)) and Vaultwarden ([vault.andrims.net](https://vault.andrims.net), tunneled because the web vault needs HTTPS to work at all) are public. Everything else is AdGuard rewrite + NPM + Tailscale for remote.
 5. **No secrets in this repo.** Reference Vaultwarden entries.
 6. **Every lab change gets a changelog entry** in the same commit.
 

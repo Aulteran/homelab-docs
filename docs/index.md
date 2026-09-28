@@ -1,6 +1,6 @@
 # Aadil's Homelab
 
-A Proxmox-based homelab with a Windows Docker host, a dedicated monitoring Pi, and a UniFi network. Public DNS is on Cloudflare (`andrims.net`); three services are public (Jellyfin, Immich and Vaultwarden); everything else is internal, with remote access over Tailscale.
+A Proxmox-based homelab with a Windows Docker host, a dedicated monitoring Pi, and a UniFi network. Public DNS is on Cloudflare (`andrims.net`); four services are public (Jellyfin, Seerr, Immich and Vaultwarden); everything else is internal, with remote access over Tailscale.
 
 **Status legend:** ✅ running · 🟡 planned / in progress · ❓ unknown or unconfirmed
 
@@ -25,6 +25,7 @@ Domain and direct LAN links for every service are on [Services → Quick links](
 | [TrueNAS](services/truenas.md) | ✅ | VM 104 on PVE-7050 | Internal — [truenas.andrims.net](https://truenas.andrims.net) |
 | [Paperless-ngx](services/paperless-ngx.md) | ❓ | CT 105 (`docker`) on PVE-7050 — ❓ confirm | Internal — [paperless.andrims.net](https://paperless.andrims.net) |
 | [Jellyfin](services/jellyfin.md) | ✅ | Server-GF65 | **Public** — [stream.andrims.net](https://stream.andrims.net) |
+| Seerr (formerly Jellyseerr) | ✅ | ❓ | **Public** — ❓ domain |
 | [Servarr stack](services/servarr.md) | ✅ | Server-GF65 (Docker Desktop) | Internal — [servarr.andrims.net](https://servarr.andrims.net) (+ per-app paths) |
 | [Nginx Proxy Manager](network/reverse-proxy.md) | ✅ | CT 101 on PVE-7050 | Receives external HTTPS — admin at [nginx.andrims.net](https://nginx.andrims.net) |
 | [AdGuard Home](network/dns-adguard.md) | ✅ | CT 153 on PVE-7050 | Internal DNS — admin at [dns.andrims.net](https://dns.andrims.net) |

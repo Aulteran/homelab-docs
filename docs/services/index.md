@@ -11,14 +11,15 @@ Every service gets two links: the **domain** (the normal way in) and the **LAN U
 | [Vaultwarden](vaultwarden.md) | ✅ | Server-GF65 (Docker Desktop) | [vault.andrims.net](https://vault.andrims.net) (Cloudflare Tunnel, not NPM) | [http://10.10.0.140:8000](http://10.10.0.140:8000) | **Yes** | **Yes** |
 | [Immich](immich.md) | ✅ | PVE-7050 → VM 107 | [immich.andrims.net](https://immich.andrims.net) (Cloudflare Tunnel, not NPM) | [http://10.10.0.107:2283](http://10.10.0.107:2283) | **Yes** | **Yes** |
 | [TrueNAS](truenas.md) | ✅ | PVE-7050 → VM 104 | [truenas.andrims.net](https://truenas.andrims.net) | [http://10.10.0.22](http://10.10.0.22) | No | **Yes** |
-| [Paperless-ngx](paperless-ngx.md) | ❓ | PVE-7050 → CT 105 (`docker`) ❓ | [paperless.andrims.net](https://paperless.andrims.net) | ❓ [http://10.10.0.105:8000](http://10.10.0.105:8000) | ❓ | **Yes** |
+| [Paperless-ngx](paperless-ngx.md) | ❓ | PVE-7050 → CT 105 (`docker`) ❓ | [paperless.andrims.net](https://paperless.andrims.net) | ❓ [http://10.10.0.105:8000](http://10.10.0.105:8000) | No | **Yes** |
 | [Jellyfin](jellyfin.md) | ✅ | Server-GF65 | [stream.andrims.net](https://stream.andrims.net) | [http://10.10.0.140:8096](http://10.10.0.140:8096) | **Yes** | No |
-| Radarr ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net/radarr](https://servarr.andrims.net/radarr) | [http://10.10.0.140:7878](http://10.10.0.140:7878) | ❓ | No |
-| Sonarr ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net/sonarr](https://servarr.andrims.net/sonarr) | [http://10.10.0.140:8989](http://10.10.0.140:8989) | ❓ | No |
-| Prowlarr ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net/prowlarr](https://servarr.andrims.net/prowlarr) | [http://10.10.0.140:9696](http://10.10.0.140:9696) | ❓ | No |
-| Bazarr ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net/bazarr](https://servarr.andrims.net/bazarr) | [http://10.10.0.140:6767](http://10.10.0.140:6767) | ❓ | No |
-| qBittorrent ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net](https://servarr.andrims.net) | [http://10.10.0.140:8081](http://10.10.0.140:8081) | ❓ | No |
-| [Glance](glance.md) | ✅ | Monitoring Pi | [dash.andrims.net](https://dash.andrims.net) | [http://10.10.0.6:8080](http://10.10.0.6:8080) | ❓ | No |
+| Seerr (formerly Jellyseerr) — media requests | ✅ | ❓ | ❓ | ❓ `http://<IP>:5055` (default port) | **Yes** | No |
+| Radarr ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net/radarr](https://servarr.andrims.net/radarr) | [http://10.10.0.140:7878](http://10.10.0.140:7878) | No | No |
+| Sonarr ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net/sonarr](https://servarr.andrims.net/sonarr) | [http://10.10.0.140:8989](http://10.10.0.140:8989) | No | No |
+| Prowlarr ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net/prowlarr](https://servarr.andrims.net/prowlarr) | [http://10.10.0.140:9696](http://10.10.0.140:9696) | No | No |
+| Bazarr ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net/bazarr](https://servarr.andrims.net/bazarr) | [http://10.10.0.140:6767](http://10.10.0.140:6767) | No | No |
+| qBittorrent ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net](https://servarr.andrims.net) | [http://10.10.0.140:8081](http://10.10.0.140:8081) | No | No |
+| [Glance](glance.md) | ✅ | Monitoring Pi | [dash.andrims.net](https://dash.andrims.net) | [http://10.10.0.6:8080](http://10.10.0.6:8080) | No | No |
 | [Nginx Proxy Manager](../network/reverse-proxy.md) (admin) | ✅ | PVE-7050 → CT 101 | [nginx.andrims.net](https://nginx.andrims.net) | [http://10.10.0.101:81](http://10.10.0.101:81) | No | **Yes** |
 | [AdGuard Home](../network/dns-adguard.md) (admin) | ✅ | PVE-7050 → CT 153 | [dns.andrims.net](https://dns.andrims.net) | [http://10.10.0.53](http://10.10.0.53) | No | **Yes** |
 | [Proxmox VE](../proxmox/host.md) (admin) | ✅ | PVE-7050 (bare metal) | [pve-7050.andrims.net](https://pve-7050.andrims.net) | [https://10.10.0.15:8006](https://10.10.0.15:8006) | No | **Yes** |
@@ -27,6 +28,8 @@ Every service gets two links: the **domain** (the normal way in) and the **LAN U
 | [Forgejo](forgejo.md) | ✅ | PVE-7050 → CT 106 | [git.andrims.net](https://git.andrims.net) | [http://10.10.0.106:3000](http://10.10.0.106:3000) | No | No |
 | [ActualBudget](actualbudget.md) | ✅ | PVE-7050 → CT 110 | ❓ | [https://10.10.0.110:5006](https://10.10.0.110:5006) | No | **Yes** |
 | [Docs site](docs-site.md) | ✅ | PVE-7050 → CT 105 (`docker`) | [docs.andrims.net](https://docs.andrims.net) | [http://10.10.0.105:8088](http://10.10.0.105:8088) | No | No |
+
+**Public:** only **Jellyfin, Seerr, Vaultwarden and Immich** are reachable from the internet. Everything else is internal only (AdGuard rewrite + NPM on the LAN, Tailscale when away).
 
 **Host** names the physical machine and, for Proxmox guests, the specific VM or CT (e.g. `PVE-7050 → CT 106`). Guest IDs are listed in the [IP / CTID table](../proxmox/ip-ctid-table.md).
 
