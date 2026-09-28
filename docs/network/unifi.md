@@ -4,11 +4,11 @@ The home network runs on UniFi hardware.
 
 ## Devices
 
-| Device | Model | IP | Location |
-|---|---|---|---|
-| Gateway | ❓ | ❓ | ❓ |
-| Switch(es) | ❓ | ❓ | ❓ |
-| AP(s) | ❓ | ❓ | ❓ |
+| Device | Model | IP |
+|---|---|---|
+| Gateway | UniFi UX7 | ❓ |
+| Switch | USW-Flex-Mini-5-port (connected to the UX7) | ❓ |
+| AP(s) | ❓ | ❓ |
 
 ## Controller
 

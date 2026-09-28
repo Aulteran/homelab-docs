@@ -4,11 +4,11 @@ A Raspberry Pi dedicated **only** to monitoring the rest of the homelab. Nothing
 
 | | |
 |---|---|
-| **Model / RAM** | ❓ |
-| **OS** | ❓ |
+| **Model / RAM** | Raspberry Pi 5 Model B Rev 1.0 — 4 GB RAM |
+| **OS** | Debian GNU/Linux 13 (trixie), aarch64 — kernel `6.18.29+rpt-rpi-2712` |
 | **Storage** | microSD card |
 | **LAN IP** | `10.10.0.6` |
-| **Hostname** | ❓ |
+| **Hostname** | `raspberrypi` (default, never changed) |
 | **Docker?** | ❓ |
 
 ## What runs here

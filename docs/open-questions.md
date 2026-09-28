@@ -3,18 +3,17 @@
 Everything marked ❓ in the docs, collected in one place. Tick them off as you verify.
 
 ## Hardware
-- [ ] Monitoring Pi hostname; Raider and MacBook hostnames
 - [ ] GF65: specs, where media is stored, auto-login set?, Jellyfin transcoding method (GPU or software)
-- [ ] Monitoring Pi: model, OS, Docker?
+- [ ] Monitoring Pi: Docker used for anything?
 
 ## Network
-- [ ] UniFi models, controller location, subnets/VLANs, DHCP reservations
-- [ ] Port forwards (443/80 → NPM?)
-- [ ] AdGuard: host/CTID, IP, upstreams, secondary DNS
+- [ ] UniFi: controller location, subnets/VLANs, DHCP reservations, AP model(s) (gateway = UX7, switch = USW-Flex-Mini-5-port — both confirmed)
+- [ ] AdGuard: secondary DNS / redundancy if AdGuard itself goes down (upstream chain now confirmed: `1.1.1.1` → Quad9 DoH → `10.10.0.1`)
 - [ ] NPM: host/CTID, IP, cert method (HTTP vs. Cloudflare DNS challenge), full proxy host list
-- [ ] Cloudflare: registrar, renewal date, full DNS record list
-- [ ] DDNS updater (CT 109): which provider/script, confirm IP `10.10.0.109`
-- [ ] Cloudflare Tunnel: tunnel name (runs on CT 102, `10.10.0.102` — confirm IP)
+- [ ] Cloudflare: full DNS record list; `andrims.com` — confirm if/how it's used (registrar + renewal date confirmed for both domains)
+- [ ] DDNS updater (CT 109): confirm IP `10.10.0.109` (provider/target now confirmed: Cloudflare provider script → `aultmain.andrims.net`)
+- [ ] Is `stream.andrims.net` a separate A record from `aultmain.andrims.net`, or does one point at the other? (ddns-updater confirmed to update `aultmain.andrims.net`, not `stream` directly — see [Cloudflare](network/cloudflare.md))
+- [ ] Cloudflare Tunnel: tunnel name (runs on CT 102, `10.10.0.102` — IP now confirmed)
 - [ ] Tailscale: MagicDNS, DNS settings, subnet router/exit node, device list
 
 ## Proxmox

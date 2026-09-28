@@ -10,9 +10,9 @@ A Proxmox-based homelab with a Windows Docker host, a dedicated monitoring Pi, a
 |---|---|---|---|---|
 | [Dell OptiPlex 7050 SFF](hardware/optiplex-7050.md) | `PVE-7050` | `10.10.0.15` | Proxmox VE host | TrueNAS (VM 104), Immich (VM 107), NPM (CT 101), cloudflared (CT 102), Paperless-ngx (CT 105), Forgejo (CT 106), ddns-updater (CT 109), ActualBudget (CT 110), AdGuard (CT 153); CT 100, 103 and 108 are old/retiring, being consolidated — see [Roadmap](roadmap.md#planned) |
 | [MSI GF65](hardware/msi-gf65.md) | `Server-GF65` | `10.10.0.140` | Windows 10 Pro + Docker Desktop | Jellyfin, Servarr stack (Radarr, Sonarr, Prowlarr, Bazarr, qBittorrent), Vaultwarden |
-| [Monitoring Pi](hardware/monitoring-pi.md) | ❓ | `10.10.0.6` | Raspberry Pi, monitoring only | Glance dashboard, Dozzle |
-| [MSI Raider GE68 HX](hardware/msi-raider-ge68hx.md) | ❓ | DHCP | Main personal workstation (Windows 11) | Nothing — client |
-| [M1 MacBook Air](hardware/macbook-air.md) | ❓ | DHCP | Secondary personal computer | Nothing — client |
+| [Monitoring Pi](hardware/monitoring-pi.md) | `raspberrypi` | `10.10.0.6` | Raspberry Pi 5, monitoring only | Glance dashboard, Dozzle |
+| [MSI Raider GE68 HX](hardware/msi-raider-ge68hx.md) | — (client) | DHCP | Main personal workstation (Windows 11) | Nothing — client |
+| [M1 MacBook Air](hardware/macbook-air.md) | — (client) | DHCP | Secondary personal computer | Nothing — client |
 
 ## Services
 
@@ -46,7 +46,7 @@ flowchart TB
     internet -->|"stream.andrims.net<br/>DNS-only → home IP"| cf
     internet -->|"immich.andrims.net<br/>proxied"| cf
     internet -->|"vault.andrims.net<br/>proxied"| cf
-    cf --> unifi["UniFi gateway"]
+    cf --> unifi["UniFi UX7<br/>gateway"]
     ts -.-> unifi
 
     subgraph pve["PVE-7050 (10.10.0.15) — Dell OptiPlex 7050 SFF, Proxmox VE"]
@@ -83,7 +83,7 @@ flowchart TB
     cf ==>|"Cloudflare Tunnel"| cfd
     cfd ==>|immich.andrims.net| immich
     cfd ==>|vault.andrims.net| vw
-    ddns -.->|"keeps stream.andrims.net<br/>pointed at home IP"| cf
+    ddns -.->|"keeps aultmain.andrims.net<br/>pointed at home IP"| cf
     npm -->|stream.andrims.net| jellyfin
     npm -.->|"git.andrims.net (internal)"| forgejo
     npm -.->|"docs.andrims.net (internal)"| docs

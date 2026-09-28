@@ -17,7 +17,7 @@
 ## How traffic flows
 
 **Public — Jellyfin (direct IP + NPM):**
-Internet → Cloudflare DNS (`stream.andrims.net`, DNS-only) → home public IP → UniFi port-forward 443 ❓ → Nginx Proxy Manager → Jellyfin on the MSI GF65.
+Internet → Cloudflare DNS (`stream.andrims.net`, DNS-only) → home public IP → UniFi (UX7) port-forward 443 → Nginx Proxy Manager → Jellyfin on the MSI GF65.
 
 **Public — Immich (Cloudflare Tunnel):**
 Internet → Cloudflare edge (`immich.andrims.net`, proxied) → Cloudflare Tunnel → `cloudflared` ❓ host → Immich VM. No port forward, no NPM. 🟡 Planned to move to the Jellyfin-style path above.
@@ -32,5 +32,7 @@ Device on Tailscale → internal IPs / internal hostnames. ❓ Does Tailscale us
 
 | External port | Internal target | For |
 |---|---|---|
-| 443 ❓ | NPM ❓ | stream.andrims.net |
-| 80 ❓ | NPM ❓ | Let's Encrypt HTTP challenge? |
+| 443 | NPM — `10.10.0.101` (CT 101) | stream.andrims.net, aultmain.andrims.net |
+| 80 | NPM — `10.10.0.101` (CT 101) | HTTP → HTTPS redirect / Let's Encrypt challenge |
+
+Confirmed by Aadil: both 80 and 443 are forwarded straight from the UX7 to NPM (CT 101).

@@ -4,10 +4,14 @@ The domain **`andrims.net`** is managed on Cloudflare.
 
 | | |
 |---|---|
-| **Registrar** | ❓ |
-| **Renewal date** | ❓ |
+| **Registrar** | Cloudflare (also the registrar, not just DNS) |
+| **Renewal date** | Nov 22, 2028 |
+| **Also registered** | `andrims.com`, also on Cloudflare, renews Nov 8, 2028 — ❓ purpose / whether it's used for anything yet |
 | **Account login** | (Vaultwarden → "Cloudflare") ❓ entry name |
-| **Dynamic DNS** | [DDNS updater](https://community-scripts.github.io/ProxmoxVE/) LXC — `PVE-7050` → **CT 109** (`ddns-updater`), `10.10.0.109` *(inferred — confirm)*. ❓ Which provider script / config (needs a Cloudflare API token — check it's scoped to just the DNS zone). |
+| **Dynamic DNS** | [DDNS updater](https://community-scripts.github.io/ProxmoxVE/) LXC — `PVE-7050` → **CT 109** (`ddns-updater`), `10.10.0.109` *(inferred — confirm)*. Confirmed: uses the **Cloudflare provider script**, keeping **`aultmain.andrims.net`** (not `stream.andrims.net` — see note below) pointed at the home public IP. Config lives at `/opt/ddns-updater/data/config.json` on the CT — **edit that file before changing DNS provider/target settings**, per the [community-scripts instructions](https://community-scripts.github.io/ProxmoxVE/). |
+
+!!! warning "Correction: it updates aultmain.andrims.net, not stream.andrims.net"
+    Earlier docs assumed the DDNS updater kept `stream.andrims.net` current. Checking the actual config shows only one live entry, for **`aultmain.andrims.net`** — plus an unused leftover `namecheap` / `example.com` entry that looks like the script's default template, never actually configured. ❓ Whether `stream.andrims.net` is a separate manually-set A record, a CNAME onto `aultmain.andrims.net`, or something else entirely — still needs confirming.
 
 ## Public DNS records
 
@@ -16,6 +20,7 @@ The domain **`andrims.net`** is managed on Cloudflare.
 | [stream.andrims.net](https://stream.andrims.net) | A ❓ | Home public IP | **DNS only** (grey cloud) | Jellyfin via NPM |
 | [immich.andrims.net](https://immich.andrims.net) | CNAME (tunnel) | `<tunnel-id>.cfargotunnel.com` | **Proxied** (orange cloud, required for tunnels) | Immich via Cloudflare Tunnel |
 | [vault.andrims.net](https://vault.andrims.net) | CNAME (tunnel) | `<tunnel-id>.cfargotunnel.com` | **Proxied** (orange cloud, required for tunnels) | Vaultwarden via Cloudflare Tunnel |
+| [aultmain.andrims.net](https://aultmain.andrims.net) | A ❓ | Home public IP (kept current by ddns-updater, CT 109) | ❓ likely **DNS only**, like stream | ❓ purpose — see warning above |
 | ❓ others | | | | |
 
 !!! note "Why stream is DNS-only"
@@ -37,3 +42,7 @@ The tunnel is an outbound connection from `cloudflared`, so neither Immich nor V
 ## Deliberately *not* public
 
 `git.andrims.net` and `docs.andrims.net` have **no** Cloudflare records. They exist only as [AdGuard rewrites](dns-adguard.md). The docs describe the whole network, so they stay off the internet.
+
+## Gotchas
+
+- `/opt/ddns-updater/data/config.json` (on **CT 109**) holds a live Cloudflare API token and zone ID in plaintext. **Never copy its contents into this repo** — see [Roadmap rule 5](../roadmap.md#standing-rules): no secrets here, reference Vaultwarden instead.

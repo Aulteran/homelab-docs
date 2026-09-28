@@ -8,7 +8,7 @@ AdGuard Home provides custom DNS (ad-blocking + local rewrites) for the lab.
 | **LAN IP** | `10.10.0.53` — note: **doesn't** follow the CTID-suffix convention |
 | **Domain URL** | [dns.andrims.net](https://dns.andrims.net) |
 | **Admin UI (LAN)** | [http://10.10.0.53](http://10.10.0.53) |
-| **Upstream DNS** | ❓ |
+| **Upstream DNS** | `1.1.1.1` (primary) → `https://dns10.quad9.net:443/dns-query` (Quad9 DoH, backup) → `10.10.0.1` (third backup — likely the ISP/Xfinity router's own resolver) |
 | **Deployed via** | ❓ |
 | **Backup / secondary DNS** | ❓ (if AdGuard dies, does the LAN lose DNS?) |
 

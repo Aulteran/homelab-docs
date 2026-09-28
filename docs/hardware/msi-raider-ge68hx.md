@@ -6,7 +6,7 @@ Main personal system. **Not a server** — it's a client that manages the lab.
 |---|---|
 | **OS** | Windows 11 |
 | **LAN IP** | DHCP (client, no reservation needed) |
-| **Hostname** | ❓ |
+| **Hostname** | — (client device; not worth tracking) |
 | **Tailscale** | ❓ |
 
 ## Role in the lab

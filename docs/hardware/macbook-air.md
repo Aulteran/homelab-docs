@@ -7,7 +7,7 @@ A secondary personal computer. **It has no role in the homelab** — it's just a
 | **Chip / RAM** | Apple M1 / ❓ |
 | **macOS version** | ❓ |
 | **LAN IP** | DHCP (client, no reservation needed) |
-| **Hostname** | ❓ |
+| **Hostname** | — (client device; not worth tracking) |
 | **Tailscale** | ❓ |
 
 ## History

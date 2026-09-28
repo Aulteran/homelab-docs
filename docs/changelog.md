@@ -2,6 +2,18 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-28 (6)
+
+More corrections and confirmations from Aadil:
+
+- **Monitoring Pi:** hostname is `raspberrypi` (the default, never changed); it's a **Raspberry Pi 5 Model B**, 4 GB RAM, running Debian 13 (trixie) aarch64 — confirmed via a fastfetch screenshot. GE68 and MacBook Air hostnames were never going to matter (both are DHCP clients), so those fields now just say so instead of sitting as ❓.
+- **UniFi hardware named:** gateway is a **UniFi UX7**, with a **USW-Flex-Mini-5-port** switch hooked up to it. Reflected in the network map and [UniFi](network/unifi.md) (dropped the "Location" column there for consistency — everything's at home, already established).
+- **Port forwards confirmed:** both **80 and 443** forward straight from the UX7 to NPM (`10.10.0.101`, CT 101) — resolves the last ❓ on the Jellyfin traffic-flow path.
+- **AdGuard upstream DNS confirmed:** `1.1.1.1` primary → Quad9 DoH (`dns10.quad9.net`) backup → `10.10.0.1` (likely the ISP/Xfinity router) as a third fallback.
+- **Cloudflare:** it's the registrar (not just DNS) for `andrims.net`, renewing Nov 22, 2028. Also holds `andrims.com`, renewing Nov 8, 2028 — purpose still ❓.
+- **DDNS updater (CT 109) — correction, not just a confirmation:** the docs previously assumed it kept `stream.andrims.net` current. Pulling the actual config shows it only has one live entry, for **`aultmain.andrims.net`** via the Cloudflare provider (plus an unused leftover `namecheap`/`example.com` template entry). Whether `stream.andrims.net` is separately maintained or CNAME'd onto `aultmain.andrims.net` is now an open question. Added a standing reminder that the provider config lives at `/opt/ddns-updater/data/config.json` on the CT and needs editing there before switching DNS targets — **without** copying the file's actual API token/zone ID into this repo (it's live credentials; [rule 5](roadmap.md#standing-rules) says no secrets here).
+- **CT 102 (cloudflared) IP confirmed:** `10.10.0.102`, no longer *(inferred)*.
+
 ## 2026-09-28 (5)
 
 LAN URLs confirmed by Aadil — Forgejo, ActualBudget (note: **HTTPS**, port 5006), Glance, NPM, AdGuard, TrueNAS and Immich all now have real, working LAN links instead of placeholders. Corrected qBittorrent's port from an assumed 8080 to the real **8081**.
