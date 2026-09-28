@@ -18,6 +18,7 @@ NPM receives incoming HTTPS and routes it to internal services. It's also the fr
 | [stream.andrims.net](https://stream.andrims.net) | Jellyfin on Server-GF65 — `10.10.0.140:8096` | **Yes** | ❓ | ✅ |
 | [immich.andrims.net](https://immich.andrims.net) | Immich — `10.10.0.107:2283` | **Yes** | ❓ | 🟡 planned (currently served by Cloudflare Tunnel, not NPM) |
 | [vault.andrims.net](https://vault.andrims.net) | *(not an NPM proxy host — routed via Cloudflare Tunnel instead; see [Cloudflare](cloudflare.md))* | **Yes** | — | N/A |
+| [request.andrims.net](https://request.andrims.net) | *(not an NPM proxy host — Seerr is routed via Cloudflare Tunnel; see [Cloudflare](cloudflare.md))* | **Yes** | — | N/A |
 | [truenas.andrims.net](https://truenas.andrims.net) | TrueNAS — `10.10.0.22` | No | ❓ | ✅ |
 | [paperless.andrims.net](https://paperless.andrims.net) | Paperless-ngx — `10.10.0.105:8000` ❓ (confirm it now runs as a container on CT 105 `docker`) | No | ❓ | ❓ |
 | [servarr.andrims.net](https://servarr.andrims.net) | qBittorrent on Server-GF65 — `10.10.0.140:8081` (root); custom locations `/radarr` → `:7878`, `/sonarr` → `:8989`, `/prowlarr` → `:9696`, `/bazarr` → `:6767` | No | ❓ | ✅ |

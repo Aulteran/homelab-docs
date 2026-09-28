@@ -45,7 +45,7 @@ Checklist:
 - [ ] NPM proxy host `immich.andrims.net` → `10.10.0.107:2283`, websockets on, Let's Encrypt cert. Set client max body size high (e.g. `client_max_body_size 50000M;` in the advanced tab).
 - [ ] In Cloudflare, remove the tunnel's public hostname for `immich.andrims.net` and replace it with a DNS-only A record to the home IP.
 - [ ] Test from outside the LAN (phone on mobile data), including a large video upload.
-- [ ] Stop and remove the `cloudflared` LXC (CT 102) if nothing else ends up using the tunnel.
+- [ ] Leave the `cloudflared` LXC (CT 102) running — Vaultwarden and Seerr still use the tunnel.
 - [ ] Update this page, [Cloudflare](../network/cloudflare.md), [Reverse proxy](../network/reverse-proxy.md), [Services](index.md), and the [changelog](../changelog.md).
 
 ## Data

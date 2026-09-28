@@ -21,13 +21,13 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] CT 102 and CT 153 show **no `net0`** in `pct config` — check which interface they use (`pct config 102 | grep ^net`)
 - [ ] VM core counts and IP for VM 171 (HAOS): `qm config <vmid>`
 - [ ] Home Assistant OS (VM 171, stopped): keep, start, or delete? Needs RAM headroom first
-- [ ] Confirm whether `immich.andrims.net` and `vault.andrims.net` share one `cloudflared` tunnel (CT 102) or run as two separate tunnels
+- [ ] Confirm whether `immich.andrims.net`, `vault.andrims.net` and `request.andrims.net` share one `cloudflared` tunnel (CT 102) or run as separate tunnels
 - [ ] CT 105 (`docker`): deployed via helper script or manually?
 
 ## Services
 - [ ] Docs site: webhook auto-rebuild still to set up (site itself is live on `:8088`)
 - [ ] Are the rewrites individual entries or one `*.andrims.net` wildcard?
-- [ ] Seerr (public): which host it runs on, its domain, and how it's exposed (NPM + DNS-only record like Jellyfin, or Cloudflare Tunnel)
+- [ ] Seerr: Docker Desktop or native install on the GF65? Confirm port `5055`, and that it uses the CT 102 tunnel
 - [ ] Is Uptime Kuma already running (it has a domain, [uptime.andrims.net](https://uptime.andrims.net))? (Dozzle confirmed running.)
 - [ ] **LAN URL for every service** — see [Services → Quick links](services/index.md#quick-links)
 - [ ] Vaultwarden: compose, data path, **backup** (URL and exposure now confirmed — see its page)

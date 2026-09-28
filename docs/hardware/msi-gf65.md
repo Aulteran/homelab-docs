@@ -14,7 +14,8 @@ A laptop repurposed as a server. Runs **Windows 10 Pro** with **Docker Desktop**
 
 - [Jellyfin](../services/jellyfin.md) — public at [stream.andrims.net](https://stream.andrims.net). Transcoding happens on this machine (❓ GPU/hardware acceleration or software).
 - [Servarr stack](../services/servarr.md) — Radarr, Sonarr, Prowlarr, Bazarr, qBittorrent (Docker Desktop)
-- [Vaultwarden](../services/vaultwarden.md) (Docker Desktop)
+- [Vaultwarden](../services/vaultwarden.md) (Docker Desktop) — public via Cloudflare Tunnel
+- Seerr (formerly Jellyseerr) — media requests, public at [request.andrims.net](https://request.andrims.net) via Cloudflare Tunnel
 
 ## Known risks
 

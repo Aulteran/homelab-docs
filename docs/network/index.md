@@ -20,7 +20,10 @@
 Internet → Cloudflare DNS (`stream.andrims.net`, DNS-only) → home public IP → UniFi (UX7) port-forward 443 → Nginx Proxy Manager → Jellyfin on the MSI GF65.
 
 **Public — Immich (Cloudflare Tunnel):**
-Internet → Cloudflare edge (`immich.andrims.net`, proxied) → Cloudflare Tunnel → `cloudflared` ❓ host → Immich VM. No port forward, no NPM. 🟡 Planned to move to the Jellyfin-style path above.
+Internet → Cloudflare edge (`immich.andrims.net`, proxied) → Cloudflare Tunnel → `cloudflared` (CT 102) → Immich VM. No port forward, no NPM. 🟡 Planned to move to the Jellyfin-style path above.
+
+**Public — Vaultwarden and Seerr (Cloudflare Tunnel):**
+Internet → Cloudflare edge (`vault.andrims.net` / `request.andrims.net`, proxied) → Cloudflare Tunnel → `cloudflared` (CT 102) → Vaultwarden / Seerr on the MSI GF65. No port forward, no NPM.
 
 **Internal-only services (`git.`, `docs.`, …):**
 Client → AdGuard Home rewrite (`*.andrims.net` → NPM IP) → Nginx Proxy Manager → service. No public Cloudflare record.

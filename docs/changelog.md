@@ -2,6 +2,11 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-28 (11)
+
+- **Seerr details:** it runs on **Server-GF65** and is public at [request.andrims.net](https://request.andrims.net) through the **Cloudflare Tunnel** (not NPM), like Vaultwarden. Added it to the Cloudflare DNS records and tunnel hostnames, the network map and traffic flows, the GF65 page, and the Services, Servarr and NPM tables. LAN link uses the default port `5055`.
+- The "retire the tunnel" plan is reworded: Immich still moves off it, but the tunnel and `cloudflared` (CT 102) stay for Vaultwarden and Seerr.
+
 ## 2026-09-28 (10)
 
 - **Public vs internal settled:** only **Jellyfin, Seerr, Vaultwarden and Immich** are public. Every other service's "Public?" ❓ is now **No** (Services quick links and NPM proxy hosts).

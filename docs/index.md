@@ -9,7 +9,7 @@ A Proxmox-based homelab with a Windows Docker host, a dedicated monitoring Pi, a
 | Machine | Hostname | LAN IP | Role | Runs |
 |---|---|---|---|---|
 | [Dell OptiPlex 7050 SFF](hardware/optiplex-7050.md) | `PVE-7050` | `10.10.0.15` | Proxmox VE host | TrueNAS (VM 104), Immich (VM 107), NPM (CT 101), cloudflared (CT 102), Docker host (CT 105: docs site, Paperless-ngx ❓), Forgejo (CT 106), ddns-updater (CT 109), ActualBudget (CT 110), AdGuard (CT 153); Home Assistant OS (VM 171, stopped) |
-| [MSI GF65](hardware/msi-gf65.md) | `Server-GF65` | `10.10.0.140` | Windows 10 Pro + Docker Desktop | Jellyfin, Servarr stack (Radarr, Sonarr, Prowlarr, Bazarr, qBittorrent), Vaultwarden |
+| [MSI GF65](hardware/msi-gf65.md) | `Server-GF65` | `10.10.0.140` | Windows 10 Pro + Docker Desktop | Jellyfin, Seerr, Servarr stack (Radarr, Sonarr, Prowlarr, Bazarr, qBittorrent), Vaultwarden |
 | [Monitoring Pi](hardware/monitoring-pi.md) | `raspberrypi` | `10.10.0.6` | Raspberry Pi 5, monitoring only | Glance dashboard, Dozzle |
 | [MSI Raider GE68 HX](hardware/msi-raider-ge68hx.md) | — (client) | DHCP | Main personal workstation (Windows 11) | Nothing — client |
 | [M1 MacBook Air](hardware/macbook-air.md) | — (client) | DHCP | Secondary personal computer | Nothing — client |
@@ -25,7 +25,7 @@ Domain and direct LAN links for every service are on [Services → Quick links](
 | [TrueNAS](services/truenas.md) | ✅ | VM 104 on PVE-7050 | Internal — [truenas.andrims.net](https://truenas.andrims.net) |
 | [Paperless-ngx](services/paperless-ngx.md) | ❓ | CT 105 (`docker`) on PVE-7050 — ❓ confirm | Internal — [paperless.andrims.net](https://paperless.andrims.net) |
 | [Jellyfin](services/jellyfin.md) | ✅ | Server-GF65 | **Public** — [stream.andrims.net](https://stream.andrims.net) |
-| Seerr (formerly Jellyseerr) | ✅ | ❓ | **Public** — ❓ domain |
+| Seerr (formerly Jellyseerr) | ✅ | Server-GF65 | **Public** — [request.andrims.net](https://request.andrims.net) (Cloudflare Tunnel) |
 | [Servarr stack](services/servarr.md) | ✅ | Server-GF65 (Docker Desktop) | Internal — [servarr.andrims.net](https://servarr.andrims.net) (+ per-app paths) |
 | [Nginx Proxy Manager](network/reverse-proxy.md) | ✅ | CT 101 on PVE-7050 | Receives external HTTPS — admin at [nginx.andrims.net](https://nginx.andrims.net) |
 | [AdGuard Home](network/dns-adguard.md) | ✅ | CT 153 on PVE-7050 | Internal DNS — admin at [dns.andrims.net](https://dns.andrims.net) |
@@ -47,6 +47,7 @@ flowchart TB
     internet -->|"stream.andrims.net<br/>DNS-only → home IP"| cf
     internet -->|"immich.andrims.net<br/>proxied"| cf
     internet -->|"vault.andrims.net<br/>proxied"| cf
+    internet -->|"request.andrims.net<br/>proxied"| cf
     cf --> unifi["UniFi UX7<br/>gateway"]
     ts -.-> unifi
 
@@ -68,6 +69,7 @@ flowchart TB
 
     subgraph gf65["Server-GF65 (10.10.0.140) — MSI GF65, Win 10 Pro + Docker Desktop"]
         jellyfin["Jellyfin"]
+        seerr["Seerr"]
         arr["Radarr · Sonarr · Prowlarr<br/>Bazarr · qBittorrent"]
         vw["Vaultwarden"]
     end
@@ -83,6 +85,7 @@ flowchart TB
     cf ==>|"Cloudflare Tunnel"| cfd
     cfd ==>|immich.andrims.net| immich
     cfd ==>|vault.andrims.net| vw
+    cfd ==>|request.andrims.net| seerr
     ddns -.->|"keeps aultmain.andrims.net<br/>pointed at home IP"| cf
     npm -->|stream.andrims.net| jellyfin
     npm -.->|"git.andrims.net (internal)"| forgejo
