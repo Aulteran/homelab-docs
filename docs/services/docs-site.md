@@ -2,7 +2,7 @@
 
 > **What / why:** Renders this repo as a browsable site at `docs.andrims.net`, rebuilt automatically every time a commit is pushed to Forgejo.
 
-**Status:** ✅ site served from the nginx container on **CT 105 (`docker`)**. 🟡 The automatic rebuild-on-push (webhook + cron below) is still to do — until then, rebuild by hand after a push.
+**Status:** ✅ live at [docs.andrims.net](https://docs.andrims.net) and [http://10.10.0.105:8088](http://10.10.0.105:8088), served from the nginx container on **CT 105 (`docker`)**. 🟡 The automatic rebuild-on-push (webhook + cron below) is still to do — until then, rebuild by hand after a push.
 
 ## How it works
 
@@ -35,7 +35,7 @@ flowchart LR
 |---|---|
 | **Host** | `PVE-7050` → **CT 105** (`docker`) |
 | **IP** | `10.10.0.105` |
-| **Ports** | `8088` nginx (site) — ❓ confirm the port actually used (first-time setup may have used `8080`) · `9000` webhook listener (Forgejo → build trigger) |
+| **Ports** | `8088` nginx (site) · `9000` webhook listener (Forgejo → build trigger) |
 | **Repo clone** | `/opt/homelab-docs` (read-only deploy key) |
 | **Built site** | `/opt/docs-site` (served by nginx) |
 | **Zensical** | venv at `/opt/zensical` |
@@ -44,8 +44,8 @@ flowchart LR
 
 | | |
 |---|---|
-| **URL** | `https://docs.andrims.net` |
-| **LAN URL** | [http://10.10.0.105:8088](http://10.10.0.105:8088) ❓ confirm port |
+| **URL** | [docs.andrims.net](https://docs.andrims.net) |
+| **LAN URL** | [http://10.10.0.105:8088](http://10.10.0.105:8088) |
 | **Exposure** | **Internal only.** AdGuard rewrite → NPM (`10.10.0.101`) → CT 105 `:8088`. No Cloudflare record. Remote via Tailscale. |
 | **Webhook secret** | (Vaultwarden → "docs-site webhook secret") |
 | **Deploy key** | Private key lives only on CT 105 at `/root/.ssh/forgejo_docs`. Public key is in Forgejo → repo → Settings → Deploy keys (read-only). |
@@ -198,10 +198,10 @@ zensical serve     # or: mkdocs serve
 - [ ] Tools installed (git, python3-venv, rsync, webhook, Zensical venv)
 - [ ] Deploy key added (read-only), repo cloned to `/opt/homelab-docs`
 - [ ] `build-docs.sh` in place, first build succeeds
-- [ ] nginx container up on `:8088`
+- [x] nginx container up on `:8088`
 - [ ] Webhook secret generated and stored in Vaultwarden, `/etc/webhook.conf` in place, `webhook` service running
 - [ ] Forgejo `ALLOWED_HOST_LIST` updated, webhook added, test delivery succeeds
 - [ ] Hourly cron backup trigger
-- [ ] AdGuard rewrite + NPM proxy host + certificate
+- [x] AdGuard rewrite + NPM proxy host — `docs.andrims.net` works
 - [ ] Glance link, Uptime Kuma check
 - [ ] Changelog entry

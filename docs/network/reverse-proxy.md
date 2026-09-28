@@ -28,7 +28,7 @@ NPM receives incoming HTTPS and routes it to internal services. It's also the fr
 | [dozzle.andrims.net](https://dozzle.andrims.net) | Dozzle on Monitoring Pi — `10.10.0.6:8080` ❓ port | No ❓ | ❓ | ✅ |
 | [uptime.andrims.net](https://uptime.andrims.net) | Uptime Kuma on Monitoring Pi — ❓ IP:3001 | No ❓ | ❓ | ❓ |
 | `git.andrims.net` | Forgejo — `10.10.0.106:3000` | No | ❓ | ✅ |
-| `docs.andrims.net` | [Docs site](../services/docs-site.md) nginx container on CT 105 — `10.10.0.105:8088` ❓ confirm port | No | ❓ (needs DNS-challenge cert — internal-only name) | 🟡 |
+| [docs.andrims.net](https://docs.andrims.net) | [Docs site](../services/docs-site.md) nginx container on CT 105 — `10.10.0.105:8088` | No | ❓ (internal-only name, so it needs a DNS-challenge cert) | ✅ |
 
 ## Gotchas
 

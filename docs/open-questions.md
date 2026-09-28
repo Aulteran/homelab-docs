@@ -25,7 +25,7 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] CT 105 (`docker`): deployed via helper script or manually?
 
 ## Services
-- [ ] Docs site: which port does the nginx container actually publish (planned `8088`, first-time setup used `8080`)? Webhook auto-rebuild still to set up
+- [ ] Docs site: webhook auto-rebuild still to set up (site itself is live on `:8088`)
 - [ ] Are the rewrites individual entries or one `*.andrims.net` wildcard? Which proxy hosts are public vs internal?
 - [ ] Is Uptime Kuma already running (it has a domain, [uptime.andrims.net](https://uptime.andrims.net))? (Dozzle confirmed running.)
 - [ ] **LAN URL for every service** — see [Services → Quick links](services/index.md#quick-links)

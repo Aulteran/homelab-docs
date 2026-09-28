@@ -2,6 +2,10 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-28 (9)
+
+- **Docs site is live** at [docs.andrims.net](https://docs.andrims.net) and [http://10.10.0.105:8088](http://10.10.0.105:8088) (nginx container on CT 105). Port `8088` confirmed; AdGuard rewrite and NPM proxy host marked ✅. The webhook auto-rebuild is the only piece left.
+
 ## 2026-09-28 (8)
 
 Proxmox inventory checked against `pct list`, `qm list` and `pct config` on PVE-7050:

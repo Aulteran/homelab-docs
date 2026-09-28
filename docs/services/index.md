@@ -26,7 +26,7 @@ Every service gets two links: the **domain** (the normal way in) and the **LAN U
 | [Uptime Kuma](uptime-kuma.md) | 🟡 | Monitoring Pi | [uptime.andrims.net](https://uptime.andrims.net) | — | No | No |
 | [Forgejo](forgejo.md) | ✅ | PVE-7050 → CT 106 | [git.andrims.net](https://git.andrims.net) | [http://10.10.0.106:3000](http://10.10.0.106:3000) | No | No |
 | [ActualBudget](actualbudget.md) | ✅ | PVE-7050 → CT 110 | ❓ | [https://10.10.0.110:5006](https://10.10.0.110:5006) | No | **Yes** |
-| [Docs site](docs-site.md) | ✅ | PVE-7050 → CT 105 (`docker`) | [docs.andrims.net](https://docs.andrims.net) | [http://10.10.0.105:8088](http://10.10.0.105:8088) ❓ port | No | No |
+| [Docs site](docs-site.md) | ✅ | PVE-7050 → CT 105 (`docker`) | [docs.andrims.net](https://docs.andrims.net) | [http://10.10.0.105:8088](http://10.10.0.105:8088) | No | No |
 
 **Host** names the physical machine and, for Proxmox guests, the specific VM or CT (e.g. `PVE-7050 → CT 106`). Guest IDs are listed in the [IP / CTID table](../proxmox/ip-ctid-table.md).
 

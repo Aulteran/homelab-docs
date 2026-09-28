@@ -28,7 +28,7 @@ Internal-only hostnames point at Nginx Proxy Manager, which then routes to the s
 | `dozzle.andrims.net` | `10.10.0.101` | ✅ |
 | `uptime.andrims.net` | `10.10.0.101` | ✅ |
 | `git.andrims.net` | `10.10.0.101` | ✅ |
-| `docs.andrims.net` | `10.10.0.101` | 🟡 planned (docs site) |
+| `docs.andrims.net` | `10.10.0.101` | ✅ |
 | ❓ others (or one wildcard `*.andrims.net` rewrite?) | | |
 
 !!! tip
