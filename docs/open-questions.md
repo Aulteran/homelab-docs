@@ -3,10 +3,10 @@
 Everything marked ❓ in the docs, collected in one place. Tick them off as you verify.
 
 ## Hardware
-- [ ] OptiPlex: RAM total, disks, ZFS pool layout, NICs, IP
-- [ ] GF65: specs, IP, where media is stored, auto-login set?
-- [ ] Monitoring Pi: model, OS, IP, Docker?
-- [ ] MacBook Air: how it does Jellyfin transcoding (own Jellyfin instance vs. remote transcoder), how it reaches media, sleep handling
+- [ ] Monitoring Pi LAN IP and hostname; Raider and MacBook hostnames
+- [ ] OptiPlex: RAM total, disks, ZFS pool layout, NICs
+- [ ] GF65: specs, where media is stored, auto-login set?, Jellyfin transcoding method (GPU or software)
+- [ ] Monitoring Pi: model, OS, Docker?
 
 ## Network
 - [ ] UniFi models, controller location, subnets/VLANs, DHCP reservations
@@ -14,6 +14,7 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] AdGuard: host/CTID, IP, upstreams, secondary DNS
 - [ ] NPM: host/CTID, IP, cert method (HTTP vs. Cloudflare DNS challenge), full proxy host list
 - [ ] Cloudflare: registrar, renewal date, DDNS method, full record list
+- [ ] Cloudflare Tunnel: tunnel name, where `cloudflared` runs
 - [ ] Tailscale: MagicDNS, DNS settings, subnet router/exit node, device list
 
 ## Proxmox
@@ -23,8 +24,12 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] What runs in CT 105 and CT 108
 
 ## Services
+- [ ] **VM/CT ID for every Proxmox-hosted service** (Immich, TrueNAS, Paperless, NPM, AdGuard) — paste `pct list` + `qm list`
+- [ ] Are the rewrites individual entries or one `*.andrims.net` wildcard? Which proxy hosts are public vs internal?
+- [ ] Are Dozzle and Uptime Kuma already running (they have domains)?
+- [ ] **LAN URL for every service** — see [Services → Quick links](services/index.md#quick-links)
 - [ ] Vaultwarden: compose, URL, exposure, data path, **backup**
-- [ ] Immich: VMID, deployment, how TrueNAS is mounted, DB backup
+- [ ] Immich: VMID, LAN IP, deployment, how TrueNAS is mounted, DB backup
 - [ ] TrueNAS: VMID, SCALE/CORE, disk passthrough method, pools, shares, snapshots, off-box copy
 - [ ] Paperless-ngx: host, deployment, paths, export backup
 - [ ] Jellyfin: Docker or native, paths, config backup

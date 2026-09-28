@@ -6,13 +6,14 @@ A laptop repurposed as a server. Runs **Windows 10 Pro** with **Docker Desktop**
 |---|---|
 | **CPU / RAM / GPU** | ❓ |
 | **Storage** | ❓ (where does Jellyfin media live?) |
-| **IP / hostname** | ❓ |
+| **LAN IP** | `10.10.0.140` |
+| **Hostname** | `Server-GF65` |
 | **Tailscale** | ❓ installed? |
 
 ## What runs here
 
-- [Jellyfin](../services/jellyfin.md) — public at `stream.andrims.net`
-- [Servarr stack](../services/servarr.md) — Radarr, Sonarr, Prowlarr (Docker Desktop)
+- [Jellyfin](../services/jellyfin.md) — public at [stream.andrims.net](https://stream.andrims.net). Transcoding happens on this machine (❓ GPU/hardware acceleration or software).
+- [Servarr stack](../services/servarr.md) — Radarr, Sonarr, Prowlarr, Bazarr, qBittorrent (Docker Desktop)
 - [Vaultwarden](../services/vaultwarden.md) (Docker Desktop)
 
 ## Known risks

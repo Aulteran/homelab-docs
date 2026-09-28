@@ -8,10 +8,10 @@
 
 | | |
 |---|---|
-| **Host** | Proxmox — [Dell OptiPlex 7050](../hardware/optiplex-7050.md) |
-| **Type + ID** | VM — ❓ VMID |
+| **Host** | `PVE-7050` ([Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md)) → **VM ❓** |
+| **Type + ID** | VM — ❓ VMID / name |
 | **Version** | ❓ TrueNAS SCALE / CORE, version |
-| **IP** | ❓ |
+| **LAN IP** | ❓ |
 
 ## Disks
 
@@ -32,7 +32,8 @@
 
 | | |
 |---|---|
-| **Web UI** | ❓ |
+| **Domain URL** | [truenas.andrims.net](https://truenas.andrims.net) |
+| **LAN URL** | ❓ `http://<LAN IP>` |
 | **Login** | (Vaultwarden → "TrueNAS") ❓ |
 
 ## Backups

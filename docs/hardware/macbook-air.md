@@ -1,18 +1,15 @@
 # M1 MacBook Air
 
-Used for **Jellyfin hardware transcoding** (Apple Silicon media engine).
+A secondary personal computer. **It has no role in the homelab** — it's just a second client used occasionally.
 
 | | |
 |---|---|
 | **Chip / RAM** | Apple M1 / ❓ |
 | **macOS version** | ❓ |
-| **IP / hostname** | ❓ |
+| **LAN IP** | DHCP (client, no reservation needed) |
+| **Hostname** | ❓ |
+| **Tailscale** | ❓ |
 
-## How it's wired into Jellyfin
+## History
 
-❓ Not documented yet. Fill in:
-
-- Is it running its own Jellyfin instance, or acting as a remote transcoder for the Jellyfin on the [MSI GF65](msi-gf65.md) (e.g. via rffmpeg)?
-- How does it reach the media files (SMB share from the GF65? TrueNAS?)
-- Hardware acceleration setting used in Jellyfin (VideoToolbox?)
-- Does it need to stay awake / plugged in, and how is sleep prevented?
+- Was originally going to be a **Jellyfin hardware transcoder** (Apple Silicon media engine). Decided against it: the machine is too weak to be worth it. Jellyfin transcoding stays on the [MSI GF65](msi-gf65.md).

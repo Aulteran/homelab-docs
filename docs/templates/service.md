@@ -10,7 +10,7 @@
 |---|---|
 | **Host** | e.g. Proxmox / MSI GF65 / Monitoring Pi |
 | **Type + ID** | LXC 1xx / VM 1xx / Docker container |
-| **IP** | |
+| **LAN IP** | |
 | **Ports** | |
 
 ## How it was deployed
@@ -25,7 +25,8 @@ Helper script name, or the compose file:
 
 | | |
 |---|---|
-| **URL** | |
+| **Domain URL** | [service.andrims.net](https://service.andrims.net) |
+| **LAN URL** | [http://192.168.x.x:port](http://192.168.x.x:port) — direct to the host, for when NPM or DNS is down |
 | **NPM proxy host** | |
 | **Internal / external** | |
 | **Login** | (Vaultwarden → "entry name") |

@@ -8,9 +8,9 @@
 
 | | |
 |---|---|
-| **Host** | [MSI GF65](../hardware/msi-gf65.md) — Windows 10 Pro, Docker Desktop |
+| **Host** | `Server-GF65` ([MSI GF65](../hardware/msi-gf65.md)) — Windows 10 Pro, Docker Desktop |
 | **Type** | Docker container |
-| **IP / ports** | ❓ |
+| **LAN IP / port** | `10.10.0.140` : ❓ |
 
 ## How it was deployed
 
@@ -24,7 +24,8 @@
 
 | | |
 |---|---|
-| **URL** | ❓ |
+| **Domain URL** | [vault.andrims.net](https://vault.andrims.net) |
+| **LAN URL** | ❓ `http://10.10.0.140:<port>` |
 | **NPM proxy host** | ❓ |
 | **Internal / external** | ❓ |
 | **Admin page** | ❓ `/admin` enabled? token stored where? |

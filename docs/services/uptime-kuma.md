@@ -2,7 +2,7 @@
 
 > **What / why:** Detects *that* something is down and sends a notification. [Dozzle](dozzle.md) then tells you *why*.
 
-**Status:** 🟡 planned
+**Status:** 🟡 planned ❓ (domain [uptime.andrims.net](https://uptime.andrims.net) exists in NPM — running already?)
 
 ## Where
 
@@ -13,13 +13,16 @@
 | Target | Check type |
 |---|---|
 | Vaultwarden | HTTP |
-| Sonarr, Radarr, Prowlarr | HTTP |
+| Radarr, Sonarr, Prowlarr, Bazarr, qBittorrent | HTTP |
 | Jellyfin (`stream.andrims.net`) | HTTP (external) |
-| Immich, Paperless-ngx | HTTP |
+| Immich (`immich.andrims.net`) | HTTP (external) + HTTP (LAN) |
+| Paperless-ngx | HTTP |
 | AdGuard Home | DNS |
 | Nginx Proxy Manager | HTTP |
 | Forgejo, docs site (once deployed) | HTTP |
 | Proxmox host, GF65, Pi | Ping |
+
+Where a service has both a domain and a LAN URL, check **both**. If only the domain check fails, the problem is in front of the service (NPM, DNS, tunnel), not the service itself.
 
 ## Notifications
 

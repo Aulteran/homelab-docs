@@ -8,7 +8,7 @@
 
 | | |
 |---|---|
-| **Host** | Proxmox — LXC via the [community helper script](https://community-scripts.github.io/ProxmoxVE/scripts?id=forgejo) |
+| **Host** | `PVE-7050` → **CT (TBD)**, LXC via the [community helper script](https://community-scripts.github.io/ProxmoxVE/scripts?id=forgejo) |
 | **CTID / IP** | ❓ (static IP — add to the [IP / CTID table](../proxmox/ip-ctid-table.md)) |
 | **Resources** | **Advanced** install: 1 core, 512 MB RAM, 4–6 GB disk. Alpine profile optional. |
 | **Database** | SQLite (script default) — don't add Postgres/MariaDB |
@@ -19,7 +19,8 @@ Expected footprint: ~100–200 MB RAM idle, near-zero CPU. The LXC limit is a ce
 
 | | |
 |---|---|
-| **URL** | `https://git.andrims.net` |
+| **Domain URL** | [git.andrims.net](https://git.andrims.net) |
+| **LAN URL** | ❓ `http://<LAN IP>:3000` (once deployed) |
 | **Exposure** | **Internal only.** AdGuard rewrite → NPM → Forgejo. No Cloudflare record. Remote via Tailscale. |
 | **SSH clone** | Forgejo built-in SSH, or map port 2222 — ❓ which |
 

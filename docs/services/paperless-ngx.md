@@ -8,15 +8,16 @@
 
 | | |
 |---|---|
-| **Host** | ❓ |
+| **Host** | ❓ (`PVE-7050` → which CT/VM?) |
 | **Type + ID** | ❓ (LXC via helper script? Docker in CT 105/108?) |
-| **IP / ports** | ❓ (default 8000) |
+| **LAN IP / port** | ❓ (default 8000) |
 
 ## Access
 
 | | |
 |---|---|
-| **URL** | ❓ |
+| **Domain URL** | [paperless.andrims.net](https://paperless.andrims.net) |
+| **LAN URL** | ❓ `http://<LAN IP>:8000` |
 | **NPM proxy host** | ❓ |
 | **Login** | (Vaultwarden → "Paperless") ❓ |
 

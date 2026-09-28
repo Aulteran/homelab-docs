@@ -7,7 +7,8 @@ A Raspberry Pi dedicated **only** to monitoring the rest of the homelab. Nothing
 | **Model / RAM** | ❓ |
 | **OS** | ❓ |
 | **Storage** | microSD card |
-| **IP / hostname** | ❓ |
+| **LAN IP** | ❓ |
+| **Hostname** | ❓ |
 | **Docker?** | ❓ |
 
 ## What runs here

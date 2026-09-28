@@ -1,12 +1,14 @@
 # Proxmox host
 
-Proxmox VE runs on the [Dell OptiPlex 7050](../hardware/optiplex-7050.md).
+Proxmox VE runs on the [Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md).
 
 | | |
 |---|---|
 | **Proxmox version** | ❓ |
-| **Node name** | ❓ |
-| **Web UI** | `https://<ip>:8006` ❓ |
+| **Node name / hostname** | `PVE-7050` |
+| **LAN IP** | `10.10.0.15` |
+| **Domain URL** | [pve-7050.andrims.net](https://pve-7050.andrims.net) |
+| **Web UI (LAN)** | [https://10.10.0.15:8006](https://10.10.0.15:8006) |
 | **Storage** | ZFS ❓ (pool names, what's on each) |
 | **Backups** | ❓ vzdump schedule? Proxmox Backup Server? Where do backups land? |
 | **Updates** | ❓ no-subscription repo? how often? |

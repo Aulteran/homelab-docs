@@ -8,16 +8,17 @@
 
 | | |
 |---|---|
-| **Host** | [MSI GF65](../hardware/msi-gf65.md) (Windows 10 Pro) |
+| **Host** | `Server-GF65` ([MSI GF65](../hardware/msi-gf65.md), Windows 10 Pro) |
 | **Type** | ❓ Docker Desktop container or native Windows install? |
-| **IP / ports** | ❓ (default 8096) |
-| **Transcoding** | Hardware transcoding via the [M1 MacBook Air](../hardware/macbook-air.md) — ❓ how it's wired up |
+| **LAN IP / port** | `10.10.0.140` : 8096 (default — confirm) |
+| **Transcoding** | On the GF65 itself — ❓ hardware acceleration (which GPU / method) or software |
 
 ## Access
 
 | | |
 |---|---|
-| **URL** | `https://stream.andrims.net` |
+| **Domain URL** | [stream.andrims.net](https://stream.andrims.net) |
+| **LAN URL** | [http://10.10.0.140:8096](http://10.10.0.140:8096) |
 | **Public?** | **Yes** |
 | **Path** | Cloudflare DNS-only record → home IP → Nginx Proxy Manager → Jellyfin |
 | **Admin login** | (Vaultwarden → "Jellyfin") ❓ |
@@ -39,5 +40,6 @@ See [Cloudflare](../network/cloudflare.md) and [Reverse proxy](../network/revers
 
 ## Gotchas
 
-- It's the **only publicly exposed** service. Keep it updated and use strong passwords on every user.
+- **Publicly exposed** (along with [Immich](immich.md)). Keep it updated and use strong passwords on every user.
+- Offloading transcoding to the M1 MacBook Air was considered and dropped — the MacBook is too weak to be worth it.
 - Goes down with the GF65 (see Docker Desktop login issue on the [hardware page](../hardware/msi-gf65.md#known-risks)).

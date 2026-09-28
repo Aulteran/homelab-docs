@@ -35,11 +35,11 @@ nav:
   - Home: index.md
   - Hardware:
       - hardware/index.md
-      - Dell OptiPlex 7050 (Proxmox): hardware/optiplex-7050.md
+      - Dell OptiPlex 7050 SFF (Proxmox): hardware/optiplex-7050.md
       - MSI GF65 (Windows Docker host): hardware/msi-gf65.md
       - Monitoring Pi: hardware/monitoring-pi.md
-      - M1 MacBook Air: hardware/macbook-air.md
       - MSI Raider GE68 HX (workstation): hardware/msi-raider-ge68hx.md
+      - M1 MacBook Air (client): hardware/macbook-air.md
   - Network:
       - network/index.md
       - UniFi: network/unifi.md

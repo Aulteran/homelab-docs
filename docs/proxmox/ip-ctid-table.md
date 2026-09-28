@@ -1,6 +1,6 @@
 # IP / CTID table
 
-**One row per guest.** Update this in the same commit as any change to the lab.
+All guests run on **`PVE-7050`** (`10.10.0.15`). **One row per guest.** Update this in the same commit as any change to the lab.
 
 | CTID / VMID | Type | Name | IP | Deployed via | Runs | Resources (cores / RAM / disk) |
 |---|---|---|---|---|---|---|
@@ -25,8 +25,10 @@
 
 ## Machines outside Proxmox
 
-| Machine | IP | Runs |
-|---|---|---|
-| [MSI GF65](../hardware/msi-gf65.md) | ❓ | Jellyfin, Radarr, Sonarr, Prowlarr, Vaultwarden |
-| [Monitoring Pi](../hardware/monitoring-pi.md) | ❓ | Glance |
-| [M1 MacBook Air](../hardware/macbook-air.md) | ❓ | Jellyfin transcoding |
+| Machine | Hostname | LAN IP | Runs |
+|---|---|---|---|
+| [Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md) (Proxmox host) | `PVE-7050` | `10.10.0.15` | Proxmox VE (guests above) |
+| [MSI GF65](../hardware/msi-gf65.md) | `Server-GF65` | `10.10.0.140` | Jellyfin, Radarr, Sonarr, Prowlarr, Bazarr, qBittorrent, Vaultwarden |
+| [Monitoring Pi](../hardware/monitoring-pi.md) | ❓ | ❓ | Glance |
+| [MSI Raider GE68 HX](../hardware/msi-raider-ge68hx.md) | ❓ | DHCP | Nothing (client) |
+| [M1 MacBook Air](../hardware/macbook-air.md) | ❓ | DHCP | Nothing (client) |

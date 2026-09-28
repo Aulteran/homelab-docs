@@ -2,7 +2,7 @@
 
 > **What / why:** One place to read live logs from every container on every host, so errors are easy to find when something breaks.
 
-**Status:** 🟡 planned
+**Status:** 🟡 planned ❓ (domain [dozzle.andrims.net](https://dozzle.andrims.net) exists in NPM — running already?)
 
 !!! note "Dozzle ≠ Dockge"
     **Dozzle** is for *watching* containers (logs). **Dockge** is for *managing* compose stacks, and doesn't support Windows. Dozzle's agent does work on Docker Desktop for Windows.
