@@ -18,8 +18,7 @@ All guests run on **`PVE-7050`** (`10.10.0.15`). **One row per guest.** Update t
 | 108 | LXC | ❓ | ❓ | ❓ | 🗑️ **Retired, no longer in service.** Pending deletion (this and CT 103 are the old Docker-in-LXC hosts the new "docker" CT replaces). | ❓ |
 | 109 | LXC | ddns-updater | `10.10.0.109` *(inferred)* | Helper script | Keeps `aultmain.andrims.net`'s A record pointed at the home IP (config: `/opt/ddns-updater/data/config.json`) — see [Cloudflare](../network/cloudflare.md) | ❓ |
 | 110 | LXC | actualbudget | `10.10.0.110` | Helper script | [ActualBudget](../services/actualbudget.md) — personal finance | ❓ |
-| 🟡 TBD | LXC | docker | 🟡 | Helper script / manual | 🟡 **Planned.** Consolidated host for lightweight Docker Compose services: [Paperless-ngx](../services/paperless-ngx.md) (migrating off CT 105) and the future docs-site nginx container. Once live, delete CT 100, 103, 105 and 108. | ❓ |
-| 🟡 TBD | LXC | docs | 🟡 | Helper script / manual | [Docs site](../services/docs-site.md) — nginx, planned to live on the "docker" CT above rather than its own CT | ❓ |
+| 🟡 TBD | LXC | docker | 🟡 | Helper script / manual | 🟡 **Planned.** Consolidated host for lightweight Docker Compose services: [Paperless-ngx](../services/paperless-ngx.md) (migrating off CT 105) and the [docs site](../services/docs-site.md) (nginx container on `:8088`, plus the `webhook` build listener on `:9000`). Once live, delete CT 100, 103, 105 and 108. | ❓ |
 | 153 | LXC | adguard | `10.10.0.53` | ❓ | [AdGuard Home](../network/dns-adguard.md) | ❓ |
 
 !!! tip "Quick way to confirm this"

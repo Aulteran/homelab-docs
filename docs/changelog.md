@@ -2,6 +2,15 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-28 (7)
+
+Docs-site plan settled (docs only, no lab changes yet):
+
+- [Docs site](services/docs-site.md) rewritten as a full deployment page. Zensical is only the builder, not a service. The site is served by an `nginx:alpine` container on the planned **"docker" CT** (`:8088`), not its own CT, and not by NPM directly.
+- **Auto-rebuild on push:** Forgejo push webhook → `webhook` listener on the docker CT (`:9000`, HMAC-signed, `main` only) → `build-docs.sh` (`git pull` → `zensical build` → `rsync`). An hourly cron job is the backup trigger. Repo access is a read-only deploy key; the webhook secret lives in Vaultwarden.
+- [Forgejo](services/forgejo.md): new Webhooks section. `ALLOWED_HOST_LIST` has to include the docker CT, because Forgejo blocks webhooks to private IPs by default.
+- Removed the separate "docs" CT row from the [IP / CTID table](proxmox/ip-ctid-table.md); updated NPM, Services, home page map and Roadmap to match. Forgejo Actions is now marked optional.
+
 ## 2026-09-28 (6)
 
 More corrections and confirmations from Aadil:

@@ -33,7 +33,7 @@ Domain and direct LAN links for every service are on [Services → Quick links](
 | [Uptime Kuma](services/uptime-kuma.md) | 🟡 | Monitoring Pi | Internal — [uptime.andrims.net](https://uptime.andrims.net) |
 | [Forgejo](services/forgejo.md) | 🟡 | CT 106 on PVE-7050 | Internal — [git.andrims.net](https://git.andrims.net) |
 | [ActualBudget](services/actualbudget.md) | ✅ | CT 110 on PVE-7050 | Internal — ❓ |
-| [Docs site](services/docs-site.md) | 🟡 | CT (TBD) on PVE-7050 | Internal — [docs.andrims.net](https://docs.andrims.net) |
+| [Docs site](services/docs-site.md) | 🟡 | "docker" CT (TBD) on PVE-7050 — rebuilt on every Forgejo push | Internal — [docs.andrims.net](https://docs.andrims.net) |
 
 ## Network map
 
@@ -62,8 +62,9 @@ flowchart TB
         ddns["CT 109: ddns-updater"]
         budget["CT 110: ActualBudget"]
         adguard["CT 153: AdGuard Home"]
-        newdocker["CT TBD: docker 🟡<br/>(planned consolidation)"]
-        docs["CT TBD: docs (nginx) 🟡"]
+        subgraph newdocker["CT TBD: docker 🟡 (planned consolidation)"]
+            docs["docs-site nginx :8088<br/>+ build webhook :9000"]
+        end
     end
 
     subgraph gf65["Server-GF65 (10.10.0.140) — MSI GF65, Win 10 Pro + Docker Desktop"]
@@ -88,7 +89,7 @@ flowchart TB
     npm -.->|"git.andrims.net (internal)"| forgejo
     npm -.->|"docs.andrims.net (internal)"| docs
     paperless -.->|"planned migration"| newdocker
-    docs -.->|"planned: lives here instead"| newdocker
+    forgejo -.->|"push webhook → rebuild"| docs
     immich --> truenas
     dozzle -.->|agent| gf65
     dozzle -.->|agents| pve

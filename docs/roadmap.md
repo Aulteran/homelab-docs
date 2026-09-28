@@ -17,11 +17,11 @@
 | Forgejo remaining setup (Forgejo itself is ✅ running as CT 106) | PVE-7050 | [page](services/forgejo.md) — confirm AdGuard rewrite, NPM proxy host, SSH clone, first push, push mirror |
 | GitHub push mirror | Forgejo → private GitHub | |
 | **Consolidate lightweight Docker services onto one new "docker" CT** | PVE-7050 → new CT | Hosts [Paperless-ngx](services/paperless-ngx.md) (migrating off CT 105) and the future docs-site nginx container, instead of each getting its own CT. **After migration, delete CT 100, CT 103, CT 105 and CT 108** (100 and 105 are one-off LXCs being folded in; 103 and 108 are already retired and just need cleanup). |
-| Docs site (nginx) | → new "docker" CT above, once it exists | [page](services/docs-site.md) |
+| Docs site | → new "docker" CT above, once it exists | [page](services/docs-site.md) — nginx container + Forgejo push webhook that rebuilds with Zensical (hourly cron as backup) |
 | Dozzle agent rollout | Confirm per-host | [page](services/dozzle.md) — main instance is ✅ running; agent coverage on GF65 and the future "docker" CT still needs confirming |
 | Uptime Kuma | Monitoring Pi | [page](services/uptime-kuma.md) |
 | Prometheus + Grafana | Monitoring Pi | **Blocked** by rule 3 |
-| Forgejo Actions runner | PVE-7050 → new CT | Replaces docs cron build |
+| Forgejo Actions runner | PVE-7050 → new CT | **Optional.** The docs site already rebuilds on push via a webhook; only worth it if other projects need CI |
 
 ## Known risks / tech debt
 

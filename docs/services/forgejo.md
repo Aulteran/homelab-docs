@@ -30,6 +30,25 @@ Expected footprint: ~100–200 MB RAM idle, near-zero CPU. The LXC limit is a ce
 2. Create a fine-grained PAT scoped to that one repo, **Contents: read/write**. Store it in Vaultwarden.
 3. Forgejo → repo **Settings → Mirror settings** → add a **push mirror** with the PAT. Turn on **sync when commits are pushed**.
 
+## Webhooks
+
+Forgejo only sends webhooks to **public** addresses by default, so webhooks to LAN hosts fail until they're allowed. In `app.ini` on CT 106 (usually `/etc/forgejo/app.ini`; `systemctl cat forgejo` shows the `-c` path if it isn't there):
+
+```ini
+[webhook]
+ALLOWED_HOST_LIST = <docker-ct-ip>
+```
+
+Restart Forgejo afterwards (`systemctl restart forgejo`). Add more IPs comma-separated, or use `private` to allow the whole LAN.
+
+| Repo | Webhook target | Purpose |
+|---|---|---|
+| `homelab-docs` | `http://<docker-ct-ip>:9000/hooks/build-docs` (push, `main`) | Rebuilds [docs.andrims.net](docs-site.md) on every push |
+
+| Repo | Deploy key | Access |
+|---|---|---|
+| `homelab-docs` | `docker CT — docs-site` | Read-only |
+
 ## Setup checklist
 
 - [x] Deploy LXC, static IP — CT 106, `10.10.0.106`
@@ -39,5 +58,6 @@ Expected footprint: ~100–200 MB RAM idle, near-zero CPU. The LXC limit is a ce
 - [ ] Create `homelab-docs` repo, push this repo
 - [ ] Push mirror to private GitHub
 - [ ] Set `repo_url` in `mkdocs.yml`
+- [ ] `ALLOWED_HOST_LIST` set for the docker CT; docs-site deploy key + webhook added (see [Docs site](docs-site.md))
 - [ ] Add to Glance; add Uptime Kuma check when that's up
 - [ ] Update IP/CTID table + changelog
