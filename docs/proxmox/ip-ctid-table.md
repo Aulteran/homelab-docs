@@ -12,7 +12,7 @@ All guests run on **`PVE-7050`** (`10.10.0.15`). **One row per guest.** Update t
 | 102 | LXC | cloudflared | `10.10.0.102` | Helper script | Cloudflare Tunnel daemon for [Immich](../services/immich.md) and [Vaultwarden](../services/vaultwarden.md) — ❓ confirm both share this one instance | ❓ |
 | 103 | LXC | ❓ | ❓ | ❓ | 🗑️ **Retired, no longer in service.** Pending deletion. | ❓ |
 | 104 | VM | TrueNAS | `10.10.0.22` | ❓ | [TrueNAS](../services/truenas.md) | ❓ |
-| 105 | LXC | paperless | `10.10.0.105` *(inferred)* | ❓ Helper script? | [Paperless-ngx](../services/paperless-ngx.md) — 🟡 planned to migrate onto the new **"docker"** CT below, then this CT gets deleted | ❓ |
+| 105 | LXC | paperless | `10.10.0.105` | ❓ Helper script? | [Paperless-ngx](../services/paperless-ngx.md) — 🟡 planned to migrate onto the new **"docker"** CT below, then this CT gets deleted | ❓ |
 | 106 | LXC | forgejo | `10.10.0.106` | Helper script | [Forgejo](../services/forgejo.md) ✅ | 1 / 512 MB / 4–6 GB |
 | 107 | VM | immich | `10.10.0.107` | ❓ Debian VM — helper script or manual Docker compose inside? | [Immich](../services/immich.md) | ❓ |
 | 108 | LXC | ❓ | ❓ | ❓ | 🗑️ **Retired, no longer in service.** Pending deletion (this and CT 103 are the old Docker-in-LXC hosts the new "docker" CT replaces). | ❓ |
