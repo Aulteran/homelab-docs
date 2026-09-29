@@ -7,6 +7,7 @@
 | Reverse proxy | Nginx Proxy Manager | [Reverse proxy](reverse-proxy.md) |
 | Public DNS | Cloudflare, `andrims.net` | [Cloudflare](cloudflare.md) |
 | Remote access | Tailscale mesh | [Tailscale](tailscale.md) |
+| Public entry point (planned) | Cloud VM running NPM, on the tailnet | [Edge VPS](edge-vps.md) |
 
 ## Subnets / VLANs
 
@@ -18,6 +19,8 @@
 
 **Public — Jellyfin (direct IP + NPM):**
 Internet → Cloudflare DNS (`stream.andrims.net`, CNAME → `aultmain.andrims.net`, DNS-only) → home public IP → UniFi (UX7) port-forward 443 → Nginx Proxy Manager → Jellyfin on the MSI GF65.
+
+🟡 **Planned:** Jellyfin's path moves to an [edge VPS](edge-vps.md) (cloud NPM → Tailscale → GF65) so the home IP is no longer published and these port forwards go away.
 
 **Public — Immich (Cloudflare Tunnel):**
 Internet → Cloudflare edge (`immich.andrims.net`, proxied) → Cloudflare Tunnel → `cloudflared` (CT 102) → Immich VM. No port forward, no NPM. 🟡 Planned to move to the Jellyfin-style path above.

@@ -18,4 +18,5 @@ Tailscale mesh networking is the remote-access path into the lab. Internal-only 
 
 ## Planned use
 
+- **Edge VPS:** a cloud VM joins the tailnet as the public entry point and forwards to the GF65 over Tailscale. Give it a restrictive ACL (only the ports it proxies). See [Edge VPS](edge-vps.md).
 - [Dozzle](../services/dozzle.md): point the main instance at agents' **Tailscale IPs** instead of opening port 7007 on the LAN (especially the Windows GF65).

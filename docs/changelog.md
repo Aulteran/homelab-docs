@@ -2,6 +2,11 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-28 (13)
+
+- **Plan recorded: edge VPS.** A cloud VM (Oracle Free Tier considered) runs NPM, joins the tailnet, and becomes the only public entry point: public DNS points at the VM, which forwards over Tailscale to the lab. Goal: the home IP is published nowhere and ports 80/443 at home are closed. New page [Edge VPS](network/edge-vps.md), covering the design, trade-offs (VM hardening, Tailscale ACL, real client IPs, DERP relay speed) and a rollout order.
+- Immich's move off the tunnel is now planned **through the VPS**, which resolves the conflict with the home-IP rule. Added to the roadmap, network overview, Cloudflare, Tailscale and Immich pages.
+
 ## 2026-09-28 (12)
 
 - **Seerr confirmed:** Docker Desktop on Server-GF65, port `5055`, same Cloudflare Tunnel (CT 102) as Immich and Vaultwarden. One tunnel serves all three.

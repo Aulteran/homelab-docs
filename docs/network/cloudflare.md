@@ -43,6 +43,9 @@ Checked in public DNS on 2026-09-28:
 
 **Never write the actual IP in this repo.** It's public on GitHub.
 
+!!! tip "Planned permanent fix: the edge VPS"
+    The [edge VPS](edge-vps.md) plan moves the public entry point to a cloud VM that reaches the lab over Tailscale. Public DNS then holds the VM's IP instead of the home IP, and ports 80/443 at home get closed, which also removes the NPM exposure below. Until then, the steps below apply.
+
 !!! warning "DNS isn't the only way in"
     Ports 80 and 443 forward to NPM, and NPM answers for **every** proxy host it has, internal ones included. Anyone who knows the home IP (it's public through `stream`) can ask NPM for `pve-7050.andrims.net`, `truenas.andrims.net` and so on by sending that hostname directly. Missing DNS records don't stop this. The hostnames are also listed in these public docs and in public certificate logs.
 

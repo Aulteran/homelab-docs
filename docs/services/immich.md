@@ -33,7 +33,7 @@ Debian VM (107). ❓ Docker compose inside it, or native install?
 ## Planned: move from Cloudflare Tunnel to direct IP + NPM
 
 !!! warning "Conflicts with the home-IP rule"
-    This move would publish the home IP under `immich.andrims.net` too. The current rule ([Roadmap rule 4](../roadmap.md#standing-rules)) is that only `stream.andrims.net` uses the home IP. Keep this plan only if the upload cap becomes a real problem.
+    Pointing `immich.andrims.net` at the home IP would break [Roadmap rule 4](../roadmap.md#standing-rules) (only `stream.andrims.net` uses the home IP). Do this move **through the planned [edge VPS](../network/edge-vps.md)** instead: the VPS forwards to Immich over Tailscale, so there's no upload cap and no home IP.
 
 🟡 Planned, not started. Make Immich work like Jellyfin: a **DNS-only** Cloudflare record for `immich.andrims.net` pointing at the home IP, with Nginx Proxy Manager terminating TLS and forwarding to Immich.
 

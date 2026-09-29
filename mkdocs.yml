@@ -46,6 +46,7 @@ nav:
       - DNS (AdGuard Home): network/dns-adguard.md
       - Reverse proxy (NPM): network/reverse-proxy.md
       - Cloudflare & andrims.net: network/cloudflare.md
+      - Edge VPS (planned): network/edge-vps.md
       - Tailscale: network/tailscale.md
   - Proxmox:
       - Host: proxmox/host.md
