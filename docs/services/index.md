@@ -13,7 +13,7 @@ Every service gets two links: the **domain** (the normal way in) and the **LAN U
 | [TrueNAS](truenas.md) | ✅ | PVE-7050 → VM 104 | [truenas.andrims.net](https://truenas.andrims.net) | [http://10.10.0.22](http://10.10.0.22) | No | **Yes** |
 | [Paperless-ngx](paperless-ngx.md) | ❓ | PVE-7050 → CT 105 (`docker`) ❓ | [paperless.andrims.net](https://paperless.andrims.net) | ❓ [http://10.10.0.105:8000](http://10.10.0.105:8000) | No | **Yes** |
 | [Jellyfin](jellyfin.md) | ✅ | Server-GF65 | [stream.andrims.net](https://stream.andrims.net) | [http://10.10.0.140:8096](http://10.10.0.140:8096) | **Yes** | No |
-| Seerr (formerly Jellyseerr) — media requests | ✅ | Server-GF65 (Docker Desktop) ❓ | [request.andrims.net](https://request.andrims.net) (Cloudflare Tunnel, not NPM) | [http://10.10.0.140:5055](http://10.10.0.140:5055) | **Yes** | No |
+| Seerr (formerly Jellyseerr) — media requests | ✅ | Server-GF65 (Docker Desktop) | [request.andrims.net](https://request.andrims.net) (Cloudflare Tunnel, not NPM) | [http://10.10.0.140:5055](http://10.10.0.140:5055) | **Yes** | No |
 | Radarr ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net/radarr](https://servarr.andrims.net/radarr) | [http://10.10.0.140:7878](http://10.10.0.140:7878) | No | No |
 | Sonarr ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net/sonarr](https://servarr.andrims.net/sonarr) | [http://10.10.0.140:8989](http://10.10.0.140:8989) | No | No |
 | Prowlarr ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net/prowlarr](https://servarr.andrims.net/prowlarr) | [http://10.10.0.140:9696](http://10.10.0.140:9696) | No | No |

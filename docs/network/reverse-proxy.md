@@ -33,6 +33,6 @@ NPM receives incoming HTTPS and routes it to internal services. It's also the fr
 
 ## Gotchas
 
-- ❓ Access lists used to restrict internal hosts?
+- ❓ **Access lists on internal hosts.** Ports 80/443 forward here, so without an Access List (allow `10.10.0.0/24` + `100.64.0.0/10`, deny all) every internal proxy host can be reached from the internet by hostname. Only `stream.andrims.net` should be open to the world. See [Cloudflare → Home IP exposure](cloudflare.md#home-ip-exposure).
 - ❓ Websockets enabled for Jellyfin / Vaultwarden / Proxmox (the Proxmox console needs them)?
 - `pve-7050.andrims.net` must forward with scheme **https** to port 8006 — Proxmox only serves HTTPS.

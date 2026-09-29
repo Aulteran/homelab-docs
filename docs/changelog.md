@@ -2,6 +2,14 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-28 (12)
+
+- **Seerr confirmed:** Docker Desktop on Server-GF65, port `5055`, same Cloudflare Tunnel (CT 102) as Immich and Vaultwarden. One tunnel serves all three.
+- **Rule 4 extended:** the home IP is published only under `stream.andrims.net`. Other public services go through the tunnel.
+- **Public DNS checked:** `stream.andrims.net` is a CNAME → `aultmain.andrims.net`, which answers with the home IP (resolves the old "stream vs aultmain" question). `immich.`, `vault.`, `request.` and the root domain answer with Cloudflare addresses. Internal names have no public records, and there's no wildcard. New section: [Cloudflare → Home IP exposure](network/cloudflare.md#home-ip-exposure).
+- **New known risk:** NPM receives ports 80/443 and answers for internal proxy hosts too, so they can be reached from the internet by hostname. Fix is an NPM Access List on each one.
+- **Flagged:** the planned Immich move to a direct-IP record conflicts with the new rule. Left in place, marked for a decision.
+
 ## 2026-09-28 (11)
 
 - **Seerr details:** it runs on **Server-GF65** and is public at [request.andrims.net](https://request.andrims.net) through the **Cloudflare Tunnel** (not NPM), like Vaultwarden. Added it to the Cloudflare DNS records and tunnel hostnames, the network map and traffic flows, the GF65 page, and the Services, Servarr and NPM tables. LAN link uses the default port `5055`.

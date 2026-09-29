@@ -32,6 +32,9 @@ Debian VM (107). ❓ Docker compose inside it, or native install?
 
 ## Planned: move from Cloudflare Tunnel to direct IP + NPM
 
+!!! warning "Conflicts with the home-IP rule"
+    This move would publish the home IP under `immich.andrims.net` too. The current rule ([Roadmap rule 4](../roadmap.md#standing-rules)) is that only `stream.andrims.net` uses the home IP. Keep this plan only if the upload cap becomes a real problem.
+
 🟡 Planned, not started. Make Immich work like Jellyfin: a **DNS-only** Cloudflare record for `immich.andrims.net` pointing at the home IP, with Nginx Proxy Manager terminating TLS and forwarding to Immich.
 
 Why:
