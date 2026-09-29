@@ -2,7 +2,7 @@
 
 > **What / why:** One place to read live logs from every container on every host, so errors are easy to find when something breaks.
 
-**Status:** ✅ running — main instance confirmed up on the [Monitoring Pi](../hardware/monitoring-pi.md) (`10.10.0.6`). ❓ Confirm which hosts have agents deployed (below is the intended architecture, not yet verified per-host).
+**Status:** ✅ running — main instance confirmed up on the [Monitoring Pi](../hardware/monitoring-pi.md) (`10.10.0.6`). The agent on [Server-GF65](../hardware/msi-gf65.md) (`dozzle-agent`) is ✅ confirmed running. ❓ Confirm the agent on CT 105 (`docker`).
 
 !!! note "Dozzle ≠ Dockge"
     **Dozzle** is for *watching* containers (logs). **Dockge** is for *managing* compose stacks, and doesn't support Windows. Dozzle's agent does work on Docker Desktop for Windows.

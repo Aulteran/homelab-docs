@@ -3,7 +3,12 @@
 Everything marked ❓ in the docs, collected in one place. Tick them off as you verify.
 
 ## Hardware
-- [ ] GF65: specs, where media is stored, auto-login set?, Jellyfin transcoding method (GPU or software)
+- [x] GF65 specs and where media is stored: documented
+- [x] GF65: NVENC transcoding is on; Docker Desktop data is on the boot SSD; no auto-login (manual RDP login after any restart); Curiosity is a Seagate Backup Plus Portable
+- [x] Jellyfin starts on boot; Curiosity has no copy (only its family photos/videos are also in Immich)
+- [ ] Jellyfin 12: find why the server randomly stops (logs / Event Viewer), and add an Uptime Kuma check for it
+- [ ] GF65: does it power back on after a power cut (BIOS can't be reached to set it)? Does Windows show on an external monitor?
+- [ ] Back up Curiosity's non-Immich content (old video projects, other files)
 - [x] Monitoring Pi runs Docker: Dozzle, Glance, Uptime Kuma, Homepage (being decommissioned)
 - [ ] Decommission Homepage on the Monitoring Pi (Glance replaces it); remove its domain/NPM proxy host and AdGuard rewrite if it has one
 
@@ -26,7 +31,7 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] CT 102 and CT 153 show **no `net0`** in `pct config` — check which interface they use (`pct config 102 | grep ^net`)
 - [ ] VM core counts and IP for VM 171 (HAOS): `qm config <vmid>`
 - [ ] Home Assistant OS (VM 171, stopped): keep, start, or delete? Needs RAM headroom first
-- [ ] CT 105 (`docker`): deployed via helper script or manually?
+- [x] All LXCs (CT 101, 102, 105, 106, 109, 110, 153) were deployed with community helper scripts
 
 ## Services
 - [ ] Docs site: webhook auto-rebuild still to set up (site itself is live on `:8088`)
@@ -39,7 +44,8 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [x] Paperless-ngx is running on CT 105 (`docker`), port 8001
 - [ ] Paperless-ngx: Compose or plain Docker?, data paths, NPM proxy host, export backup
 - [ ] Jellyfin: Docker or native, paths, config backup
-- [ ] Servarr: compose, download client, other apps, backup location
+- [ ] Servarr (`servarr` Compose project, 11 containers): compose path, what routes through Gluetun, ports/domains for Lidarr, Tdarr and Jellystat, backup location
+- [ ] Jellystat has been down for a few days: diagnose and fix
 - [ ] Glance: config path, widgets
 - [ ] Uptime Kuma: notification channel
 - [ ] ActualBudget (CT 110): NPM proxy host for [budget.andrims.net](https://budget.andrims.net), backup

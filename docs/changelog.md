@@ -2,6 +2,32 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-29 (13)
+
+- **Server-GF65 can't run Linux.** Its screen and speakers have been dead since 2022 (suspected motherboard short while redoing the thermal paste), and the BIOS doesn't show on an external monitor, so Secure Boot can't be disabled. Windows is permanent, and the box is managed over RDP only. Documented at the top of the GF65 page.
+- **Replacement server planned** (better Jellyfin performance, good drives in RAID), waiting on budget. Added to the roadmap.
+- **GF65 containers listed** from Dozzle: the `servarr` Compose project has 11 containers (bazarr, gluetun, jellystat-db, lidarr, prowlarr, qbittorrent, radarr, seerr, sonarr, tdarr, jellystat), plus `vaultwarden` and `dozzle-agent`. The Dozzle agent on the GF65 is confirmed running. **Jellystat has been down for a few days**, not yet diagnosed.
+- **Jellyfin isn't a Windows service** (it doesn't appear in Services). It runs as the tray app.
+
+## 2026-09-29 (12)
+
+- **Known issue documented:** since updating to Jellyfin 12, the Jellyfin server service randomly turns off. It's restarted by hand: RDP into Server-GF65 and start it from the Jellyfin tray app. Cause not found. Jellyfin does start on boot.
+- **Curiosity has no copy anywhere.** Only its family photos and videos are also in Immich (TrueNAS SATA SSD, no redundancy). Everything else on it is single-copy. Updated the GF65 page, roadmap and open questions.
+
+## 2026-09-29 (11)
+
+- **GF65 details confirmed:** Jellyfin uses NVENC hardware transcoding on the 1660 Ti. Docker Desktop's data is on the nearly full boot SSD. There's no auto-login, so after any restart the Docker services stay down until a manual RDP login. Curiosity is a Seagate Backup Plus Portable.
+
+## 2026-09-29 (10)
+
+- **Server-GF65 specs recorded:** i7-9750H, 16 GB DDR4, GTX 1660 Ti laptop GPU, 256 GB boot SSD (nearly always full). Two USB hard disks: **Neo** (2 TB Seagate Backup Plus Ultra Touch, all Jellyfin media) and **Curiosity** (5 TB Seagate, long-term storage of old files, family photos and video projects).
+- **Jellyfin is a native Windows install** on the boot SSD, not a Docker container. Updated the Jellyfin and GF65 pages.
+- **New risks:** full boot SSD, and irreplaceable data on Curiosity with no known backup.
+
+## 2026-09-29 (9)
+
+- **Deployment method confirmed:** CT 101, 102, 105, 106, 109, 110 and 153 were all created with community helper scripts. Updated the IP / CTID table.
+
 ## 2026-09-29 (8)
 
 - **Tailscale IPs recorded:** PVE-7050 `100.110.0.15`, Server-GF65 `100.69.160.6`, Monitoring Pi `100.101.228.37`. Added to the Tailscale page and each hardware page. Server-GF65 is always on.

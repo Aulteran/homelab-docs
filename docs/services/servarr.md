@@ -2,14 +2,14 @@
 
 > **What / why:** Media automation — finds and organizes movies and TV for [Jellyfin](jellyfin.md).
 
-**Status:** ✅ running
+**Status:** ✅ running, except **Jellystat, which has been down for a few days** (not yet diagnosed).
 
 ## Where
 
 | | |
 |---|---|
 | **Host** | `Server-GF65` ([MSI GF65](../hardware/msi-gf65.md), `10.10.0.140`) — Docker Desktop |
-| **Compose** | ❓ one stack or separate? path on disk? |
+| **Compose** | One Compose project named `servarr` with **11 containers** (per Dozzle). Vaultwarden and `dozzle-agent` run separately, outside it. ❓ path on disk |
 
 ## Apps
 
@@ -21,6 +21,18 @@
 | Bazarr | Subtitles | ❓ (6767) | [servarr.andrims.net/bazarr](https://servarr.andrims.net/bazarr) | [http://10.10.0.140:6767](http://10.10.0.140:6767) |
 | qBittorrent | Download client | 8081 | [servarr.andrims.net](https://servarr.andrims.net) (root) | [http://10.10.0.140:8081](http://10.10.0.140:8081) |
 | Seerr (formerly Jellyseerr) | Media requests for Jellyfin — **public** via Cloudflare Tunnel | 5055 | [request.andrims.net](https://request.andrims.net) | [http://10.10.0.140:5055](http://10.10.0.140:5055) |
+
+### Other containers in the stack
+
+| Container | Purpose | State |
+|---|---|---|
+| Lidarr | Music | ✅ running |
+| Tdarr | Library transcoding / re-encoding | ✅ running |
+| Gluetun | VPN client container ❓ which apps route through it | ✅ running |
+| Jellystat | Jellyfin statistics | 🟠 **down** for a few days; to be diagnosed |
+| `jellystat-db` | Database for Jellystat | ✅ running |
+
+❓ Ports and domains for Lidarr, Tdarr and Jellystat, and whether they should be added to [Services → Quick links](index.md#quick-links).
 
 ## How it was deployed
 

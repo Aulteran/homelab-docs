@@ -9,7 +9,7 @@ A Proxmox-based homelab with a Windows Docker host, a dedicated monitoring Pi, a
 | Machine | Hostname | LAN IP | Role | Runs |
 |---|---|---|---|---|
 | [Dell OptiPlex 7050 SFF](hardware/optiplex-7050.md) | `PVE-7050` | `10.10.0.15` | Proxmox VE host | TrueNAS (VM 104), Immich (VM 107), NPM (CT 101), cloudflared (CT 102), Docker host (CT 105: docs site, Paperless-ngx), Forgejo (CT 106), ddns-updater (CT 109), ActualBudget (CT 110), AdGuard (CT 153); Home Assistant OS (VM 171, stopped) |
-| [MSI GF65](hardware/msi-gf65.md) | `Server-GF65` | `10.10.0.140` | Windows 10 Pro + Docker Desktop | Jellyfin, Seerr, Servarr stack (Radarr, Sonarr, Prowlarr, Bazarr, qBittorrent), Vaultwarden |
+| [MSI GF65](hardware/msi-gf65.md) | `Server-GF65` | `10.10.0.140` | Windows 10 Pro + Docker Desktop | Jellyfin, Seerr, Servarr stack (Radarr, Sonarr, Lidarr, Prowlarr, Bazarr, qBittorrent, Gluetun, Tdarr, Jellystat), Vaultwarden |
 | [Monitoring Pi](hardware/monitoring-pi.md) | `raspberrypi` | `10.10.0.6` | Raspberry Pi 5, monitoring only | Glance dashboard, Dozzle, Uptime Kuma (Homepage being decommissioned) |
 | [MSI Raider GE68 HX](hardware/msi-raider-ge68hx.md) | — (client) | DHCP | Main personal workstation (Windows 11) | Nothing — client |
 | [M1 MacBook Air](hardware/macbook-air.md) | — (client) | DHCP | Secondary personal computer | Nothing — client |
