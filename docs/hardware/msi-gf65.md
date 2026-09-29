@@ -8,7 +8,7 @@ A laptop repurposed as a server. Runs **Windows 10 Pro** with **Docker Desktop**
 | **Storage** | ❓ (where does Jellyfin media live?) |
 | **LAN IP** | `10.10.0.140` |
 | **Hostname** | `Server-GF65` |
-| **Tailscale** | ❓ installed? |
+| **Tailscale** | Installed; acts as a tailnet **exit node** (rarely used). See [Tailscale](../network/tailscale.md). |
 
 ## What runs here
 

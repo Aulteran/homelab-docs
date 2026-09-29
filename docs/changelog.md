@@ -2,6 +2,34 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-29 (6)
+
+- **Tailscale:** login is GitHub via the `AndrimsDevs` organization. Server-GF65 is an exit node (rarely used). PVE-7050's own resolver points at AdGuard (`10.10.0.53`), which is what the app connector relies on.
+
+## 2026-09-29 (5)
+
+- **Tailscale details recorded:** tailnet DNS name `chocolate-wall.ts.net`; MagicDNS on with default DNS only; **no ACLs** (default allow-all). The app connector and Tailscale run directly on the PVE-7050 host, not in a guest. PVE-7050 advertises `10.10.0.0/24` but the route stays disabled in the admin console until needed. Tailscale runs with `--accept-dns=false` because accepting tailnet DNS broke DNS for the LXCs. Added the gotchas to the Tailscale page and a Tailscale row to the Proxmox host page.
+
+## 2026-09-29 (4)
+
+- **Tailscale remote access documented:** an app connector sends every `*.andrims.net` request from a tailnet device to Tailscale on PVE-7050, which drops it onto the LAN: AdGuard for DNS, then NPM. Works like being at home. Noted PVE-7050 as a single point of failure for remote access. Updated the Tailscale and network pages.
+
+## 2026-09-29 (3)
+
+- **Upstream gateway documented:** the Xfinity gateway is at `10.0.0.1`, in bridge mode, passing the public IP to the UX7. Its admin panel is reachable from anywhere on the LAN (used to disable bridge mode). Added to the UniFi and network pages.
+
+## 2026-09-29 (2)
+
+- **Network:** one flat subnet, `10.10.0.0/24` (gateway `10.10.0.1`), **no VLANs**. Recorded on the network and UniFi pages. A separate homelab VLAN is planned, not started (added to the roadmap).
+
+## 2026-09-29 (1)
+
+- **Paperless-ngx confirmed running** on CT 105 (`docker`) at [http://10.10.0.105:8001](http://10.10.0.105:8001) (port 8001, not the default 8000).
+- **Uptime Kuma confirmed running** at [uptime.andrims.net](https://uptime.andrims.net); dropped "planned".
+- **ActualBudget domain:** [budget.andrims.net](https://budget.andrims.net).
+- **Proxmox host:** version is **9.2.20**. **No backups exist** for the host, VMs or CTs (added as a known risk). Updates are manual and irregular (also added as a risk).
+- **Services quick links:** the Host column now shows just the VM or CT ID for Proxmox guests, without `PVE-7050 →`.
+
 ## 2026-09-28 (14)
 
 - **New page: [Jellyfin exposure options](network/jellyfin-exposure-options.md).** Six ways to make Jellyfin reachable without publishing the home IP: edge VPS + NPM (current plan), VPS + Pangolin/WireGuard, Cloudflare Tunnel (terms grey zone), Tailscale Funnel (bandwidth limits, `ts.net` names only), Pangolin Cloud, and private-only Tailscale. Includes a VPS provider and budget table (Oracle Always Free $0, BuyVM NY slice $3.50/mo, Hetzner from €5.49/mo after the June 2026 price rises) and traffic estimates. No decision recorded yet.

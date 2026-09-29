@@ -16,7 +16,7 @@
 
 | | |
 |---|---|
-| **Domain URL** | ❓ (no NPM proxy host confirmed yet — add one if this should be reachable at `budget.andrims.net` or similar) |
+| **Domain URL** | [budget.andrims.net](https://budget.andrims.net) |
 | **LAN URL** | [https://10.10.0.110:5006](https://10.10.0.110:5006) — **HTTPS**, not HTTP (likely self-signed — expect a browser warning) |
 | **NPM proxy host** | ❓ |
 | **Login** | (Vaultwarden → "ActualBudget") ❓ |

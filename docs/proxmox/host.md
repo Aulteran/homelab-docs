@@ -4,14 +4,17 @@ Proxmox VE runs on the [Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md).
 
 | | |
 |---|---|
-| **Proxmox version** | ❓ |
+| **Proxmox version** | Proxmox VE 9.2.20 |
 | **Node name / hostname** | `PVE-7050` |
 | **LAN IP** | `10.10.0.15` |
 | **Domain URL** | [pve-7050.andrims.net](https://pve-7050.andrims.net) |
 | **Web UI (LAN)** | [https://10.10.0.15:8006](https://10.10.0.15:8006) |
 | **Storage** | No ZFS — local storage is LVM (`local`) + LVM-thin (`local-lvm`) on the 512 GB boot SSD. See [hardware page](../hardware/optiplex-7050.md) for the 4 TB drive passed through to TrueNAS. |
-| **Backups** | ❓ vzdump schedule? Proxmox Backup Server? Where do backups land? |
-| **Updates** | ❓ no-subscription repo? how often? |
+| **Backups** | **None.** No vzdump schedule, no Proxmox Backup Server. Neither the host nor any VM or CT is backed up. |
+| **Updates** | Manual, no schedule — updated by hand whenever it gets remembered. ❓ no-subscription repo? |
+
+!!! warning "No backups"
+    Nothing on this host is backed up. If the 512 GB boot SSD dies, every guest disk on it (NPM, AdGuard, Forgejo, ActualBudget, Paperless, the Immich VM and the TrueNAS boot disk) goes with it. A vzdump schedule to a separate disk or machine is the first fix. See the [roadmap](../roadmap.md#known-risks-tech-debt).
 
 ## How things get deployed here
 
@@ -25,7 +28,7 @@ When running a helper script:
 
 ## Docker on Proxmox
 
-Outside Proxmox, Docker runs on the Windows side ([Server-GF65](../hardware/msi-gf65.md), Docker Desktop). On Proxmox itself, most services run as native LXCs from community helper scripts. Lightweight Docker Compose stacks go on **one** shared Docker host, **CT 105 (`docker`)**, instead of each getting its own CT — currently the [docs site](../services/docs-site.md) nginx container, and ❓ [Paperless-ngx](../services/paperless-ngx.md). The old one-off and Docker-in-LXC containers (CT 100, 103, 108) have been deleted. See the [IP / CTID table](ip-ctid-table.md).
+Outside Proxmox, Docker runs on the Windows side ([Server-GF65](../hardware/msi-gf65.md), Docker Desktop). On Proxmox itself, most services run as native LXCs from community helper scripts. Lightweight Docker Compose stacks go on **one** shared Docker host, **CT 105 (`docker`)**, instead of each getting its own CT — currently the [docs site](../services/docs-site.md) nginx container, and [Paperless-ngx](../services/paperless-ngx.md). The old one-off and Docker-in-LXC containers (CT 100, 103, 108) have been deleted. See the [IP / CTID table](ip-ctid-table.md).
 
 ## Resource picture
 

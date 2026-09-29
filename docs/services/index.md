@@ -11,7 +11,7 @@ Every service gets two links: the **domain** (the normal way in) and the **LAN U
 | [Vaultwarden](vaultwarden.md) | ✅ | Server-GF65 (Docker Desktop) | [vault.andrims.net](https://vault.andrims.net) (Cloudflare Tunnel, not NPM) | [http://10.10.0.140:8000](http://10.10.0.140:8000) | **Yes** | **Yes** |
 | [Immich](immich.md) | ✅ | VM 107 | [immich.andrims.net](https://immich.andrims.net) (Cloudflare Tunnel, not NPM) | [http://10.10.0.107:2283](http://10.10.0.107:2283) | **Yes** | **Yes** |
 | [TrueNAS](truenas.md) | ✅ | VM 104 | [truenas.andrims.net](https://truenas.andrims.net) | [http://10.10.0.22](http://10.10.0.22) | No | **Yes** |
-| [Paperless-ngx](paperless-ngx.md) | ❓ | CT 105 (`docker`) ❓ | [paperless.andrims.net](https://paperless.andrims.net) | ❓ [http://10.10.0.105:8000](http://10.10.0.105:8000) | No | **Yes** |
+| [Paperless-ngx](paperless-ngx.md) | ✅ | CT 105 (`docker`) | [paperless.andrims.net](https://paperless.andrims.net) | [http://10.10.0.105:8001](http://10.10.0.105:8001) | No | **Yes** |
 | [Jellyfin](jellyfin.md) | ✅ | Server-GF65 | [stream.andrims.net](https://stream.andrims.net) | [http://10.10.0.140:8096](http://10.10.0.140:8096) | **Yes** | No |
 | Seerr (formerly Jellyseerr) — media requests | ✅ | Server-GF65 (Docker Desktop) | [request.andrims.net](https://request.andrims.net) (Cloudflare Tunnel, not NPM) | [http://10.10.0.140:5055](http://10.10.0.140:5055) | **Yes** | No |
 | Radarr ([Servarr](servarr.md)) | ✅ | Server-GF65 (Docker Desktop) | [servarr.andrims.net/radarr](https://servarr.andrims.net/radarr) | [http://10.10.0.140:7878](http://10.10.0.140:7878) | No | No |
@@ -24,9 +24,9 @@ Every service gets two links: the **domain** (the normal way in) and the **LAN U
 | [AdGuard Home](../network/dns-adguard.md) (admin) | ✅ | CT 153 | [dns.andrims.net](https://dns.andrims.net) | [http://10.10.0.53](http://10.10.0.53) | No | **Yes** |
 | [Proxmox VE](../proxmox/host.md) (admin) | ✅ | PVE-7050 (bare metal) | [pve-7050.andrims.net](https://pve-7050.andrims.net) | [https://10.10.0.15:8006](https://10.10.0.15:8006) | No | **Yes** |
 | [Dozzle](dozzle.md) | ✅ | Monitoring Pi + agents | [dozzle.andrims.net](https://dozzle.andrims.net) | — | No | No |
-| [Uptime Kuma](uptime-kuma.md) | 🟡 | Monitoring Pi | [uptime.andrims.net](https://uptime.andrims.net) | — | No | No |
+| [Uptime Kuma](uptime-kuma.md) | ✅ | Monitoring Pi | [uptime.andrims.net](https://uptime.andrims.net) | — | No | No |
 | [Forgejo](forgejo.md) | ✅ | CT 106 | [git.andrims.net](https://git.andrims.net) | [http://10.10.0.106:3000](http://10.10.0.106:3000) | No | No |
-| [ActualBudget](actualbudget.md) | ✅ | CT 110 | ❓ | [https://10.10.0.110:5006](https://10.10.0.110:5006) | No | **Yes** |
+| [ActualBudget](actualbudget.md) | ✅ | CT 110 | [budget.andrims.net](https://budget.andrims.net) | [https://10.10.0.110:5006](https://10.10.0.110:5006) | No | **Yes** |
 | [Docs site](docs-site.md) | ✅ | CT 105 (`docker`) | [docs.andrims.net](https://docs.andrims.net) | [http://10.10.0.105:8088](http://10.10.0.105:8088) | No | No |
 
 **Public:** only **Jellyfin, Seerr, Vaultwarden and Immich** are reachable from the internet. Everything else is internal only (AdGuard rewrite + NPM on the LAN, Tailscale when away).

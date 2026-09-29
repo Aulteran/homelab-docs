@@ -1,8 +1,8 @@
-# Uptime Kuma (planned)
+# Uptime Kuma
 
 > **What / why:** Detects *that* something is down and sends a notification. [Dozzle](dozzle.md) then tells you *why*.
 
-**Status:** 🟡 planned ❓ (domain [uptime.andrims.net](https://uptime.andrims.net) exists in NPM — running already?)
+**Status:** ✅ running at [uptime.andrims.net](https://uptime.andrims.net)
 
 ## Where
 

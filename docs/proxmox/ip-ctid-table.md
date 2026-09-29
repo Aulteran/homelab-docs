@@ -13,7 +13,7 @@ Last checked against `pct list` / `qm list` / `pct config` on the host: **2026-0
 |---|---|---|---|---|---|
 | 101 | `nginxproxymanager` | `10.10.0.101` | ❓ Helper script? | [Nginx Proxy Manager](../network/reverse-proxy.md) | 2 / 2 GB / 10 GB |
 | 102 | `cloudflared` | `10.10.0.102` ⚠️ | Helper script | Cloudflare Tunnel daemon for [Immich](../services/immich.md), [Vaultwarden](../services/vaultwarden.md) and Seerr — one tunnel for all three | 1 / 512 MB / 2 GB |
-| 105 | `docker` | `10.10.0.105` | ❓ Helper script / manual | **Docker host** for lightweight Compose stacks: the [docs site](../services/docs-site.md) nginx container, and ❓ [Paperless-ngx](../services/paperless-ngx.md) (this CT used to be the standalone `paperless` LXC — confirm Paperless now runs here as a container) | 2 / 2 GB / 32 GB |
+| 105 | `docker` | `10.10.0.105` | ❓ Helper script / manual | **Docker host** for lightweight Compose stacks: the [docs site](../services/docs-site.md) nginx container, and [Paperless-ngx](../services/paperless-ngx.md) on port 8001 (this CT used to be the standalone `paperless` LXC) | 2 / 2 GB / 32 GB |
 | 106 | `forgejo` | `10.10.0.106` | Helper script | [Forgejo](../services/forgejo.md) | 1 / 512 MB / 6 GB |
 | 109 | `ddns-updater` | `10.10.0.109` | Helper script | Keeps `aultmain.andrims.net`'s A record pointed at the home IP (config: `/opt/ddns-updater/data/config.json`) — see [Cloudflare](../network/cloudflare.md) | 1 / 512 MB / 2 GB |
 | 110 | `actualbudget` | `10.10.0.110` | Helper script | [ActualBudget](../services/actualbudget.md) — personal finance | 2 / 2 GB / 4 GB |

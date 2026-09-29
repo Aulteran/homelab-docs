@@ -2,6 +2,7 @@
 
 | Layer | What | Page |
 |---|---|---|
+| Upstream / WAN | Xfinity gateway in bridge mode, feeding the UX7 | [UniFi → Upstream](unifi.md#upstream-xfinity-gateway) |
 | Physical / LAN | UniFi hardware | [UniFi](unifi.md) |
 | Internal DNS | AdGuard Home (custom DNS + rewrites) | [DNS](dns-adguard.md) |
 | Reverse proxy | Nginx Proxy Manager | [Reverse proxy](reverse-proxy.md) |
@@ -13,7 +14,9 @@
 
 | Name | Subnet | VLAN ID | Purpose |
 |---|---|---|---|
-| ❓ LAN | ❓ | ❓ | ❓ |
+| LAN | `10.10.0.0/24` (gateway `10.10.0.1`) | none (untagged) | Everything: homelab, clients, IoT ❓ |
+
+There is **one flat subnet and no VLANs**. Moving the homelab onto its own VLAN is planned but not started — see the [roadmap](../roadmap.md#planned).
 
 ## How traffic flows
 
@@ -32,7 +35,7 @@ Internet → Cloudflare edge (`vault.andrims.net` / `request.andrims.net`, proxi
 Client → AdGuard Home rewrite (`*.andrims.net` → NPM IP) → Nginx Proxy Manager → service. No public Cloudflare record.
 
 **Remote:**
-Device on Tailscale → internal IPs / internal hostnames. ❓ Does Tailscale use AdGuard as its DNS (split DNS / global nameserver)?
+Tailnet device visits an `*.andrims.net` name → Tailscale **app connector** → Tailscale on PVE-7050 → LAN, exactly as if the device were at home: AdGuard answers DNS, NPM serves the service. Details on the [Tailscale page](tailscale.md#how-remote-access-works-app-connector).
 
 ## Port forwards
 
