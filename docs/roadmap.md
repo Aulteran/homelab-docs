@@ -13,7 +13,7 @@
 
 | Item | Where | Notes |
 |---|---|---|
-| **Edge VPS to hide the home IP** | Cloud VM + NPM, joined to the tailnet | [page](network/edge-vps.md) — public DNS points at the VM, which forwards to the lab over Tailscale. Then close ports 80/443 on the UX7 and retire `aultmain`/CT 109. Also lets Immich leave the tunnel without exposing the home IP. |
+| **Edge VPS to hide the home IP** | Cloud VM + NPM, joined to the tailnet | [page](network/edge-vps.md) — public DNS points at the VM, which forwards to the lab over Tailscale. Alternatives and budgets: [options](network/jellyfin-exposure-options.md). Then close ports 80/443 on the UX7 and retire `aultmain`/CT 109. Also lets Immich leave the tunnel without exposing the home IP. |
 | Move Immich off Cloudflare Tunnel | Cloudflare DNS-only record + NPM | [page](services/immich.md#planned-move-from-cloudflare-tunnel-to-direct-ip-npm) — avoids the 100 MB upload cap. ⚠️ **Conflicts with rule 4** if done with a home-IP record. Do it **after the [edge VPS](network/edge-vps.md)**, so Immich goes through the VPS instead. |
 | Forgejo remaining setup (Forgejo itself is ✅ running as CT 106) | PVE-7050 | [page](services/forgejo.md) — confirm AdGuard rewrite, NPM proxy host, SSH clone, first push, push mirror |
 | GitHub push mirror | Forgejo → private GitHub | |

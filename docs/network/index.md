@@ -7,7 +7,7 @@
 | Reverse proxy | Nginx Proxy Manager | [Reverse proxy](reverse-proxy.md) |
 | Public DNS | Cloudflare, `andrims.net` | [Cloudflare](cloudflare.md) |
 | Remote access | Tailscale mesh | [Tailscale](tailscale.md) |
-| Public entry point (planned) | Cloud VM running NPM, on the tailnet | [Edge VPS](edge-vps.md) |
+| Public entry point (planned) | Cloud VM running NPM, on the tailnet | [Edge VPS](edge-vps.md), [alternatives](jellyfin-exposure-options.md) |
 
 ## Subnets / VLANs
 

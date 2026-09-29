@@ -4,6 +4,8 @@
 
 **Status:** 🟡 planned, not started. Nothing on this page exists yet.
 
+Other ways to do this, with budgets: [Jellyfin exposure options](jellyfin-exposure-options.md).
+
 ## The idea
 
 ```mermaid
@@ -30,7 +32,8 @@ Today, `stream.andrims.net` → home IP → UniFi port-forward 443 → NPM (CT 1
 ## What it doesn't fix
 
 - The **VPS IP** is public instead. That's the point, but the VPS is now the internet-facing machine and needs patching, SSH hardening and a firewall.
-- Anyone who compromises the VPS is **on your tailnet**. Limit what it can reach (next section).
+- Anyone who compromises the VPS is **on your tailnet**. Limit what it can reach (next section). A design where the VM holds only one tunnel to the GF65 has a smaller blast radius: see [option B](jellyfin-exposure-options.md#b-edge-vps-pangolin-or-plain-wireguard).
+- The VPS (and its provider) can see the **home IP**: a direct WireGuard connection shows it as the peer address. It stops being public, not secret.
 - The VPS sees all Jellyfin traffic in the clear after TLS ends, so treat it as trusted infrastructure.
 
 ## Design notes
@@ -43,9 +46,9 @@ Today, `stream.andrims.net` → home IP → UniFi port-forward 443 → NPM (CT 1
 
 **Speed.** Video goes VPS → home over WireGuard. If the two nodes get a **direct** connection it's fast. If Tailscale falls back to a **DERP relay**, throughput drops sharply. Check with `tailscale status` on the VPS. Home upload speed is the ceiling either way.
 
-**Bandwidth.** Oracle's free tier includes 10 TB/month of outbound traffic, plenty for personal streaming.
+**Bandwidth.** Oracle's free tier includes 10 TB/month of outbound traffic, plenty for personal streaming. But the free **AMD micro** shape is capped at **50 Mbps**, which is too little for more than a stream or two. Use the free **Ampere A1** shape instead.
 
-**Oracle Free Tier cautions.** Idle instances can be reclaimed, and accounts have been terminated with little notice. Keep a small amount of steady load, keep the config in these docs (no secrets), and know that another provider's cheapest VM would work the same way.
+**Oracle Free Tier cautions.** Oracle reclaims an Always Free instance that stays under 20% CPU and network use for 7 days, which a quiet proxy could do. Keep the config documented (no secrets) so the VM is quick to recreate. Provider comparison, prices and alternatives: [Jellyfin exposure options](jellyfin-exposure-options.md#vps-providers-and-budgets).
 
 **Keep the tunnel for now.** Vaultwarden and Seerr already avoid the home IP through the Cloudflare Tunnel. They can stay there. Moving them to the VPS is optional and would mean two public paths to maintain.
 
@@ -72,7 +75,7 @@ Today, `stream.andrims.net` → home IP → UniFi port-forward 443 → NPM (CT 1
 
 | | |
 |---|---|
-| **Provider / region / shape** | ❓ (Oracle Free Tier considered) |
+| **Provider / region / shape** | ❓ (Oracle Free Tier considered; see [providers and budgets](jellyfin-exposure-options.md#vps-providers-and-budgets)) |
 | **Public IP** | ❓ (don't record it in this public repo; reference Vaultwarden) |
 | **Tailscale name / IP** | ❓ |
 | **SSH access** | ❓ key-only, from where |

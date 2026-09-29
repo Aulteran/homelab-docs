@@ -12,7 +12,7 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] NPM: host/CTID, IP, cert method (HTTP vs. Cloudflare DNS challenge), full proxy host list
 - [ ] Cloudflare: full DNS record list; `andrims.com` — confirm if/how it's used (registrar + renewal date confirmed for both domains)
 - [ ] **NPM Access List on every internal proxy host** (LAN + Tailscale only) — see [Cloudflare → Home IP exposure](network/cloudflare.md#home-ip-exposure)
-- [ ] Edge VPS ([plan](network/edge-vps.md)): provider, region, shape, and whether Immich moves onto it later
+- [ ] **Decide how to expose Jellyfin without the home IP**: [options and budgets](network/jellyfin-exposure-options.md). Then: provider, region and shape, and whether Immich moves onto it later
 - [ ] Cloudflare Tunnel: tunnel name (runs on CT 102, `10.10.0.102` — IP now confirmed)
 - [ ] Tailscale: MagicDNS, DNS settings, subnet router/exit node, device list
 

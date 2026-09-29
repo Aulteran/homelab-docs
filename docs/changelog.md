@@ -2,6 +2,11 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-28 (14)
+
+- **New page: [Jellyfin exposure options](network/jellyfin-exposure-options.md).** Six ways to make Jellyfin reachable without publishing the home IP: edge VPS + NPM (current plan), VPS + Pangolin/WireGuard, Cloudflare Tunnel (terms grey zone), Tailscale Funnel (bandwidth limits, `ts.net` names only), Pangolin Cloud, and private-only Tailscale. Includes a VPS provider and budget table (Oracle Always Free $0, BuyVM NY slice $3.50/mo, Hetzner from €5.49/mo after the June 2026 price rises) and traffic estimates. No decision recorded yet.
+- **Corrections to the [Edge VPS](network/edge-vps.md) plan:** Oracle's free AMD micro shape is capped at 50 Mbps (use the Ampere A1 shape), Oracle reclaims instances that stay under 20% CPU/network for 7 days, and the VPS can see the home IP over a direct WireGuard link.
+
 ## 2026-09-28 (13)
 
 - **Plan recorded: edge VPS.** A cloud VM (Oracle Free Tier considered) runs NPM, joins the tailnet, and becomes the only public entry point: public DNS points at the VM, which forwards over Tailscale to the lab. Goal: the home IP is published nowhere and ports 80/443 at home are closed. New page [Edge VPS](network/edge-vps.md), covering the design, trade-offs (VM hardening, Tailscale ACL, real client IPs, DERP relay speed) and a rollout order.

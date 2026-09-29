@@ -23,7 +23,7 @@
 | **Path** | Cloudflare DNS-only record → home IP → Nginx Proxy Manager → Jellyfin |
 | **Admin login** | (Vaultwarden → "Jellyfin") ❓ |
 
-See [Cloudflare](../network/cloudflare.md) and [Reverse proxy](../network/reverse-proxy.md).
+See [Cloudflare](../network/cloudflare.md) and [Reverse proxy](../network/reverse-proxy.md). Planned change to stop publishing the home IP: [Edge VPS](../network/edge-vps.md); other options and costs: [Jellyfin exposure options](../network/jellyfin-exposure-options.md).
 
 ## Data
 
