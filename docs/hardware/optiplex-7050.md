@@ -14,6 +14,7 @@ The main server. Runs Proxmox VE; see [Proxmox host](../proxmox/host.md) for the
 | **Hostname** | `PVE-7050` |
 | **Proxmox domain** | [pve-7050.andrims.net](https://pve-7050.andrims.net) |
 | **Proxmox UI (LAN)** | [https://10.10.0.15:8006](https://10.10.0.15:8006) |
+| **Tailscale IP** | `100.110.0.15` |
 
 ## Load notes
 

@@ -2,6 +2,16 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-09-29 (8)
+
+- **Tailscale IPs recorded:** PVE-7050 `100.110.0.15`, Server-GF65 `100.69.160.6`, Monitoring Pi `100.101.228.37`. Added to the Tailscale page and each hardware page. Server-GF65 is always on.
+- **Home page and hardware index cleaned up:** Paperless-ngx and Uptime Kuma now ✅ (table, at-a-glance and network map), ActualBudget shows its domain, and the Pi lists Uptime Kuma.
+
+## 2026-09-29 (7)
+
+- **Monitoring Pi contents confirmed** (from Dozzle): four Docker containers — `dozzle`, `glance`, `homepage` and `uptime-kuma-uptime-kuma-1`. The Pi does use Docker. Uptime Kuma marked running there.
+- **Homepage is to be decommissioned**, since Glance replaces it. Added to the roadmap and open questions.
+
 ## 2026-09-29 (6)
 
 - **Tailscale:** login is GitHub via the `AndrimsDevs` organization. Server-GF65 is an exit node (rarely used). PVE-7050's own resolver points at AdGuard (`10.10.0.53`), which is what the app connector relies on.

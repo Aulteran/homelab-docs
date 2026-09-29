@@ -13,6 +13,7 @@
 
 | Item | Where | Notes |
 |---|---|---|
+| Decommission Homepage | Monitoring Pi | Glance replaces it. Stop and remove the `homepage` container, and clean up any NPM proxy host or AdGuard rewrite it had. |
 | Homelab VLAN | UniFi UX7 + Proxmox | Not started. Today everything is on one flat `10.10.0.0/24` ([network](network/index.md#subnets-vlans)). Needs a plan for re-IPing guests (the `10.10.0.<CTID>` convention), AdGuard/NPM reachability from other VLANs, and Tailscale routes. |
 | **Edge VPS to hide the home IP** | Cloud VM + NPM, joined to the tailnet | [page](network/edge-vps.md) — public DNS points at the VM, which forwards to the lab over Tailscale. Alternatives and budgets: [options](network/jellyfin-exposure-options.md). Then close ports 80/443 on the UX7 and retire `aultmain`/CT 109. Also lets Immich leave the tunnel without exposing the home IP. |
 | Move Immich off Cloudflare Tunnel | Cloudflare DNS-only record + NPM | [page](services/immich.md#planned-move-from-cloudflare-tunnel-to-direct-ip-npm) — avoids the 100 MB upload cap. ⚠️ **Conflicts with rule 4** if done with a home-IP record. Do it **after the [edge VPS](network/edge-vps.md)**, so Immich goes through the VPS instead. |

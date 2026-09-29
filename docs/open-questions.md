@@ -4,7 +4,8 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 
 ## Hardware
 - [ ] GF65: specs, where media is stored, auto-login set?, Jellyfin transcoding method (GPU or software)
-- [ ] Monitoring Pi: Docker used for anything?
+- [x] Monitoring Pi runs Docker: Dozzle, Glance, Uptime Kuma, Homepage (being decommissioned)
+- [ ] Decommission Homepage on the Monitoring Pi (Glance replaces it); remove its domain/NPM proxy host and AdGuard rewrite if it has one
 
 ## Network
 - [x] UniFi subnets/VLANs: one flat `10.10.0.0/24`, no VLANs
@@ -16,7 +17,7 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] **Decide how to expose Jellyfin without the home IP**: [options and budgets](network/jellyfin-exposure-options.md). Then: provider, region and shape, and whether Immich moves onto it later
 - [ ] Cloudflare Tunnel: tunnel name (runs on CT 102, `10.10.0.102` — IP now confirmed)
 - [x] Tailscale: app connector routes `*.andrims.net` via Tailscale on PVE-7050 (documented)
-- [ ] Tailscale: device list with Tailscale IPs. (App connector, resolver, login provider, exit node, ACLs, MagicDNS and the disabled subnet route are all documented.)
+- [ ] Tailscale: remaining devices (laptops, phones, etc.) beyond the three servers. (App connector, resolver, login provider, exit node, ACLs, MagicDNS and the disabled subnet route are all documented.)
 
 ## Proxmox
 - [x] Version (9.2.20), node name, storage pools

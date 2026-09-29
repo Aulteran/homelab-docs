@@ -8,9 +8,9 @@ A Proxmox-based homelab with a Windows Docker host, a dedicated monitoring Pi, a
 
 | Machine | Hostname | LAN IP | Role | Runs |
 |---|---|---|---|---|
-| [Dell OptiPlex 7050 SFF](hardware/optiplex-7050.md) | `PVE-7050` | `10.10.0.15` | Proxmox VE host | TrueNAS (VM 104), Immich (VM 107), NPM (CT 101), cloudflared (CT 102), Docker host (CT 105: docs site, Paperless-ngx ❓), Forgejo (CT 106), ddns-updater (CT 109), ActualBudget (CT 110), AdGuard (CT 153); Home Assistant OS (VM 171, stopped) |
+| [Dell OptiPlex 7050 SFF](hardware/optiplex-7050.md) | `PVE-7050` | `10.10.0.15` | Proxmox VE host | TrueNAS (VM 104), Immich (VM 107), NPM (CT 101), cloudflared (CT 102), Docker host (CT 105: docs site, Paperless-ngx), Forgejo (CT 106), ddns-updater (CT 109), ActualBudget (CT 110), AdGuard (CT 153); Home Assistant OS (VM 171, stopped) |
 | [MSI GF65](hardware/msi-gf65.md) | `Server-GF65` | `10.10.0.140` | Windows 10 Pro + Docker Desktop | Jellyfin, Seerr, Servarr stack (Radarr, Sonarr, Prowlarr, Bazarr, qBittorrent), Vaultwarden |
-| [Monitoring Pi](hardware/monitoring-pi.md) | `raspberrypi` | `10.10.0.6` | Raspberry Pi 5, monitoring only | Glance dashboard, Dozzle |
+| [Monitoring Pi](hardware/monitoring-pi.md) | `raspberrypi` | `10.10.0.6` | Raspberry Pi 5, monitoring only | Glance dashboard, Dozzle, Uptime Kuma (Homepage being decommissioned) |
 | [MSI Raider GE68 HX](hardware/msi-raider-ge68hx.md) | — (client) | DHCP | Main personal workstation (Windows 11) | Nothing — client |
 | [M1 MacBook Air](hardware/macbook-air.md) | — (client) | DHCP | Secondary personal computer | Nothing — client |
 
@@ -23,7 +23,7 @@ Domain and direct LAN links for every service are on [Services → Quick links](
 | [Vaultwarden](services/vaultwarden.md) | ✅ | Server-GF65 (Docker Desktop) | **Public** — [vault.andrims.net](https://vault.andrims.net) (Cloudflare Tunnel) |
 | [Immich](services/immich.md) | ✅ | VM 107 on PVE-7050 | **Public** — [immich.andrims.net](https://immich.andrims.net) (Cloudflare Tunnel) |
 | [TrueNAS](services/truenas.md) | ✅ | VM 104 on PVE-7050 | Internal — [truenas.andrims.net](https://truenas.andrims.net) |
-| [Paperless-ngx](services/paperless-ngx.md) | ❓ | CT 105 (`docker`) on PVE-7050 — ❓ confirm | Internal — [paperless.andrims.net](https://paperless.andrims.net) |
+| [Paperless-ngx](services/paperless-ngx.md) | ✅ | CT 105 (`docker`) on PVE-7050 | Internal — [paperless.andrims.net](https://paperless.andrims.net) |
 | [Jellyfin](services/jellyfin.md) | ✅ | Server-GF65 | **Public** — [stream.andrims.net](https://stream.andrims.net) |
 | Seerr (formerly Jellyseerr) | ✅ | Server-GF65 | **Public** — [request.andrims.net](https://request.andrims.net) (Cloudflare Tunnel) |
 | [Servarr stack](services/servarr.md) | ✅ | Server-GF65 (Docker Desktop) | Internal — [servarr.andrims.net](https://servarr.andrims.net) (+ per-app paths) |
@@ -31,9 +31,9 @@ Domain and direct LAN links for every service are on [Services → Quick links](
 | [AdGuard Home](network/dns-adguard.md) | ✅ | CT 153 on PVE-7050 | Internal DNS — admin at [dns.andrims.net](https://dns.andrims.net) |
 | [Glance](services/glance.md) | ✅ | Monitoring Pi | Internal — [dash.andrims.net](https://dash.andrims.net) |
 | [Dozzle](services/dozzle.md) | ✅ | Monitoring Pi + agents | Internal — [dozzle.andrims.net](https://dozzle.andrims.net) |
-| [Uptime Kuma](services/uptime-kuma.md) | 🟡 | Monitoring Pi | Internal — [uptime.andrims.net](https://uptime.andrims.net) |
+| [Uptime Kuma](services/uptime-kuma.md) | ✅ | Monitoring Pi | Internal — [uptime.andrims.net](https://uptime.andrims.net) |
 | [Forgejo](services/forgejo.md) | ✅ | CT 106 on PVE-7050 | Internal — [git.andrims.net](https://git.andrims.net) |
-| [ActualBudget](services/actualbudget.md) | ✅ | CT 110 on PVE-7050 | Internal — ❓ |
+| [ActualBudget](services/actualbudget.md) | ✅ | CT 110 on PVE-7050 | Internal — [budget.andrims.net](https://budget.andrims.net) |
 | [Docs site](services/docs-site.md) | ✅ | CT 105 (`docker`) on PVE-7050 — auto-rebuild on push 🟡 | Internal — [docs.andrims.net](https://docs.andrims.net) |
 
 ## Network map
@@ -63,7 +63,7 @@ flowchart TB
         haos["VM 171: Home Assistant OS<br/>⏸️ stopped"]
         subgraph dockerct["CT 105: docker"]
             docs["docs-site nginx"]
-            paperless["Paperless-ngx ❓"]
+            paperless["Paperless-ngx"]
         end
     end
 
@@ -77,7 +77,7 @@ flowchart TB
     subgraph pi["Monitoring Pi (10.10.0.6)"]
         glance["Glance"]
         dozzle["Dozzle"]
-        kuma["Uptime Kuma 🟡"]
+        kuma["Uptime Kuma"]
     end
 
     unifi --> npm

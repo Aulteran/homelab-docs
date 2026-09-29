@@ -1,6 +1,6 @@
 # Glance
 
-> **What / why:** Dashboard for the whole homelab. Built with Claude Code.
+> **What / why:** Dashboard for the whole homelab. Built with Claude Code. It replaces Homepage, which is being decommissioned.
 
 **Status:** ✅ running
 
@@ -9,7 +9,7 @@
 | | |
 |---|---|
 | **Host** | [Monitoring Pi](../hardware/monitoring-pi.md) |
-| **Type** | ❓ Docker container / binary |
+| **Type** | Docker container (`glance`) |
 | **LAN IP / port** | `10.10.0.6` : 8080 |
 | **Domain URL** | [dash.andrims.net](https://dash.andrims.net) |
 | **LAN URL** | [http://10.10.0.6:8080](http://10.10.0.6:8080) |

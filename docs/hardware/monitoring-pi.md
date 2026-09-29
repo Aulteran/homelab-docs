@@ -9,15 +9,17 @@ A Raspberry Pi dedicated **only** to monitoring the rest of the homelab. Nothing
 | **Storage** | microSD card |
 | **LAN IP** | `10.10.0.6` |
 | **Hostname** | `raspberrypi` (default, never changed) |
-| **Docker?** | ❓ |
+| **Tailscale IP** | `100.101.228.37` |
+| **Docker?** | Yes — everything below runs as a Docker container |
 
 ## What runs here
 
 | Service | Status |
 |---|---|
-| [Glance](../services/glance.md) | ✅ |
-| [Dozzle](../services/dozzle.md) (main instance) | ✅ running |
-| [Uptime Kuma](../services/uptime-kuma.md) | 🟡 planned |
+| [Glance](../services/glance.md) | ✅ running (container `glance`) |
+| [Dozzle](../services/dozzle.md) (main instance) | ✅ running (container `dozzle`) |
+| [Uptime Kuma](../services/uptime-kuma.md) | ✅ running (container `uptime-kuma-uptime-kuma-1`) |
+| Homepage | 🟠 running (container `homepage`), **to be decommissioned** — Glance replaces it |
 | Prometheus + Grafana | 🟡 planned — **blocked, see rule below** |
 
 !!! danger "Rule: no Prometheus or Grafana on the microSD card"

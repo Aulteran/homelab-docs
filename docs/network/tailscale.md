@@ -47,8 +47,9 @@ What this means in practice:
 
 | Device | Tailscale IP | Notes |
 |---|---|---|
-| PVE-7050 | ❓ 100.x.x.x | Proxmox host, app connector, subnet router (disabled) |
-| Server-GF65 | ❓ 100.x.x.x | Exit node (rarely used) |
+| PVE-7050 | `100.110.0.15` | Proxmox host, app connector, subnet router (disabled) |
+| Server-GF65 | `100.69.160.6` | Exit node (rarely used); always on |
+| Monitoring Pi | `100.101.228.37` | |
 | ❓ | 100.x.x.x | |
 
 ## Planned use

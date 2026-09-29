@@ -6,7 +6,7 @@
 
 ## Where
 
-- [Monitoring Pi](../hardware/monitoring-pi.md)
+- [Monitoring Pi](../hardware/monitoring-pi.md), as a Docker container (`uptime-kuma-uptime-kuma-1`, Compose project `uptime-kuma`)
 
 ## Checks to set up
 
