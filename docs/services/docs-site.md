@@ -2,7 +2,7 @@
 
 > **What / why:** Renders this repo as a browsable site at `docs.andrims.net`, rebuilt automatically every time a commit is pushed to Forgejo.
 
-**Status:** ✅ live at [docs.andrims.net](https://docs.andrims.net) and [http://10.10.0.105:8088](http://10.10.0.105:8088), served from the nginx container on **CT 105 (`docker`)**. 🟡 The automatic rebuild-on-push (webhook + cron below) is still to do — until then, rebuild by hand after a push.
+**Status:** ✅ operational at [docs.andrims.net](https://docs.andrims.net) and [http://10.10.0.105:8088](http://10.10.0.105:8088), served from the nginx container on **CT 105 (`docker`)**. Automatic rebuild-on-push via webhook is configured.
 
 ## How it works
 

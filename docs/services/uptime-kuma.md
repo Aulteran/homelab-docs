@@ -26,4 +26,8 @@ Where a service has both a domain and a LAN URL, check **both**. If only the dom
 
 ## Notifications
 
-❓ Which channel (Discord, ntfy, email…)?
+- **Discord:** enabled
+  - Currently monitoring: **Jellyfin** only
+  - To be added: remaining services (as time permits)
+
+See Vaultwarden for the Discord webhook URL.
