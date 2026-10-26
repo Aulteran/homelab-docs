@@ -66,7 +66,9 @@ nav:
       - Forgejo: services/forgejo.md
       - ActualBudget: services/actualbudget.md
       - Docs site (planned): services/docs-site.md
-  - Runbooks: runbooks/index.md
+  - Runbooks:
+      - runbooks/index.md
+      - Immich VM → LXC: runbooks/immich-vm-to-lxc.md
   - Roadmap & rules: roadmap.md
   - Open questions: open-questions.md
   - Changelog: changelog.md

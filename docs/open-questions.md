@@ -25,7 +25,7 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [x] Tailscale: app connector routes `*.andrims.net` via Tailscale on PVE-7050 (documented)
 - [x] Tailscale: full device list recorded (2026-10-25)
 - [ ] Tailscale: what were `oracle1` / `oracle2` and `ltbh-f15`, and can they be removed? Should `Bowswa@`'s devices be limited by an ACL?
-- [ ] PVE-7050: model and speed of the extra NIC ports `enp4s0` / `enp5s0`
+- [x] PVE-7050: `enp4s0` / `enp5s0` are stale config from a removed card; both PCIe slots are empty
 
 ## Proxmox
 - [x] Version (9.2.20), node name, storage pools
@@ -44,7 +44,8 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] **LAN URL for every service** — see [Services → Quick links](services/index.md#quick-links)
 - [ ] Vaultwarden: compose, data path, **backup** (URL and exposure now confirmed — see its page)
 - [x] Immich: NFS 4.1 mount from TrueNAS, daily DB dumps (on the same TrueNAS share), Docker Compose in `/root/docker/immich-docker-ct/`
-- [ ] Immich: use the passed-through iGPU for transcoding (QuickSync), or remove the passthrough? What does `immich_ml_balancer` balance to? What's on port 9090?
+- [x] Immich uses the iGPU for QuickSync transcoding; the ML balancer points at GF65 and GE68 workers that aren't listening
+- [ ] Immich: keep the remote ML workers (start them on GF65/GE68) or drop the balancer? What's on port 9090? Planned move to an LXC: [runbook](runbooks/immich-vm-to-lxc.md)
 - [ ] TrueNAS (VM 104): exact SCALE version, pool/dataset layout, snapshot schedule, **off-box copy (no redundancy — priority)**; set up SSH access
 - [x] Paperless-ngx is running on CT 105 (`docker`), port 8001
 - [x] Paperless-ngx is a Compose project (`paperless-ault`)

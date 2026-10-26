@@ -22,6 +22,7 @@
 | GitHub push mirror | Forgejo → private GitHub | |
 | Docs site auto-rebuild | CT 105 (`docker`) | [page](services/docs-site.md) — site is ✅ served; still to add the Forgejo push webhook that rebuilds with Zensical (hourly cron as backup) |
 | Dozzle agent rollout | ✅ done | [page](services/dozzle.md) — main instance plus agents on the GF65, CT 105 and VM 107, all confirmed 2026-10-25 |
+| Move Immich from VM 107 to an LXC | PVE-7050 → new CT 111 | [runbook](runbooks/immich-vm-to-lxc.md) — frees 7 GB of pinned RAM, shares the iGPU (and later a Jellyfin LXC), DB gets backed up |
 | Home Assistant OS | PVE-7050 → VM 171 (exists, stopped) | No service page yet. Check RAM first — starting it adds 2 GB of VM allocation (see [Proxmox host](proxmox/host.md#resource-picture)) |
 | Uptime Kuma checks | Monitoring Pi | [page](services/uptime-kuma.md) — running; still to confirm the checks cover every service and pick a notification channel |
 | Prometheus + Grafana | Monitoring Pi | **Blocked** by rule 3 |

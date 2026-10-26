@@ -13,7 +13,7 @@
 | **LAN IP / port** | `10.10.0.107` : 2283 |
 | **Tailscale** | On the tailnet as `vm-107` (`100.110.0.107`) |
 | **RAM allocated** | 7 GB, but `balloon: 6144` means the guest only sees ~6 GB. The iGPU passthrough pins all 7 GB on the host anyway. |
-| **GPU** | Intel HD Graphics 530 passed through (`/dev/dri/renderD128` exists in the VM). The compose file doesn't map `/dev/dri` into any container, so ❓ Immich doesn't seem to use it yet. |
+| **GPU** | Intel HD Graphics 530 passed through. `immich_server` uses it for **QuickSync video transcoding** (`extends: hwaccel.transcoding.yml` → `quicksync`, which maps `/dev/dri`). Machine learning runs on the CPU (`hwaccel.ml.yml` → `cpu`). |
 
 ## How it was deployed
 
@@ -23,7 +23,7 @@ Docker Compose inside the Debian VM: `/root/docker/immich-docker-ct/docker-compo
 |---|---|
 | `immich_server` | `ghcr.io/immich-app/immich-server:release` |
 | `immich_machine_learning` | `ghcr.io/immich-app/immich-machine-learning:release` (CPU, no hardware acceleration tag) |
-| `immich_ml_balancer` | `apetersson/immich_ml_balancer:latest` — sits between the server and ML containers; ❓ which other ML workers it balances to |
+| `immich_ml_balancer` | `apetersson/immich_ml_balancer:latest` — spreads ML jobs across `IMML_BACKENDS`: `server-gf65`, `ault-ge68`, `10.10.0.140` and the local `immich-machine-learning`. On 2026-10-26 port 3003 was **closed on all three remote workers**, so in practice only the local CPU worker runs. |
 | `immich_postgres` | `ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0` |
 | `immich_redis` | `valkey/valkey:8-bookworm` |
 | `dozzle-agent` | `amir20/dozzle:latest` (separate compose: `/root/docker/dozzle-agent/`) |
@@ -42,6 +42,10 @@ Immich version on 2026-10-25: **v3.3.5**.
 | **NPM proxy host** | None yet — see planned move below |
 | **Login** | (Vaultwarden → "Immich") ❓ |
 | **DB password** | (Vaultwarden → "Immich DB") |
+
+## Planned: move from VM 107 to an LXC
+
+🟡 Planned, not started. Docker Compose in a new unprivileged **CT 111** (`10.10.0.111`), with the TrueNAS share mounted on the host and bind-mounted in, and the iGPU shared as `/dev/dri/renderD128` instead of passed through. Frees the 7 GB of pinned VM RAM and puts the database into vzdump backups. Steps: [runbook](../runbooks/immich-vm-to-lxc.md).
 
 ## Planned: move from Cloudflare Tunnel to direct IP + NPM
 
@@ -67,7 +71,8 @@ Checklist:
 ## Data
 
 - Library: on [TrueNAS](truenas.md), mounted over **NFS 4.1** from `10.10.0.22:/mnt/photo-storage/immich-data` at `/mnt/immich-data` (fstab: `hard`, `noatime`, `x-systemd.automount`). The share showed **1.6 TB used of 3.5 TB** on 2026-10-25 (it was ~900 GB when first documented).
-- ❓ Upload location vs. external library?
+- Upload location: `UPLOAD_LOCATION=/mnt/immich-data/immich` (1.1 TB), mounted as `/data`. **External library:** `/mnt/immich-data/aadil-photography` (525 GB), mounted read-only as `/photos`.
+- Ownership on the NFS share: `immich/` is owned by UID 1000, `aadil-photography/` by root.
 - Postgres database: on its own 32 GB virtual disk (`scsi1`), mounted at `/mnt/immich-db-scsi-vdisk` (2.6 GB used). That disk is marked `backup=0` in Proxmox, so a vzdump of VM 107 would **skip** it.
 
 ## Backups

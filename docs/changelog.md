@@ -2,6 +2,15 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-10-26 (1)
+
+Docs only, no lab changes.
+
+- **New runbook: [Move Immich from VM 107 to an LXC](runbooks/immich-vm-to-lxc.md)** (CT 111, `10.10.0.111`, Docker Compose, NFS mounted on the host, iGPU shared via `/dev/dri`). Added to the roadmap, the Immich page and the site nav.
+- **Correction:** Immich **does** use the iGPU for QuickSync transcoding; the `/dev/dri` mapping is in `hwaccel.transcoding.yml`, pulled in with `extends`. Yesterday's entry said it looked unused.
+- **Correction:** `enp4s0` / `enp5s0` on PVE-7050 are stale entries in `/etc/network/interfaces` from a removed card, not extra NICs. The onboard NIC is an Intel I219-LM, and **both PCIe slots are empty**. Also noted that `ahci` is blacklisted on the host, so the SATA controller belongs to TrueNAS.
+- **Immich details:** external library `aadil-photography` (525 GB, read-only) next to the 1.1 TB upload folder. The ML balancer points at workers on GF65 and GE68 that weren't listening.
+
 ## 2026-10-25 (1)
 
 Read-only audit over SSH of PVE-7050 (and every LXC through `pct exec`), VM 107, the Monitoring Pi and Server-GF65. Docs corrected to match; **no lab changes**. TrueNAS (VM 104) wasn't checked, since there's no SSH access to it yet.
