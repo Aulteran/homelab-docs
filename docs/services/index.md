@@ -23,8 +23,8 @@ Every service gets two links: the **domain** (the normal way in) and the **LAN U
 | [Nginx Proxy Manager](../network/reverse-proxy.md) (admin) | ✅ | CT 101 | [nginx.andrims.net](https://nginx.andrims.net) | [http://10.10.0.101:81](http://10.10.0.101:81) | No | **Yes** |
 | [AdGuard Home](../network/dns-adguard.md) (admin) | ✅ | CT 153 | [dns.andrims.net](https://dns.andrims.net) | [http://10.10.0.53](http://10.10.0.53) | No | **Yes** |
 | [Proxmox VE](../proxmox/host.md) (admin) | ✅ | PVE-7050 (bare metal) | [pve-7050.andrims.net](https://pve-7050.andrims.net) | [https://10.10.0.15:8006](https://10.10.0.15:8006) | No | **Yes** |
-| [Dozzle](dozzle.md) | ✅ | Monitoring Pi + agents | [dozzle.andrims.net](https://dozzle.andrims.net) | — | No | No |
-| [Uptime Kuma](uptime-kuma.md) | ✅ | Monitoring Pi | [uptime.andrims.net](https://uptime.andrims.net) | — | No | No |
+| [Dozzle](dozzle.md) | ✅ | Monitoring Pi + agents | [dozzle.andrims.net](https://dozzle.andrims.net) | [http://10.10.0.6:8888](http://10.10.0.6:8888) | No | No |
+| [Uptime Kuma](uptime-kuma.md) | ✅ | Monitoring Pi | [uptime.andrims.net](https://uptime.andrims.net) | [http://10.10.0.6:3001](http://10.10.0.6:3001) | No | No |
 | [Forgejo](forgejo.md) | ✅ | CT 106 | [git.andrims.net](https://git.andrims.net) | [http://10.10.0.106:3000](http://10.10.0.106:3000) | No | No |
 | [ActualBudget](actualbudget.md) | ✅ | CT 110 | [budget.andrims.net](https://budget.andrims.net) | [https://10.10.0.110:5006](https://10.10.0.110:5006) | No | **Yes** |
 | [Docs site](docs-site.md) | ✅ | CT 105 (`docker`) | [docs.andrims.net](https://docs.andrims.net) | [http://10.10.0.105:8088](http://10.10.0.105:8088) | No | No |

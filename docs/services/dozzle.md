@@ -2,7 +2,7 @@
 
 > **What / why:** One place to read live logs from every container on every host, so errors are easy to find when something breaks.
 
-**Status:** ✅ operational — main instance running on the [Monitoring Pi](../hardware/monitoring-pi.md) (`10.10.0.6`). Agents running on [Server-GF65](../hardware/msi-gf65.md) (`dozzle-agent`) and CT 105 (`docker`).
+**Status:** ✅ operational — main instance running on the [Monitoring Pi](../hardware/monitoring-pi.md) at [http://10.10.0.6:8888](http://10.10.0.6:8888) (host port **8888** → container 8080, because Glance already uses 8080). Agents (`dozzle-agent`, port 7007) running on [Server-GF65](../hardware/msi-gf65.md), CT 105 (`docker`) and VM 107 (`debian-immich`) — all confirmed 2026-10-25.
 
 !!! note "Dozzle ≠ Dockge"
     **Dozzle** is for *watching* containers (logs). **Dockge** is for *managing* compose stacks, and doesn't support Windows. Dozzle's agent does work on Docker Desktop for Windows.
@@ -10,7 +10,7 @@
 ## Architecture
 
 - **Main Dozzle** on the [Monitoring Pi](../hardware/monitoring-pi.md).
-- **A Dozzle agent** on every Docker host: the MSI GF65 (Docker Desktop), and **CT 105 (`docker`)**, the shared Docker host on Proxmox (`10.10.0.105`). The old Docker LXCs (CT 103, 108) have been deleted.
+- **A Dozzle agent** on every Docker host: the MSI GF65 (Docker Desktop), **CT 105 (`docker`)**, the shared Docker host on Proxmox (`10.10.0.105`), and the Immich VM (VM 107, `10.10.0.107`). The old Docker LXCs (CT 103, 108) have been deleted.
 - Use **Tailscale IPs** for the agents where possible, instead of opening 7007 on the LAN.
 
 ## Compose — agent (each Docker host, incl. GF65)
@@ -38,7 +38,7 @@ services:
     environment:
       - DOZZLE_REMOTE_AGENT=<agent1-ip>:7007,<agent2-ip>:7007
     ports:
-      - 8080:8080
+      - 8888:8080   # 8080 on the Pi is taken by Glance
     restart: unless-stopped
 ```
 

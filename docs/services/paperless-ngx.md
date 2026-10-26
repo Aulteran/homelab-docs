@@ -9,7 +9,7 @@
 | | |
 |---|---|
 | **Host** | **CT 105** (`docker`) |
-| **Type + ID** | Docker on LXC CT 105 (`docker`) ❓ Compose stack? |
+| **Type + ID** | Docker Compose project **`paperless-ault`** on LXC CT 105 (`docker`): `webserver` (`ghcr.io/paperless-ngx/paperless-ngx:latest`), `db` (`postgres:17`), `broker` (`redis:8`), `gotenberg` (`gotenberg/gotenberg:8.22`) and `tika` (`apache/tika:latest`). All `restart: unless-stopped`. No named Docker volumes, so data is in bind mounts — ❓ paths. |
 | **LAN IP / port** | `10.10.0.105` : 8001 (not the default 8000) |
 
 ## Access

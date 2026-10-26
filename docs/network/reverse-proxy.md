@@ -26,8 +26,8 @@ NPM receives incoming HTTPS and routes it to internal services. It's also the fr
 | [nginx.andrims.net](https://nginx.andrims.net) | NPM admin — `10.10.0.101:81` | No | ❓ | ✅ |
 | [dns.andrims.net](https://dns.andrims.net) | AdGuard Home admin — `10.10.0.53` (port 80) | No | ❓ | ✅ |
 | [pve-7050.andrims.net](https://pve-7050.andrims.net) | Proxmox — `10.10.0.15:8006` (HTTPS backend) | No | ❓ | ✅ |
-| [dozzle.andrims.net](https://dozzle.andrims.net) | Dozzle on Monitoring Pi — `10.10.0.6:8080` ❓ port | No | ❓ | ✅ |
-| [uptime.andrims.net](https://uptime.andrims.net) | Uptime Kuma on Monitoring Pi — ❓ IP:3001 | No | ❓ | ❓ |
+| [dozzle.andrims.net](https://dozzle.andrims.net) | Dozzle on Monitoring Pi — `10.10.0.6:8888` (Dozzle's host port; `:8080` is Glance) | No | ❓ | ✅ |
+| [uptime.andrims.net](https://uptime.andrims.net) | Uptime Kuma on Monitoring Pi — `10.10.0.6:3001` | No | ❓ | ✅ |
 | `git.andrims.net` | Forgejo — `10.10.0.106:3000` | No | ❓ | ✅ |
 | [docs.andrims.net](https://docs.andrims.net) | [Docs site](../services/docs-site.md) nginx container on CT 105 — `10.10.0.105:8088` | No | ❓ (internal-only name, so it needs a DNS-challenge cert) | ✅ |
 

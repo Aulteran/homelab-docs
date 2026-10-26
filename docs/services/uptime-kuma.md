@@ -6,7 +6,8 @@
 
 ## Where
 
-- [Monitoring Pi](../hardware/monitoring-pi.md), as a Docker container (`uptime-kuma-uptime-kuma-1`, Compose project `uptime-kuma`)
+- [Monitoring Pi](../hardware/monitoring-pi.md), as a Docker container (`uptime-kuma-uptime-kuma-1`, Compose project `uptime-kuma`, image `louislam/uptime-kuma:2`)
+- LAN URL: [http://10.10.0.6:3001](http://10.10.0.6:3001)
 
 ## Checks to set up
 

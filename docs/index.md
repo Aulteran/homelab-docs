@@ -54,7 +54,7 @@ flowchart TB
     subgraph pve["PVE-7050 (10.10.0.15) — Dell OptiPlex 7050 SFF, Proxmox VE"]
         npm["CT 101: NPM"]
         cfd["CT 102: cloudflared"]
-        truenas["VM 104: TrueNAS<br/>900 GB photo/media library"]
+        truenas["VM 104: TrueNAS<br/>1.6 TB photo/media library"]
         forgejo["CT 106: Forgejo"]
         immich["VM 107: Immich"]
         ddns["CT 109: ddns-updater"]
@@ -91,7 +91,7 @@ flowchart TB
     npm -.->|"git.andrims.net (internal)"| forgejo
     npm -.->|"docs.andrims.net (internal)"| docs
     forgejo -.->|"push webhook → rebuild 🟡"| docs
-    immich --> truenas
+    immich -->|NFS| truenas
     dozzle -.->|agent| gf65
     dozzle -.->|agents| pve
 ```

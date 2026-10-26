@@ -8,7 +8,8 @@ Tailscale mesh networking is the remote-access path into the lab. Internal-only 
 | **Admin login** | GitHub, through the GitHub organization `AndrimsDevs` |
 | **MagicDNS** | Enabled |
 | **Tailnet DNS** | Default only. No custom nameservers, no split DNS; devices use `100.100.100.100`. AdGuard is **not** set as a tailnet nameserver. |
-| **ACLs** | None configured. The default policy applies, so almost every device can reach every other device and service. |
+| **ACLs** | None configured. The default policy applies, so almost every device can reach every other device and service — **including devices owned by the second tailnet user, `Bowswa@`** (see the device list). |
+| **Users** | `Aulteran@` (Aadil) and `Bowswa@`. Servers are tagged devices (`tagged-devices`). |
 | **App connector** | Yes — routes all `*.andrims.net` traffic from tailnet devices to the lab (see below) |
 | **Where Tailscale runs** | Installed **directly on the PVE-7050 host** (`10.10.0.15`), not in an LXC or VM. The app connector runs there too. |
 | **Subnet router** | PVE-7050 advertises `10.10.0.0/24`, but the route is **disabled in the Tailscale admin console**. Turn it on only when the whole home network is needed from outside, then turn it off again. |
@@ -41,16 +42,30 @@ What this means in practice:
 
 - **`--accept-dns=false` on PVE-7050.** Tailscale on the host is brought up with `--accept-dns=false`, because accepting tailnet DNS kept breaking DNS for all the LXCs. Keep it that way, and include the flag whenever re-running `tailscale up` (a bare `tailscale up` can reset flags). Because of it, the host keeps its own DNS settings, and those are what resolve `*.andrims.net` for the app connector. The host's resolver points at AdGuard (`10.10.0.53`) — to re-check, run `cat /etc/resolv.conf` on the host.
 - **Tailscale runs on the Proxmox host itself.** That breaks the usual rule of keeping the host bare, and it is a deliberate exception. Note it before host upgrades or a rebuild, since Tailscale has to be reinstalled and re-authenticated by hand.
-- **No ACLs.** With the default allow-all policy, every tailnet device can reach the Proxmox UI and everything else on the host. This matters for the planned [edge VPS](edge-vps.md), which must get a restrictive ACL before it joins.
+- **No ACLs.** With the default allow-all policy, every tailnet device can reach the Proxmox UI and everything else on the host. That includes the other user's three devices, and PVE-7050 and VM 107 accept **root SSH with a password**. This also matters for the planned [edge VPS](edge-vps.md), which must get a restrictive ACL before it joins.
+- **Stale devices.** `oracle1`, `oracle2` and `ltbh-f15` haven't been seen for 97–348 days. Remove them in the admin console if they're gone for good.
 
 ## Devices on the tailnet
 
-| Device | Tailscale IP | Notes |
-|---|---|---|
-| PVE-7050 | `100.110.0.15` | Proxmox host, app connector, subnet router (disabled) |
-| Server-GF65 | `100.69.160.6` | Exit node (rarely used); always on |
-| Monitoring Pi | `100.101.228.37` | |
-| ❓ | 100.x.x.x | |
+From `tailscale status` on PVE-7050, 2026-10-25.
+
+| Device | Tailscale IP | Owner | Notes |
+|---|---|---|---|
+| `pve-7050` | `100.110.0.15` | tagged | Proxmox host, app connector, subnet router (disabled) |
+| `server-gf65` | `100.69.160.6` | tagged | Exit node (rarely used); always on |
+| `monitoring-pi` | `100.101.228.37` | tagged | |
+| `truenas-scale` | `100.110.0.22` | tagged | [TrueNAS](../services/truenas.md) (VM 104) |
+| `vm-107` | `100.110.0.107` | tagged | [Immich](../services/immich.md) VM |
+| `ct-105` | `100.85.137.111` | tagged | `docker` CT 105 (it has `/dev/net/tun` passed in) |
+| `oracle1` | `100.117.240.65` | tagged | Offline 97 days — ❓ old Oracle VPS test? |
+| `oracle2` | `100.121.48.9` | tagged | Offline 110 days |
+| `ault-ge68` | `100.101.97.6` | Aulteran@ | [MSI Raider GE68 HX](../hardware/msi-raider-ge68hx.md) workstation |
+| `aadils-m1-macbook-air` | `100.95.170.40` | Aulteran@ | [M1 MacBook Air](../hardware/macbook-air.md) |
+| `aadil-s24` | `100.65.156.66` | Aulteran@ | Android phone |
+| `ltbh-f15` | `100.73.191.112` | Aulteran@ | Windows, offline 348 days |
+| `furnace` | `100.95.22.125` | Bowswa@ | Windows, offers an exit node |
+| `lootcrate` | `100.111.190.90` | Bowswa@ | Windows |
+| `iphone182` | `100.112.178.100` | Bowswa@ | iOS |
 
 ## Planned use
 

@@ -2,6 +2,23 @@
 
 Newest first. One entry per change to the lab, in the same commit as the doc update.
 
+## 2026-10-25 (1)
+
+Read-only audit over SSH of PVE-7050 (and every LXC through `pct exec`), VM 107, the Monitoring Pi and Server-GF65. Docs corrected to match; **no lab changes**. TrueNAS (VM 104) wasn't checked, since there's no SSH access to it yet.
+
+- **PVE-7050 hardware:** the boot disk is a 512 GB **NVMe** (Kingston), SMART passed, **46% wear used, 68 TB written**. There are two more NIC ports (`enp4s0`, `enp5s0`) besides the onboard one, so "no additional NICs" was wrong. The iGPU (HD 530) is passed through to VM 107.
+- **Proxmox host:** uses the `pve-no-subscription` repo, 38 updates pending. `vmbr0` is already VLAN-aware. Firewall is off, no notifications are set up, and root SSH accepts passwords. 9.9 GB of old Nov 2025 dumps (incl. deleted VM 170) are still in `/var/lib/vz/dump`. `glance-agent` runs on the host.
+- **IP / CTID table:** CT 102 and CT 153 use **`net1`** (that's why `net0` was missing). Added OS per CT, VM vCPUs (VM 107 has 6), passthrough, boot order, and the CT 105 tailnet node. Pending updates: CT 101/105/110 have 74–77 each.
+- **Immich (VM 107):** Docker Compose in `/root/docker/immich-docker-ct/`, Immich v3.3.5 with an ML balancer. The library is an NFS 4.1 mount from TrueNAS (`/mnt/photo-storage/immich-data`) and is now **1.6 TB** (was ~900 GB). Postgres is on a separate 32 GB disk marked `backup=0`. Daily DB dumps go to the same TrueNAS share as the photos. Balloon is 6 GB while the host pins 7 GB. The passed-through iGPU doesn't seem to be used.
+- **TrueNAS:** it's SCALE (on the tailnet as `truenas-scale`), with one NFS share for Immich on a ~3.5 TB pool.
+- **AdGuard (CT 153):** the 90-day query log takes **7.3 GB of the 10 GB disk**. Added as a known risk.
+- **Tailscale:** full device list recorded, including a second user (`Bowswa@`, 3 devices) and stale nodes (`oracle1`, `oracle2`, `ltbh-f15`). With no ACLs, the other user's devices can reach everything.
+- **Monitoring Pi:** Dozzle is on host port **8888** (Glance has 8080); Uptime Kuma is `10.10.0.6:3001`. Swap is zram, Docker logs have no size limit, no unattended-upgrades. Dozzle agent rollout is done (GF65, CT 105, VM 107).
+- **Paperless-ngx:** Compose project `paperless-ault` (Postgres 17, Redis 8, Gotenberg, Tika).
+- **Server-GF65:** **Curiosity (`F:`) has been flagged "Full Repair Needed" since 2026-09-27**, with no read errors on the drive. Added as urgent: copy the data off, then `chkdsk /F`. The boot SSD has 11.9 GB free; Docker's WSL data is 66 GB, Jellyfin's data 11.6 GB. Neo has 135 GB free. Also recorded a 57 GB USB stick (`D:`), 17 unused Docker volumes, Windows 10 22H2 with no ESU, and SSH access for the `claude-homelab` key.
+- **Jellystat fixed (2026-10-23):** duplicate episode rows broke a database migration. They were removed after a DB dump; details on the GF65 page.
+- **Roadmap:** new known risks for the AdGuard query log, root password SSH, pending updates and NVMe wear. Updated the RAM item with a concrete trim (VM 107 to 6 GB, TrueNAS to 8 GB).
+
 ## 2026-09-29 (13)
 
 - **Server-GF65 can't run Linux.** Its screen and speakers have been dead since 2022 (suspected motherboard short while redoing the thermal paste), and the BIOS doesn't show on an external monitor, so Secure Boot can't be disabled. Windows is permanent, and the box is managed over RDP only. Documented at the top of the GF65 page.

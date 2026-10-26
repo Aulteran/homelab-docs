@@ -8,7 +8,8 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [x] Jellyfin starts on boot; Curiosity has no copy (only its family photos/videos are also in Immich)
 - [ ] Jellyfin 12: find why the server randomly stops (logs / Event Viewer), and add an Uptime Kuma check for it
 - [ ] GF65: does it power back on after a power cut (BIOS can't be reached to set it)? Does Windows show on an external monitor?
-- [ ] Back up Curiosity's non-Immich content (old video projects, other files)
+- [ ] Back up Curiosity's non-Immich content (old video projects, other files) — **urgent**: its file system has been flagged "Full Repair Needed" since 2026-09-27; copy first, then `chkdsk /F`
+- [ ] GF65: what are the 17 unused Docker volumes (1.7 GB)? Delete `C:\Users\admin\jfstat-pre-fix.dump` once Jellystat is confirmed fine
 - [x] Monitoring Pi runs Docker: Dozzle, Glance, Uptime Kuma, Homepage (being decommissioned)
 - [ ] Decommission Homepage on the Monitoring Pi (Glance replaces it); remove its domain/NPM proxy host and AdGuard rewrite if it has one
 
@@ -22,14 +23,17 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [ ] **Decide how to expose Jellyfin without the home IP**: [options and budgets](network/jellyfin-exposure-options.md). Then: provider, region and shape, and whether Immich moves onto it later
 - [ ] Cloudflare Tunnel: tunnel name (runs on CT 102, `10.10.0.102` — IP now confirmed)
 - [x] Tailscale: app connector routes `*.andrims.net` via Tailscale on PVE-7050 (documented)
-- [ ] Tailscale: remaining devices (laptops, phones, etc.) beyond the three servers. (App connector, resolver, login provider, exit node, ACLs, MagicDNS and the disabled subnet route are all documented.)
+- [x] Tailscale: full device list recorded (2026-10-25)
+- [ ] Tailscale: what were `oracle1` / `oracle2` and `ltbh-f15`, and can they be removed? Should `Bowswa@`'s devices be limited by an ACL?
+- [ ] PVE-7050: model and speed of the extra NIC ports `enp4s0` / `enp5s0`
 
 ## Proxmox
 - [x] Version (9.2.20), node name, storage pools
 - [ ] **Set up backups** — none exist today for the host, VMs or CTs. Pick a schedule and a destination (separate disk or machine)
-- [ ] Updates are manual and irregular — decide a cadence and whether to use the no-subscription repo
-- [ ] CT 102 and CT 153 show **no `net0`** in `pct config` — check which interface they use (`pct config 102 | grep ^net`)
-- [ ] VM core counts and IP for VM 171 (HAOS): `qm config <vmid>`
+- [ ] Updates are manual and irregular — decide a cadence (the `pve-no-subscription` repo is already in use)
+- [x] CT 102 and CT 153 use **`net1`**, not `net0`
+- [x] VM core counts recorded; VM 171 (HAOS) has no static IP set
+- [ ] Clear out the old Nov 2025 dumps in `/var/lib/vz/dump` (9.9 GB, includes deleted VM 170)
 - [ ] Home Assistant OS (VM 171, stopped): keep, start, or delete? Needs RAM headroom first
 - [x] All LXCs (CT 101, 102, 105, 106, 109, 110, 153) were deployed with community helper scripts
 
@@ -39,13 +43,15 @@ Everything marked ❓ in the docs, collected in one place. Tick them off as you 
 - [x] Uptime Kuma is running ([uptime.andrims.net](https://uptime.andrims.net)); Dozzle too
 - [ ] **LAN URL for every service** — see [Services → Quick links](services/index.md#quick-links)
 - [ ] Vaultwarden: compose, data path, **backup** (URL and exposure now confirmed — see its page)
-- [ ] Immich: how TrueNAS is mounted, DB backup, deployment method inside VM 107
-- [ ] TrueNAS (VM 104): SCALE/CORE version, pool/dataset layout on the single 4 TB disk, snapshot schedule, **off-box copy (no redundancy — priority)**
+- [x] Immich: NFS 4.1 mount from TrueNAS, daily DB dumps (on the same TrueNAS share), Docker Compose in `/root/docker/immich-docker-ct/`
+- [ ] Immich: use the passed-through iGPU for transcoding (QuickSync), or remove the passthrough? What does `immich_ml_balancer` balance to? What's on port 9090?
+- [ ] TrueNAS (VM 104): exact SCALE version, pool/dataset layout, snapshot schedule, **off-box copy (no redundancy — priority)**; set up SSH access
 - [x] Paperless-ngx is running on CT 105 (`docker`), port 8001
-- [ ] Paperless-ngx: Compose or plain Docker?, data paths, NPM proxy host, export backup
+- [x] Paperless-ngx is a Compose project (`paperless-ault`)
+- [ ] Paperless-ngx: data paths, NPM proxy host, export backup
 - [ ] Jellyfin: Docker or native, paths, config backup
 - [ ] Servarr (`servarr` Compose project, 11 containers): compose path, what routes through Gluetun, ports/domains for Lidarr, Tdarr and Jellystat, backup location
-- [ ] Jellystat has been down for a few days: diagnose and fix
+- [x] Jellystat fixed 2026-10-23 (duplicate episode rows broke a migration) — see the [GF65 page](hardware/msi-gf65.md#what-runs-here)
 - [ ] Glance: config path, widgets
 - [ ] Uptime Kuma: notification channel
 - [ ] ActualBudget (CT 110): NPM proxy host for [budget.andrims.net](https://budget.andrims.net), backup

@@ -8,21 +8,34 @@
 
 | | |
 |---|---|
-| **Host** | `PVE-7050` ([Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md)) → **VM 107** (`debian-immich`) — 7 GB RAM, 20 GB boot disk |
-| **Type + ID** | VM — VMID 107, Debian |
+| **Host** | `PVE-7050` ([Dell OptiPlex 7050 SFF](../hardware/optiplex-7050.md)) → **VM 107** (`debian-immich`) — 6 vCPUs, 7 GB RAM, 20 GB boot disk + 32 GB database disk |
+| **Type + ID** | VM — VMID 107, Debian 12 (bookworm), cloud-init |
 | **LAN IP / port** | `10.10.0.107` : 2283 |
-| **RAM allocated** | 7 GB |
+| **Tailscale** | On the tailnet as `vm-107` (`100.110.0.107`) |
+| **RAM allocated** | 7 GB, but `balloon: 6144` means the guest only sees ~6 GB. The iGPU passthrough pins all 7 GB on the host anyway. |
+| **GPU** | Intel HD Graphics 530 passed through (`/dev/dri/renderD128` exists in the VM). The compose file doesn't map `/dev/dri` into any container, so ❓ Immich doesn't seem to use it yet. |
 
 ## How it was deployed
 
-Debian VM (107). ❓ Docker compose inside it, or native install?
+Docker Compose inside the Debian VM: `/root/docker/immich-docker-ct/docker-compose.yml`. Containers (2026-10-25):
+
+| Container | Image |
+|---|---|
+| `immich_server` | `ghcr.io/immich-app/immich-server:release` |
+| `immich_machine_learning` | `ghcr.io/immich-app/immich-machine-learning:release` (CPU, no hardware acceleration tag) |
+| `immich_ml_balancer` | `apetersson/immich_ml_balancer:latest` — sits between the server and ML containers; ❓ which other ML workers it balances to |
+| `immich_postgres` | `ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0` |
+| `immich_redis` | `valkey/valkey:8-bookworm` |
+| `dozzle-agent` | `amir20/dozzle:latest` (separate compose: `/root/docker/dozzle-agent/`) |
+
+Immich version on 2026-10-25: **v3.3.5**.
 
 ## Access
 
 | | |
 |---|---|
 | **Domain URL** | [immich.andrims.net](https://immich.andrims.net) |
-| **LAN URL** | ❓ `http://10.10.0.107:2283` |
+| **LAN URL** | [http://10.10.0.107:2283](http://10.10.0.107:2283) |
 | **Public?** | **Yes** |
 | **Path today** | Cloudflare Tunnel (`cloudflared`) → Immich. **Does not go through NPM.** |
 | **cloudflared runs on** | `PVE-7050` → **CT 102** (`cloudflared`), a separate LXC from the [community scripts](https://community-scripts.github.io/ProxmoxVE/) — `10.10.0.102` |
@@ -53,21 +66,22 @@ Checklist:
 
 ## Data
 
-- Library: ~**900 GB** of photos/media on [TrueNAS](truenas.md).
-- ❓ How the VM mounts it (NFS / SMB), share name, mount path.
+- Library: on [TrueNAS](truenas.md), mounted over **NFS 4.1** from `10.10.0.22:/mnt/photo-storage/immich-data` at `/mnt/immich-data` (fstab: `hard`, `noatime`, `x-systemd.automount`). The share showed **1.6 TB used of 3.5 TB** on 2026-10-25 (it was ~900 GB when first documented).
 - ❓ Upload location vs. external library?
-- Postgres database: ❓ where it lives (local VM disk?).
+- Postgres database: on its own 32 GB virtual disk (`scsi1`), mounted at `/mnt/immich-db-scsi-vdisk` (2.6 GB used). That disk is marked `backup=0` in Proxmox, so a vzdump of VM 107 would **skip** it.
 
 ## Backups
 
-- ❓ Is the Immich Postgres DB dumped anywhere? (The library alone isn't enough to restore albums, faces, users.)
-- ❓ Are the 900 GB of originals backed up anywhere besides TrueNAS?
+- **DB dumps:** Immich's built-in database backup runs daily at 02:00 and writes `immich-db-backup-*.sql.gz` (~770 MB each) to `/mnt/immich-data/immich/backups`. That folder is on the **same TrueNAS disk as the photos**, so one disk failure loses both.
+- ❓ Are the originals backed up anywhere besides TrueNAS? (No off-box copy known.)
 
 ## Updates
 
-❓
+Images follow the `release` tag (`IMMICH_VERSION` unset), so they update when the stack is pulled and recreated. The Debian VM has `unattended-upgrades` enabled; 7 packages were pending on 2026-10-25.
 
 ## Gotchas
 
 - One of the biggest RAM users on the Proxmox host (machine learning container).
 - **Publicly exposed.** Keep it updated and use strong passwords on every user.
+- SSH into the VM allows **root login with a password** (`PermitRootLogin yes`, `PasswordAuthentication yes`).
+- Something on port **9090** is socket-activated by systemd (likely Cockpit) — ❓ confirm and remove if unused.
